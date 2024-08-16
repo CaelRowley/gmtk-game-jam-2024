@@ -19,6 +19,10 @@ config/icon="res://icon.svg"
 AudioManager="*res://globals/audio_manager.tscn"
 SceneManager="*res://globals/scene_manager.tscn"
 
+[display]
+
+window/stretch/mode="viewport"
+
 [rendering]
 
 renderer/rendering_method="gl_compatibility"
