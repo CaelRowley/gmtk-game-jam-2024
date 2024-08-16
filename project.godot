@@ -14,6 +14,10 @@ config/name="GMTK 2024"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[autoload]
+
+AudioManager="*res://globals/audio_manager.tscn"
+
 [rendering]
 
 renderer/rendering_method="gl_compatibility"
