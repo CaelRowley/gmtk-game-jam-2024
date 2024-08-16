@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://baw7bsh3imbcq"]
+
+[ext_resource type="Script" path="res://test/test_2.gd" id="1_wrert"]
+
+[node name="Test" type="Node2D"]
+script = ExtResource("1_wrert")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 1085.0
+offset_bottom = 655.0
+color = Color(1, 0.755659, 0.758898, 1)
