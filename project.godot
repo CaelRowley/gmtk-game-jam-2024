@@ -11,12 +11,20 @@ config_version=5
 [application]
 
 config/name="GMTK 2024"
+run/main_scene="res://camera/camera_test_scene.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 config/icon="res://icon.svg"
 
 [autoload]
 
 AudioManager="*res://globals/audio_manager.tscn"
+
+[display]
+
+window/size/viewport_width=405
+window/size/viewport_height=720
+window/stretch/mode="viewport"
+window/stretch/aspect="expand"
 
 [rendering]
 

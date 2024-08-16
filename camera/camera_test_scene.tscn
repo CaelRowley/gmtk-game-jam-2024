@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://hbut8845crxp"]
+
+[ext_resource type="Script" path="res://camera/camera_controller.gd" id="1_qcm1b"]
+[ext_resource type="Texture2D" uid="uid://c81e8qa147jgx" path="res://test/test_background_long.png" id="2_e0d5h"]
+
+[node name="CameraTestScene" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+script = ExtResource("1_qcm1b")
+
+[node name="TestBackgroundLong" type="Sprite2D" parent="."]
+position = Vector2(0, -3284)
+scale = Vector2(0.38, 0.38)
+texture = ExtResource("2_e0d5h")
