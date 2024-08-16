@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://dw4y318x6cfnf"]
+
+[ext_resource type="Script" path="res://globals/audio_manager.gd" id="1_ytwpv"]
+
+[node name="AudioManager" type="Node"]
+script = ExtResource("1_ytwpv")
+
+[node name="MusicPlayer1" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+
+[node name="MusicPlayer2" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+
+[connection signal="finished" from="MusicPlayer1" to="." method="_on_music_player_1_finished"]
+[connection signal="finished" from="MusicPlayer2" to="." method="_on_music_player_2_finished"]
