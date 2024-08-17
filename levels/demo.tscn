@@ -124,3 +124,32 @@ tile_set = SubResource("TileSet_eydfc")
 [node name="NextTileMap" type="TileMapLayer" parent="."]
 unique_name_in_owner = true
 tile_set = SubResource("TileSet_eydfc")
+
+[node name="UI" type="VBoxContainer" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="UI"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = "Food: 0"
+
+[node name="Label2" type="Label" parent="UI"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = "Water: 0"
+
+[node name="Label3" type="Label" parent="UI"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = "Electricity: 0"
+
+[node name="Label4" type="Label" parent="UI"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = "People: 0"
+
+[node name="Label5" type="Label" parent="UI"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = "Coins: 0"
