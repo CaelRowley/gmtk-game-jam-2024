@@ -22,8 +22,8 @@ SceneManager="*res://globals/scene_manager.tscn"
 
 [display]
 
-window/size/viewport_width=405
-window/size/viewport_height=720
+window/size/viewport_width=540
+window/size/viewport_height=960
 window/stretch/mode="viewport"
 window/stretch/aspect="expand"
 
