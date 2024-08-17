@@ -29,10 +29,11 @@ func _input(event: InputEvent) -> void:
 
 func place_tile() -> void:
 	var tile := placed_tiles_map.local_to_map(get_local_mouse_position()) as Vector2
+	var place_tile_sfx = [AudioManager.sfx_place_pop_01,AudioManager.sfx_place_pop_02,AudioManager.sfx_place_pop_03]
 	if !is_tile_connected(tile) || is_tile_overlapping(tile):
 		animate_cant_place()
 		return
-	AudioManager.play_sfx(AudioManager.sfx_achievement_01)
+	AudioManager.play_sfx(place_tile_sfx.pick_random())
 	next_tile_map.clear()
 	var coords = []
 	for cell in BlockManager.current_block.coords:

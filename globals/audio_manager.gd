@@ -45,6 +45,10 @@ const sfx_merge_echo_04 := preload("res://audio/sfx/khorn_studio/Puzzle_Game_Mer
 const sfx_merge_echo_05 := preload("res://audio/sfx/khorn_studio/Puzzle_Game_Merge_Echo_05.wav")
 const sfx_whoosh_heavy_03 := preload("res://audio/sfx/khorn_studio/Puzzle_Game_Whoosh_Heavy_03.wav")
 
+const sfx_place_pop_01 := preload("res://audio/sfx/3pops/pop1.ogg")
+const sfx_place_pop_02 := preload("res://audio/sfx/3pops/pop2.ogg")
+const sfx_place_pop_03 := preload("res://audio/sfx/3pops/pop3.ogg")
+
 var music_one_shot := false
 
 @onready var music_player_1 := %MusicPlayer1 as AudioStreamPlayer
