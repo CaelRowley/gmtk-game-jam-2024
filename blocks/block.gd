@@ -63,7 +63,7 @@ func get_source():
 	return type_to_source_map[type]
 
 
-func get_food(tile_map: TileMapLayer) -> int:
+func get_food(tile_map: TileMapLayer, dir := Vector2.ZERO) -> int:
 	if type != Type.FOOD:
 		return 0
 	for cell in coords:
@@ -72,6 +72,31 @@ func get_food(tile_map: TileMapLayer) -> int:
 			return value
 		if tile_map.get_cell_source_id(cell + Vector2(-1, 0)) == -1:
 			return value
+	for cell in coords:
+		# If any connected above tile is empty
+		var target := cell + dir as Vector2
+		if dir == Vector2.ZERO:
+			target = cell + Vector2(1, 0)
+			if tile_map.get_cell_source_id(target) == type_to_source_map[Type.FOOD]:
+				for block in BlockManager.placed_blocks:
+					for coord in block.coords:
+						if coord == target and block.coords != coords:
+							if block.get_food(tile_map, Vector2(1, 0)) > 0:
+								return value
+			target = cell + Vector2(0, 1)
+			if tile_map.get_cell_source_id(target) == type_to_source_map[Type.FOOD]:
+				for block in BlockManager.placed_blocks:
+					for coord in block.coords:
+						if coord == target and block.coords != coords:
+							if block.get_food(tile_map, Vector2(0, 1)) > 0:
+								return value
+		else:
+			if tile_map.get_cell_source_id(target) == type_to_source_map[Type.FOOD]:
+				for block in BlockManager.placed_blocks:
+					for coord in block.coords:
+						if coord == target and block.coords != coords:
+							if block.get_food(tile_map, dir) > 0:
+								return value
 	return 0
 
 
@@ -83,7 +108,7 @@ func get_water(tile_map: TileMapLayer) -> int:
 		if tile_map.get_cell_source_id(cell + Vector2(0, -1)) == -1:
 			return value
 	for cell in coords:
-		# If any above tile is empty
+		# If any connected above tile is empty
 		var target := cell + Vector2(0, -1) as Vector2
 		if tile_map.get_cell_source_id(target) == type_to_source_map[Type.WATER]:
 			for block in BlockManager.placed_blocks:
