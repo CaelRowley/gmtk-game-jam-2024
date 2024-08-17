@@ -49,8 +49,10 @@ func place_tile() -> void:
 
 func update_cells() -> void:
 	for block in BlockManager.placed_blocks:
-		for coord in block.coords:
-			placed_tiles_map.set_cell(coord, block.get_source(), Vector2.ZERO)
+		placed_tiles_map.set_cells_terrain_connect(block.coords, 0, block.get_source() - 1, false)
+		#for coord in block.coords:
+		#	placed_tiles_map.set_cell(coord, block.get_source(), Vector2.ZERO)
+			
 
 
 func is_tile_connected(tile: Vector2) -> bool:
