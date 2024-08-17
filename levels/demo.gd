@@ -1,22 +1,6 @@
 extends Node2D
 
 const tile_size := 128
-const source_to_type_map = {
-	1: Block.Type.WATER,
-	2: Block.Type.FOOD,
-	3: Block.Type.FRAME,
-	4: Block.Type.BUSINESS,
-	5: Block.Type.RESIDENTIAL,
-	6: Block.Type.ELECTRICITY,
-}
-const type_to_source_map = {
-	Block.Type.WATER: 1,
-	Block.Type.FOOD: 2,
-	Block.Type.FRAME: 3,
-	Block.Type.BUSINESS: 4,
-	Block.Type.RESIDENTIAL: 5,
-	Block.Type.ELECTRICITY: 6,
-}
 
 @onready var shadow_tile_map := $ShadowTileMap as TileMapLayer
 @onready var next_tile_map := $NextTileMap as TileMapLayer
@@ -54,7 +38,7 @@ func place_tile() -> void:
 	for cell in BlockManager.current_block.coords:
 		coords.push_back(tile + cell)
 	var new_block := Block.new()
-	new_block.init(coords, BlockManager.current_block.type)
+	new_block.init(coords, BlockManager.current_block.type, BlockManager.current_block.value)
 	BlockManager.add_placed_block(new_block)
 	update_cells()
 	get_random_block()
@@ -64,6 +48,24 @@ func update_cells() -> void:
 	for block in BlockManager.placed_blocks:
 		for coord in block.coords:
 			placed_tiles_map.set_cell(coord, block.get_source(), Vector2.ZERO)
+			
+	var food := 0
+	var water := 0
+	var electricity := 0
+	var people := 0
+	var coins := 0
+	for block in BlockManager.placed_blocks:
+		food += block.get_food(placed_tiles_map)
+		water += block.get_water(placed_tiles_map)
+		electricity += block.get_electricity(placed_tiles_map)
+		people += block.get_people()
+		coins += block.get_coins(placed_tiles_map)
+	print()
+	print("food: ", food)
+	print("water: ", water)
+	print("electricity: ", electricity)
+	print("people: ", people)
+	print("coins: ", coins)
 
 
 func is_tile_connected(tile: Vector2) -> bool:
@@ -95,15 +97,16 @@ func animate_cant_place() -> void:
 
 func get_random_block() -> void:
 	var new_block := Block.new()
-	var ran_coords := [BlockManager.BLOCKS.Block, BlockManager.BLOCKS.IBlock, BlockManager.BLOCKS.CBlock].pick_random() as Array
-	var ran_type := [0, 1 ,2,3,4,5].pick_random() as int
-	new_block.init(ran_coords, ran_type)
+	var ran_block = [BlockManager.BLOCKS.Block, BlockManager.BLOCKS.IBlock, BlockManager.BLOCKS.CBlock].pick_random()
+	var ran_coords := ran_block.coords as Array
+	var ran_type := [0, 1,2 ,3, 4, 5].pick_random() as int
+	new_block.init(ran_coords, ran_type, ran_block.value)
 	BlockManager.current_block = new_block
 
-#
+
 func rotate_clockwise() -> void:
 	for i in range(BlockManager.current_block.coords.size()):
-		var new_coords := BlockManager.current_block.coords.duplicate()
+		var new_coords := BlockManager.current_block.coords.duplicate() as Array
 		var new_rotation := new_coords[i].rotated(deg_to_rad(90)) as Vector2
 		new_coords[i].x = roundi(new_rotation.x)
 		new_coords[i].y = roundi(new_rotation.y)
@@ -112,8 +115,53 @@ func rotate_clockwise() -> void:
 
 func rotate_counter_clockwise() -> void:
 	for i in range(BlockManager.current_block.coords.size()):
-		var new_coords := BlockManager.current_block.coords.duplicate()
+		var new_coords := BlockManager.current_block.coords.duplicate() as Array
 		var new_rotation := new_coords[i].rotated(deg_to_rad(-90)) as Vector2
 		new_coords[i].x = roundi(new_rotation.x)
 		new_coords[i].y = roundi(new_rotation.y)
 		BlockManager.current_block.coords = new_coords
+
+
+func get_water() -> int:
+	var count := 0
+	for block in BlockManager.placed_blocks:
+		if block.type == Block.Type.WATER:
+			for cell in block.get_top_cells(placed_tiles_map):
+				if cell == -1:
+					count += 1
+	print("water: ", count)
+	return count
+
+
+func get_food() -> int:
+	var count := 0
+	for block in BlockManager.placed_blocks:
+		if block.type == Block.Type.FOOD:
+			for cell in block.get_left_cells(placed_tiles_map):
+				if cell == -1:
+					count += 1
+			for cell in block.get_right_cells(placed_tiles_map):
+				if cell == -1:
+					count += 1
+	print("food: ", count)
+	return count
+
+
+func get_electricity() -> int:
+	var count := 0
+	for block in BlockManager.placed_blocks:
+		if block.type == Block.Type.ELECTRICITY:
+			for cell in block.get_top_cells(placed_tiles_map):
+				if cell == -1:
+					count += 1
+			for cell in block.get_bot_cells(placed_tiles_map):
+				if cell == -1:
+					count += 1
+			for cell in block.get_left_cells(placed_tiles_map):
+				if cell == -1:
+					count += 1
+			for cell in block.get_right_cells(placed_tiles_map):
+				if cell == -1:
+					count += 1
+	print("electricity: ", count)
+	return count

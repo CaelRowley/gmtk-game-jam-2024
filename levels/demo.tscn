@@ -118,7 +118,7 @@ tile_set = SubResource("TileSet_eydfc")
 
 [node name="PlacedTilesMap" type="TileMapLayer" parent="."]
 unique_name_in_owner = true
-tile_map_data = PackedByteArray(0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0)
+tile_map_data = PackedByteArray(0, 0, 4, 0, 4, 0, 3, 0, 0, 0, 0, 0, 0, 0)
 tile_set = SubResource("TileSet_eydfc")
 
 [node name="NextTileMap" type="TileMapLayer" parent="."]
