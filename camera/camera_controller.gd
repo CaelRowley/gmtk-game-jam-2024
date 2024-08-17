@@ -1,4 +1,5 @@
 extends Camera2D
+class_name CameraController
 
 const camera_acceleration = 0.3
 const camera_drag = 3
@@ -6,47 +7,94 @@ const barrier_drag = 12
 const camera_shake_strength = 9;
 const camera_shake_fade = 6;
 
+var is_mouse_down = false
 var prev_mouse_position = Vector2.ZERO;
+
+var zoom_level: int = 1
 var camera_y = 0;
 var camera_velocity = 0;
 var camera_shake = 0.0;
+var barrier_break_timer = 0.0;
 
 var barrier_manager: BarrierManager
+var broken_barrier: Barrier
+var is_broken_barrier_above
 
 func _ready():
 	for sibling in get_parent().get_children():
 		if sibling is BarrierManager:
 			barrier_manager = sibling
 			break;
-	print("barrier manager = " + str(barrier_manager))
+
+func _input(event: InputEvent) -> void:
+	# We don't want to listen to input during the barrier break animation
+	if broken_barrier == null && event is InputEventMouseButton:
+		is_mouse_down = event.is_pressed()
 
 func _process(delta: float):
-	var barrier_delta = 0
-	var nearest_barrier = barrier_manager.get_nearest_barrier(camera_y)
-	if nearest_barrier != null:
-		barrier_delta = (nearest_barrier.get_nearest_edge(camera_y) - camera_y) * 0.01
-
-	var mouse_position = get_local_mouse_position()
-	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
-		var mouse_delta = prev_mouse_position - mouse_position
-		mouse_delta *= (1 - min(abs(barrier_delta), 1))
-		camera_velocity = mouse_delta.y
-	elif barrier_delta != 0:
-		camera_velocity *= (1 - barrier_drag * delta)
-		camera_velocity += barrier_delta
-	else:
+	var barrier_overshoot = 0
+	var nearest_barrier = null
+	
+	if broken_barrier != null:
+		handle_barrier_transition(delta)
+	else:	
+		# Check if there's a barrier nearby and how close we are to it's edge
+		nearest_barrier = barrier_manager.get_nearest_barrier(self)
+		if nearest_barrier != null:
+			barrier_overshoot = nearest_barrier.get_overshoot(self)
+		handle_mouse_input(delta, barrier_overshoot)
 		camera_velocity *= (1 - camera_drag * delta)
 	
+	# Modify the camera's velocity and set it's position
 	camera_y += camera_velocity
-	
-	global_position.x = 0;
+	global_position.x = 0
 	global_position.y = camera_y
+	
+	# If there's no nearby barrier, the barrier is unbreakable, or we're not holding Left Click
+	# we're done. Otherwise we gotta handle the shaking and breaking behavior
+	if nearest_barrier != null && !nearest_barrier.is_unbreakable && is_mouse_down:
+		handle_camera_shake(delta, nearest_barrier, barrier_overshoot)
+
+func handle_mouse_input(delta: float, barrier_overshoot: float):	
+	var mouse_position = get_local_mouse_position()
+	# Handle the dragging of the camera when the mouse is held
+	if is_mouse_down:
+		var mouse_delta = prev_mouse_position - mouse_position
+		mouse_delta *= (1 - min(abs(barrier_overshoot), 1))
+		camera_velocity = mouse_delta.y
+	elif barrier_overshoot != 0:
+		camera_velocity *= (1 - barrier_drag * delta)
+		camera_velocity += barrier_overshoot
+	prev_mouse_position = mouse_position
+
+func handle_camera_shake(delta: float, barrier: Barrier, barrier_overshoot: float):
+	barrier_break_timer = 0 if abs(barrier_overshoot) < 0.8 else barrier_break_timer + delta
+	if barrier_break_timer > (0.3 if barrier.has_been_broken else 1.2):
+		break_barrier(barrier)
+	if barrier.has_been_broken:
+		return	
 	if(camera_shake > 1):
 		global_position.x += randf_range(-camera_shake, camera_shake)
 		global_position.y += randf_range(-camera_shake, camera_shake)
-		var fade = pow(camera_shake_fade, 2) * max(1, abs(barrier_delta)) * delta
+		var fade = pow(camera_shake_fade, 2) * max(1, abs(barrier_overshoot)) * delta
 		camera_shake = lerpf(camera_shake, 0.0, fade)
-	elif(nearest_barrier != null && !nearest_barrier.is_unbreakable && Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT)):
-		camera_shake = pow(abs(barrier_delta) * camera_shake_strength, 2)
+	else:
+		camera_shake = pow(abs(barrier_overshoot) * camera_shake_strength, 2)
 
-	prev_mouse_position = mouse_position
+func handle_barrier_transition(delta: float):
+	var barrier_dir = broken_barrier.global_position.y - camera_y
+	camera_velocity += barrier_dir * delta * 2.0
+	if is_broken_barrier_above && camera_y < broken_barrier.global_position.y:
+		broken_barrier = null
+	if !is_broken_barrier_above && camera_y > broken_barrier.global_position.y:
+		broken_barrier = null
+
+func break_barrier(barrier: Barrier):
+	barrier.break_barrier()
+	broken_barrier = barrier;
+	is_broken_barrier_above = barrier.is_above(self)
+	zoom_level = zoom_level + 1 if barrier.is_above(self) else zoom_level - 1
+	is_mouse_down = false
+	barrier_break_timer = 0
+	create_tween().tween_property(self, "zoom", Vector2(1.0/zoom_level, 1.0/zoom_level), 0.8).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_SPRING)
+	print("zoom level is " + str(zoom_level))
