@@ -83,12 +83,12 @@ func get_food(tile_map: TileMapLayer, dir := Vector2.ZERO) -> int:
 						if coord == target and block.coords != coords:
 							if block.get_food(tile_map, Vector2(1, 0)) > 0:
 								return value
-			target = cell + Vector2(0, 1)
+			target = cell + Vector2(-1, 0)
 			if tile_map.get_cell_source_id(target) == type_to_source_map[Type.FOOD]:
 				for block in BlockManager.placed_blocks:
 					for coord in block.coords:
 						if coord == target and block.coords != coords:
-							if block.get_food(tile_map, Vector2(0, 1)) > 0:
+							if block.get_food(tile_map, Vector2(-1, 0)) > 0:
 								return value
 		else:
 			if tile_map.get_cell_source_id(target) == type_to_source_map[Type.FOOD]:
@@ -119,7 +119,7 @@ func get_water(tile_map: TileMapLayer) -> int:
 	return 0
 
 
-func get_electricity(tile_map: TileMapLayer) -> int:
+func get_electricity(tile_map: TileMapLayer, dir := Vector2.ZERO) -> int:
 	if type != Type.ELECTRICITY or !is_connected_to_residential(tile_map):
 		return 0
 	for cell in coords:
@@ -132,6 +132,45 @@ func get_electricity(tile_map: TileMapLayer) -> int:
 			return value
 		if tile_map.get_cell_source_id(cell + Vector2(-1, 0)) == -1:
 			return value
+	for cell in coords:
+		# If any connected tile is empty
+		var target := cell + dir as Vector2
+		if dir == Vector2.ZERO:
+			target = cell + Vector2(0, -1)
+			if tile_map.get_cell_source_id(target) == type_to_source_map[Type.ELECTRICITY]:
+				for block in BlockManager.placed_blocks:
+					for coord in block.coords:
+						if coord == target and block.coords != coords:
+							if block.get_electricity(tile_map, Vector2(0, -1)) > 0:
+								return value
+			target = cell + Vector2(0, 1)
+			if tile_map.get_cell_source_id(target) == type_to_source_map[Type.ELECTRICITY]:
+				for block in BlockManager.placed_blocks:
+					for coord in block.coords:
+						if coord == target and block.coords != coords:
+							if block.get_electricity(tile_map, Vector2(0, 1)) > 0:
+								return value
+			target = cell + Vector2(1, 0)
+			if tile_map.get_cell_source_id(target) == type_to_source_map[Type.ELECTRICITY]:
+				for block in BlockManager.placed_blocks:
+					for coord in block.coords:
+						if coord == target and block.coords != coords:
+							if block.get_electricity(tile_map, Vector2(1, 0)) > 0:
+								return value
+			target = cell + Vector2(-1, 0)
+			if tile_map.get_cell_source_id(target) == type_to_source_map[Type.ELECTRICITY]:
+				for block in BlockManager.placed_blocks:
+					for coord in block.coords:
+						if coord == target and block.coords != coords:
+							if block.get_electricity(tile_map, Vector2(-1, 0)) > 0:
+								return value
+		else:
+			if tile_map.get_cell_source_id(target) == type_to_source_map[Type.ELECTRICITY]:
+				for block in BlockManager.placed_blocks:
+					for coord in block.coords:
+						if coord == target and block.coords != coords:
+							if block.get_electricity(tile_map, dir) > 0:
+								return value
 	return 0
 
 
