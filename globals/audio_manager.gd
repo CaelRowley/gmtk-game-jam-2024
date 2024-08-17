@@ -13,6 +13,17 @@ const AUDIO_BUSES := {
 const music_orgate_track01 := preload("res://audio/music/orgate/track01.wav")
 const music_orgate_track03 := preload("res://audio/music/orgate/track03.wav")
 
+#Menu Music
+const music_menu01_track := preload("res://audio/music/loops/level1-step1.wav")
+const music_menu02_track := preload("res://audio/music/loops/level1-step2.wav")
+const music_menu03_track := preload("res://audio/music/loops/level1-step3.wav")
+
+#Level Music
+const music_level01_track := preload("res://audio/music/symphony - summers.mp3")
+const music_level02_track := preload("res://audio/music/story time.ogg")
+const music_level03_track := preload("res://audio/music/Next to You.mp3")
+const music_level04_track := preload("res://audio/music/a_block_in_space.wav")
+
 # AutoPlay
 const music_autoplay_background := preload("res://audio/music/autoplay/background_song.wav")
 const music_autoplay_revival := preload("res://audio/music/autoplay/revival.mp3")
