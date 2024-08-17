@@ -1,0 +1,44 @@
+[gd_resource type="ShaderMaterial" load_steps=10 format=3 uid="uid://b76pvvgbvepa4"]
+
+[ext_resource type="Shader" path="res://environment/sky_shader.gdshader" id="1_3blqw"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_7ekby"]
+noise_type = 3
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_hdkk2"]
+width = 128
+height = 2048
+seamless = true
+noise = SubResource("FastNoiseLite_7ekby")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_lj2ks"]
+noise_type = 3
+seed = 1
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_pobhk"]
+width = 256
+height = 2048
+seamless = true
+noise = SubResource("FastNoiseLite_lj2ks")
+
+[sub_resource type="Gradient" id="Gradient_e5kf1"]
+colors = PackedColorArray(0.188925, 0.1845, 0.45, 1, 0.0226667, 0, 0.04, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_7ndto"]
+gradient = SubResource("Gradient_e5kf1")
+
+[sub_resource type="Gradient" id="Gradient_rhg4f"]
+colors = PackedColorArray(0.475, 0.942083, 0.95, 1, 0.2, 0.4, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_odvvs"]
+gradient = SubResource("Gradient_rhg4f")
+
+[resource]
+shader = ExtResource("1_3blqw")
+shader_parameter/height = 0.0
+shader_parameter/tiling = 1.0
+shader_parameter/pan_speed = 0.005
+shader_parameter/surface_gradient = SubResource("GradientTexture1D_odvvs")
+shader_parameter/space_gradient = SubResource("GradientTexture1D_7ndto")
+shader_parameter/noise_tex_a = SubResource("NoiseTexture2D_hdkk2")
+shader_parameter/noise_tex_b = SubResource("NoiseTexture2D_pobhk")

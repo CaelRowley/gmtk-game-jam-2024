@@ -25,6 +25,10 @@ func _ready():
 		if sibling is BarrierManager:
 			barrier_manager = sibling
 			break;
+	for child in get_children():
+		if child is BackgroundController:
+			child.init(self)
+			
 
 func _input(event: InputEvent) -> void:
 	# We don't want to listen to input during the barrier break animation

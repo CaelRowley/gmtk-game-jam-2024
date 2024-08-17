@@ -1,20 +1,24 @@
-[gd_scene load_steps=6 format=3 uid="uid://hbut8845crxp"]
+[gd_scene load_steps=8 format=3 uid="uid://hbut8845crxp"]
 
 [ext_resource type="Script" path="res://camera/camera_controller.gd" id="1_qcm1b"]
-[ext_resource type="Texture2D" uid="uid://c81e8qa147jgx" path="res://test/test_background_long.png" id="2_e0d5h"]
+[ext_resource type="Script" path="res://environment/background_controller.gd" id="2_46vok"]
+[ext_resource type="Material" uid="uid://b76pvvgbvepa4" path="res://environment/sky_material.tres" id="2_gnas0"]
 [ext_resource type="Script" path="res://barrier/barrier_manager.gd" id="3_ydo8y"]
 [ext_resource type="Texture2D" uid="uid://daccv2vxqaoi" path="res://barrier/barrier_clouds.png" id="4_kx05d"]
 [ext_resource type="Script" path="res://barrier/barrier.gd" id="5_s3a21"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_bvdn3"]
 
 [node name="CameraTestScene" type="Node2D"]
 
 [node name="Camera2D" type="Camera2D" parent="."]
 script = ExtResource("1_qcm1b")
 
-[node name="TestBackgroundLong" type="Sprite2D" parent="."]
-position = Vector2(0, -4320)
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("2_e0d5h")
+[node name="BackgroundController" type="Sprite2D" parent="Camera2D"]
+material = ExtResource("2_gnas0")
+scale = Vector2(960, 960)
+texture = SubResource("CanvasTexture_bvdn3")
+script = ExtResource("2_46vok")
 
 [node name="BarrierManager" type="Node2D" parent="."]
 script = ExtResource("3_ydo8y")
