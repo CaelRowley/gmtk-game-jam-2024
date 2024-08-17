@@ -43,7 +43,7 @@ func place_tile() -> void:
 	update_cells()
 	income()
 	upkeep()
-	get_random_block()
+	BlockManager.select_random_block()
 
 
 func update_cells() -> void:
@@ -77,14 +77,6 @@ func animate_cant_place() -> void:
 	var tween = get_tree().create_tween()
 	tween.tween_property(next_tile_map, "scale", Vector2.ONE*1.2, 0.1)
 	tween.tween_property(next_tile_map, "scale", Vector2.ONE*1, 0.1)
-
-
-func get_random_block() -> void:
-	var new_block := Block.new()
-	var ran_block = [BlockManager.BLOCKS.Block, BlockManager.BLOCKS.IBlock, BlockManager.BLOCKS.CBlock].pick_random()
-	var ran_coords := ran_block.coords as Array
-	new_block.init(ran_coords, BlockManager.get_random_block_type(), ran_block.value)
-	BlockManager.current_block = new_block
 
 
 func rotate_clockwise() -> void:
