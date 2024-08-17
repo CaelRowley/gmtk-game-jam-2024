@@ -1,0 +1,72 @@
+[gd_scene load_steps=9 format=3 uid="uid://e8icy3qr8w80"]
+
+[ext_resource type="Material" uid="uid://djhuui2q1koiu" path="res://environment/barrier/cloud_particle_material.tres" id="1_5twyo"]
+[ext_resource type="Texture2D" uid="uid://u5fbrc0dnmhp" path="res://environment/barrier/cloud_particle.png" id="2_1awe4"]
+
+[sub_resource type="Curve" id="Curve_0swb7"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -3.08271, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_mwmwr"]
+curve = SubResource("Curve_0swb7")
+
+[sub_resource type="Curve" id="Curve_j8x48"]
+_data = [Vector2(0, 0), 0.0, 28.7152, 0, 0, Vector2(0.103383, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_egcdg"]
+curve = SubResource("Curve_j8x48")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_lsbid"]
+lifetime_randomness = 0.5
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(640, 128, 1)
+direction = Vector3(0, 1, 0)
+spread = 0.0
+initial_velocity_min = -20.0
+initial_velocity_max = 20.0
+gravity = Vector3(0, 0, 0)
+scale_min = 2.0
+scale_max = 3.0
+scale_curve = SubResource("CurveTexture_egcdg")
+alpha_curve = SubResource("CurveTexture_mwmwr")
+anim_offset_max = 1.0
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_a1o83"]
+lifetime_randomness = 0.5
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(640, 128, 1)
+direction = Vector3(0, 1, 0)
+spread = 0.0
+initial_velocity_min = -5000.0
+initial_velocity_max = -1000.0
+gravity = Vector3(0, 0, 0)
+damping_min = 3000.0
+damping_max = 3000.0
+scale_max = 2.0
+scale_curve = SubResource("CurveTexture_egcdg")
+alpha_curve = SubResource("CurveTexture_mwmwr")
+anim_offset_max = 1.0
+
+[node name="CloudParticles" type="GPUParticles2D"]
+material = ExtResource("1_5twyo")
+amount = 128
+process_material = SubResource("ParticleProcessMaterial_lsbid")
+texture = ExtResource("2_1awe4")
+lifetime = 8.0
+preprocess = 4.0
+visibility_rect = Rect2(-540, -540, 1080, 1080)
+draw_order = 2
+
+[node name="CloudBreakParticles" type="GPUParticles2D" parent="."]
+show_behind_parent = true
+material = ExtResource("1_5twyo")
+emitting = false
+amount = 128
+process_material = SubResource("ParticleProcessMaterial_a1o83")
+texture = ExtResource("2_1awe4")
+one_shot = true
+explosiveness = 0.8
+visibility_rect = Rect2(-540, -540, 1080, 1080)

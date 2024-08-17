@@ -17,11 +17,14 @@ void fragment() {
 	vec2 uv = UV;
 	uv *= tiling;
 	uv -= vec2(0.5, 0.5) * tiling;
+	uv += vec2(0, -height);
 	
 	vec2 uv_a = uv + vec2(TIME * pan_speed, 0);
 	vec2 uv_b = uv + vec2(TIME * pan_speed / 2.0, 0);
 	float t = texture(noise_tex_a, uv_a).r;
 	t += texture(noise_tex_b, uv_b).r;
+	t /= 2.0;
+	t += 1.0 - UV.y;
 	t = round((t / 2.0) * 8.0) / 8.0;
 	
 	vec3 surface_color = texture(surface_gradient, vec2(t, t)).rgb;

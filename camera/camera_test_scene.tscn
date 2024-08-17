@@ -1,17 +1,19 @@
-[gd_scene load_steps=8 format=3 uid="uid://hbut8845crxp"]
+[gd_scene load_steps=9 format=3 uid="uid://hbut8845crxp"]
 
 [ext_resource type="Script" path="res://camera/camera_controller.gd" id="1_qcm1b"]
 [ext_resource type="Script" path="res://environment/background_controller.gd" id="2_46vok"]
 [ext_resource type="Material" uid="uid://b76pvvgbvepa4" path="res://environment/sky_material.tres" id="2_gnas0"]
-[ext_resource type="Script" path="res://barrier/barrier_manager.gd" id="3_ydo8y"]
-[ext_resource type="Texture2D" uid="uid://daccv2vxqaoi" path="res://barrier/barrier_clouds.png" id="4_kx05d"]
-[ext_resource type="Script" path="res://barrier/barrier.gd" id="5_s3a21"]
+[ext_resource type="Script" path="res://environment/barrier/barrier_manager.gd" id="3_ydo8y"]
+[ext_resource type="Script" path="res://environment/barrier/barrier.gd" id="5_s3a21"]
+[ext_resource type="PackedScene" uid="uid://e8icy3qr8w80" path="res://environment/barrier/cloud_particles.tscn" id="6_qlu6d"]
+[ext_resource type="Texture2D" uid="uid://ds12e2rjxhiel" path="res://environment/barrier/barrier_ground.png" id="7_pifuq"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_bvdn3"]
 
 [node name="CameraTestScene" type="Node2D"]
 
 [node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(0, -540)
 script = ExtResource("1_qcm1b")
 
 [node name="BackgroundController" type="Sprite2D" parent="Camera2D"]
@@ -23,20 +25,25 @@ script = ExtResource("2_46vok")
 [node name="BarrierManager" type="Node2D" parent="."]
 script = ExtResource("3_ydo8y")
 
-[node name="CloudBarrier2" type="Sprite2D" parent="BarrierManager"]
+[node name="CloudsBarrier2" type="Node2D" parent="BarrierManager"]
 position = Vector2(0, -4320)
 scale = Vector2(0.5, 0.5)
-texture = ExtResource("4_kx05d")
 script = ExtResource("5_s3a21")
 
-[node name="CloudBarrier1" type="Sprite2D" parent="BarrierManager"]
+[node name="CloudParticles" parent="BarrierManager/CloudsBarrier2" instance=ExtResource("6_qlu6d")]
+
+[node name="CloudsBarrier1" type="Node2D" parent="BarrierManager"]
 position = Vector2(0, -1440)
 scale = Vector2(0.5, 0.5)
-texture = ExtResource("4_kx05d")
 script = ExtResource("5_s3a21")
 
-[node name="GroundBarrier" type="Sprite2D" parent="BarrierManager"]
+[node name="CloudParticles" parent="BarrierManager/CloudsBarrier1" instance=ExtResource("6_qlu6d")]
+
+[node name="GroundBarrier" type="Node2D" parent="BarrierManager"]
 position = Vector2(0, 480)
 scale = Vector2(0.5, 0.5)
 script = ExtResource("5_s3a21")
 is_unbreakable = true
+
+[node name="Sprite2D" type="Sprite2D" parent="BarrierManager/GroundBarrier"]
+texture = ExtResource("7_pifuq")

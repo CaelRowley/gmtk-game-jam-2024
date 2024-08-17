@@ -72,7 +72,7 @@ func handle_mouse_input(delta: float, barrier_overshoot: float):
 	prev_mouse_position = mouse_position
 
 func handle_camera_shake(delta: float, barrier: Barrier, barrier_overshoot: float):
-	barrier_break_timer = 0 if abs(barrier_overshoot) < 0.8 else barrier_break_timer + delta
+	barrier_break_timer = 0.0 if abs(barrier_overshoot) < 0.8 else barrier_break_timer + delta
 	if barrier_break_timer > (0.3 if barrier.has_been_broken else 1.2):
 		break_barrier(barrier)
 	if barrier.has_been_broken:
@@ -100,5 +100,5 @@ func break_barrier(barrier: Barrier):
 	zoom_level = zoom_level + 1 if barrier.is_above(self) else zoom_level - 1
 	is_mouse_down = false
 	barrier_break_timer = 0
+	barrier_manager.update_barriers()
 	create_tween().tween_property(self, "zoom", Vector2(1.0/zoom_level, 1.0/zoom_level), 0.8).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_SPRING)
-	print("zoom level is " + str(zoom_level))

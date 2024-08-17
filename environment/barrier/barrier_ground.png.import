@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://daccv2vxqaoi"
-path="res://.godot/imported/barrier_clouds.png-2ef57d0063f07bb87b884058bd4bf52a.ctex"
+uid="uid://ds12e2rjxhiel"
+path="res://.godot/imported/barrier_ground.png-18750dccc3850f16a1ce54811b60233d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://barrier/barrier_clouds.png"
-dest_files=["res://.godot/imported/barrier_clouds.png-2ef57d0063f07bb87b884058bd4bf52a.ctex"]
+source_file="res://environment/barrier/barrier_ground.png"
+dest_files=["res://.godot/imported/barrier_ground.png-18750dccc3850f16a1ce54811b60233d.ctex"]
 
 [params]
 
