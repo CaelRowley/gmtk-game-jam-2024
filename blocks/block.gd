@@ -64,7 +64,7 @@ func get_source():
 
 
 func get_food(tile_map: TileMapLayer, dir := Vector2.ZERO) -> int:
-	if type != Type.FOOD:
+	if type != Type.FOOD or !is_connected_to_residential(tile_map):
 		return 0
 	for cell in coords:
 		# If any side tile is empty
@@ -101,7 +101,7 @@ func get_food(tile_map: TileMapLayer, dir := Vector2.ZERO) -> int:
 
 
 func get_water(tile_map: TileMapLayer) -> int:
-	if type != Type.WATER:
+	if type != Type.WATER or !is_connected_to_residential(tile_map):
 		return 0
 	for cell in coords:
 		# If any above tile is empty
@@ -120,7 +120,7 @@ func get_water(tile_map: TileMapLayer) -> int:
 
 
 func get_electricity(tile_map: TileMapLayer) -> int:
-	if type != Type.ELECTRICITY:
+	if type != Type.ELECTRICITY or !is_connected_to_residential(tile_map):
 		return 0
 	for cell in coords:
 		# If any connecting tile is empty
@@ -144,14 +144,19 @@ func get_people() -> int:
 func get_coins(tile_map: TileMapLayer) -> int:
 	if type != Type.BUSINESS:
 		return 0
-	for cell in coords:
-		# If any connecting tile is empty
-		if tile_map.get_cell_source_id(cell + Vector2(0, -1)) == type_to_source_map[Type.RESIDENTIAL]:
-			return value
-		if tile_map.get_cell_source_id(cell + Vector2(0, 1)) == type_to_source_map[Type.RESIDENTIAL]:
-			return value
-		if tile_map.get_cell_source_id(cell + Vector2(1, 0)) == type_to_source_map[Type.RESIDENTIAL]:
-			return value
-		if tile_map.get_cell_source_id(cell + Vector2(-1, 0)) == type_to_source_map[Type.RESIDENTIAL]:
-			return value
+	if is_connected_to_residential(tile_map):
+		return value
 	return 0
+
+
+func is_connected_to_residential(tile_map: TileMapLayer) -> bool:
+	for cell in coords:
+		if tile_map.get_cell_source_id(cell + Vector2(0, -1)) == type_to_source_map[Type.RESIDENTIAL]:
+			return true
+		if tile_map.get_cell_source_id(cell + Vector2(0, 1)) == type_to_source_map[Type.RESIDENTIAL]:
+			return true
+		if tile_map.get_cell_source_id(cell + Vector2(1, 0)) == type_to_source_map[Type.RESIDENTIAL]:
+			return true
+		if tile_map.get_cell_source_id(cell + Vector2(-1, 0)) == type_to_source_map[Type.RESIDENTIAL]:
+			return true
+	return false
