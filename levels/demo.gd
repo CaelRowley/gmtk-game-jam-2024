@@ -83,8 +83,7 @@ func get_random_block() -> void:
 	var new_block := Block.new()
 	var ran_block = [BlockManager.BLOCKS.Block, BlockManager.BLOCKS.IBlock, BlockManager.BLOCKS.CBlock].pick_random()
 	var ran_coords := ran_block.coords as Array
-	var ran_type := [0, 1,2 ,3, 4, 5].pick_random() as int
-	new_block.init(ran_coords, ran_type, ran_block.value)
+	new_block.init(ran_coords, BlockManager.get_random_block_type(), ran_block.value)
 	BlockManager.current_block = new_block
 
 
