@@ -41,6 +41,8 @@ func place_tile() -> void:
 	new_block.init(coords, BlockManager.current_block.type, BlockManager.current_block.value)
 	BlockManager.add_placed_block(new_block)
 	update_cells()
+	income()
+	upkeep()
 	get_random_block()
 
 
@@ -48,24 +50,6 @@ func update_cells() -> void:
 	for block in BlockManager.placed_blocks:
 		for coord in block.coords:
 			placed_tiles_map.set_cell(coord, block.get_source(), Vector2.ZERO)
-			
-	var food := 0
-	var water := 0
-	var electricity := 0
-	var people := 0
-	var coins := 0
-	for block in BlockManager.placed_blocks:
-		food += block.get_food(placed_tiles_map)
-		water += block.get_water(placed_tiles_map)
-		electricity += block.get_electricity(placed_tiles_map)
-		people += block.get_people()
-		coins += block.get_coins(placed_tiles_map)
-	print()
-	print("food: ", food)
-	print("water: ", water)
-	print("electricity: ", electricity)
-	print("people: ", people)
-	print("coins: ", coins)
 
 
 func is_tile_connected(tile: Vector2) -> bool:
@@ -122,46 +106,74 @@ func rotate_counter_clockwise() -> void:
 		BlockManager.current_block.coords = new_coords
 
 
-func get_water() -> int:
-	var count := 0
+#func get_water() -> int:
+	#var count := 0
+	#for block in BlockManager.placed_blocks:
+		#if block.type == Block.Type.WATER:
+			#for cell in block.get_top_cells(placed_tiles_map):
+				#if cell == -1:
+					#count += 1
+	#print("water: ", count)
+	#return count
+#
+#
+#func get_food() -> int:
+	#var count := 0
+	#for block in BlockManager.placed_blocks:
+		#if block.type == Block.Type.FOOD:
+			#for cell in block.get_left_cells(placed_tiles_map):
+				#if cell == -1:
+					#count += 1
+			#for cell in block.get_right_cells(placed_tiles_map):
+				#if cell == -1:
+					#count += 1
+	#print("food: ", count)
+	#return count
+#
+#
+#func get_electricity() -> int:
+	#var count := 0
+	#for block in BlockManager.placed_blocks:
+		#if block.type == Block.Type.ELECTRICITY:
+			#for cell in block.get_top_cells(placed_tiles_map):
+				#if cell == -1:
+					#count += 1
+			#for cell in block.get_bot_cells(placed_tiles_map):
+				#if cell == -1:
+					#count += 1
+			#for cell in block.get_left_cells(placed_tiles_map):
+				#if cell == -1:
+					#count += 1
+			#for cell in block.get_right_cells(placed_tiles_map):
+				#if cell == -1:
+					#count += 1
+	#print("electricity: ", count)
+	#return count
+
+
+func income():
+	Player.food = 0
+	Player.water = 0
+	Player.electricity = 0
+	Player.people = 0
+	Player.coins = 0
 	for block in BlockManager.placed_blocks:
-		if block.type == Block.Type.WATER:
-			for cell in block.get_top_cells(placed_tiles_map):
-				if cell == -1:
-					count += 1
-	print("water: ", count)
-	return count
+		Player.food += block.get_food(placed_tiles_map)
+		Player.water += block.get_water(placed_tiles_map)
+		Player.electricity += block.get_electricity(placed_tiles_map)
+		Player.people += block.get_people()
+		Player.coins += block.get_coins(placed_tiles_map)
+	
+	$UI/Label.text = "Food: " + str(Player.food)
+	$UI/Label2.text = "Water: " + str(Player.water)
+	$UI/Label3.text = "Electricity: " + str(Player.electricity)
+	$UI/Label4.text = "People: " + str(Player.people)
+	$UI/Label5.text = "Coins: " + str(Player.coins)
 
 
-func get_food() -> int:
-	var count := 0
-	for block in BlockManager.placed_blocks:
-		if block.type == Block.Type.FOOD:
-			for cell in block.get_left_cells(placed_tiles_map):
-				if cell == -1:
-					count += 1
-			for cell in block.get_right_cells(placed_tiles_map):
-				if cell == -1:
-					count += 1
-	print("food: ", count)
-	return count
-
-
-func get_electricity() -> int:
-	var count := 0
-	for block in BlockManager.placed_blocks:
-		if block.type == Block.Type.ELECTRICITY:
-			for cell in block.get_top_cells(placed_tiles_map):
-				if cell == -1:
-					count += 1
-			for cell in block.get_bot_cells(placed_tiles_map):
-				if cell == -1:
-					count += 1
-			for cell in block.get_left_cells(placed_tiles_map):
-				if cell == -1:
-					count += 1
-			for cell in block.get_right_cells(placed_tiles_map):
-				if cell == -1:
-					count += 1
-	print("electricity: ", count)
-	return count
+func upkeep():
+	Player.food -= 0
+	Player.water -= 0
+	Player.electricity -= 0
+	Player.people -= 0
+	Player.coins -= 0

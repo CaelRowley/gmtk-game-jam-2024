@@ -1,0 +1,371 @@
+[gd_scene load_steps=3 format=3 uid="uid://bx4xgmsggfr47"]
+
+[ext_resource type="Script" path="res://levels/howtoplay.gd" id="1_g3hys"]
+[ext_resource type="Texture2D" uid="uid://wkyv3ogxhapy" path="res://assets/tutorialimage.png" id="1_jr2v2"]
+
+[node name="Howtoplay" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_g3hys")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 80.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Page1" type="Control" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/Page1"]
+layout_mode = 2
+offset_right = 540.0
+offset_bottom = 880.0
+
+[node name="Label" type="Label" parent="MarginContainer/Page1/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 6
+size_flags_stretch_ratio = 0.5
+text = "How to play:
+Make the tallest tower possible and get the highest score!
+(Show animation of adding blocks)"
+
+[node name="HSplitContainer" type="HSplitContainer" parent="MarginContainer/Page1/VBoxContainer"]
+layout_mode = 2
+split_offset = 255
+
+[node name="Page1_Return" type="Button" parent="MarginContainer/Page1/VBoxContainer/HSplitContainer"]
+layout_mode = 2
+text = "Return"
+
+[node name="Page1_Forward" type="Button" parent="MarginContainer/Page1/VBoxContainer/HSplitContainer"]
+layout_mode = 2
+text = "Next"
+
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer/Page1/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 10
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/Page1/VBoxContainer/CenterContainer"]
+layout_mode = 2
+texture = ExtResource("1_jr2v2")
+
+[node name="Page2" type="Control" parent="MarginContainer"]
+visible = false
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/Page2"]
+layout_mode = 2
+offset_right = 540.0
+offset_bottom = 880.0
+
+[node name="Label" type="Label" parent="MarginContainer/Page2/VBoxContainer"]
+custom_minimum_size = Vector2(540, 0)
+layout_mode = 2
+size_flags_vertical = 6
+size_flags_stretch_ratio = 0.5
+text = "There are 6 different block types. Residence, Business, Water, Food, and Electrical"
+autowrap_mode = 1
+
+[node name="HSplitContainer" type="HSplitContainer" parent="MarginContainer/Page2/VBoxContainer"]
+layout_mode = 2
+split_offset = 255
+
+[node name="Page2_Return" type="Button" parent="MarginContainer/Page2/VBoxContainer/HSplitContainer"]
+layout_mode = 2
+text = "Return"
+
+[node name="Page2_Forward" type="Button" parent="MarginContainer/Page2/VBoxContainer/HSplitContainer"]
+layout_mode = 2
+text = "Next"
+
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer/Page2/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 10
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/Page2/VBoxContainer/CenterContainer"]
+layout_mode = 2
+texture = ExtResource("1_jr2v2")
+
+[node name="Page3" type="Control" parent="MarginContainer"]
+visible = false
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/Page3"]
+layout_mode = 2
+offset_right = 540.0
+offset_bottom = 880.0
+
+[node name="Label" type="Label" parent="MarginContainer/Page3/VBoxContainer"]
+custom_minimum_size = Vector2(540, 0)
+layout_mode = 2
+size_flags_vertical = 6
+size_flags_stretch_ratio = 0.5
+text = "Residence needs Water, Food, and Electrical to survive!"
+autowrap_mode = 1
+
+[node name="HSplitContainer" type="HSplitContainer" parent="MarginContainer/Page3/VBoxContainer"]
+layout_mode = 2
+split_offset = 255
+
+[node name="Page3_Return" type="Button" parent="MarginContainer/Page3/VBoxContainer/HSplitContainer"]
+layout_mode = 2
+text = "Return"
+
+[node name="Page3_Forward" type="Button" parent="MarginContainer/Page3/VBoxContainer/HSplitContainer"]
+layout_mode = 2
+text = "Next"
+
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer/Page3/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 10
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/Page3/VBoxContainer/CenterContainer"]
+layout_mode = 2
+texture = ExtResource("1_jr2v2")
+
+[node name="Page4" type="Control" parent="MarginContainer"]
+visible = false
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/Page4"]
+layout_mode = 2
+offset_right = 540.0
+offset_bottom = 880.0
+
+[node name="Label" type="Label" parent="MarginContainer/Page4/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 6
+size_flags_stretch_ratio = 0.5
+text = "Food blocks need exposed walls to get food"
+
+[node name="HSplitContainer" type="HSplitContainer" parent="MarginContainer/Page4/VBoxContainer"]
+layout_mode = 2
+split_offset = 255
+
+[node name="Page4_Return" type="Button" parent="MarginContainer/Page4/VBoxContainer/HSplitContainer"]
+layout_mode = 2
+text = "Return"
+
+[node name="Page4_Forward" type="Button" parent="MarginContainer/Page4/VBoxContainer/HSplitContainer"]
+layout_mode = 2
+text = "Next"
+
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer/Page4/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 10
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/Page4/VBoxContainer/CenterContainer"]
+layout_mode = 2
+texture = ExtResource("1_jr2v2")
+
+[node name="Page5" type="Control" parent="MarginContainer"]
+visible = false
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/Page5"]
+layout_mode = 2
+offset_right = 540.0
+offset_bottom = 880.0
+
+[node name="Label" type="Label" parent="MarginContainer/Page5/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 6
+size_flags_stretch_ratio = 0.5
+text = "Water blocks need ceilings exposed to collect water"
+
+[node name="HSplitContainer" type="HSplitContainer" parent="MarginContainer/Page5/VBoxContainer"]
+layout_mode = 2
+split_offset = 255
+
+[node name="Page5_Return" type="Button" parent="MarginContainer/Page5/VBoxContainer/HSplitContainer"]
+layout_mode = 2
+text = "Return"
+
+[node name="Page5_Forward" type="Button" parent="MarginContainer/Page5/VBoxContainer/HSplitContainer"]
+layout_mode = 2
+text = "Next"
+
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer/Page5/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 10
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/Page5/VBoxContainer/CenterContainer"]
+layout_mode = 2
+texture = ExtResource("1_jr2v2")
+
+[node name="Page6" type="Control" parent="MarginContainer"]
+visible = false
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/Page6"]
+layout_mode = 2
+offset_right = 540.0
+offset_bottom = 880.0
+
+[node name="Label" type="Label" parent="MarginContainer/Page6/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 6
+size_flags_stretch_ratio = 0.5
+text = "Electrical blocks need any sides exposed to generate power"
+
+[node name="HSplitContainer" type="HSplitContainer" parent="MarginContainer/Page6/VBoxContainer"]
+layout_mode = 2
+split_offset = 255
+
+[node name="Page6_Return" type="Button" parent="MarginContainer/Page6/VBoxContainer/HSplitContainer"]
+layout_mode = 2
+text = "Return"
+
+[node name="Page6_Forward" type="Button" parent="MarginContainer/Page6/VBoxContainer/HSplitContainer"]
+layout_mode = 2
+text = "Next"
+
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer/Page6/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 10
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/Page6/VBoxContainer/CenterContainer"]
+layout_mode = 2
+texture = ExtResource("1_jr2v2")
+
+[node name="Page7" type="Control" parent="MarginContainer"]
+visible = false
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/Page7"]
+layout_mode = 2
+offset_right = 540.0
+offset_bottom = 880.0
+
+[node name="Label" type="Label" parent="MarginContainer/Page7/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 6
+size_flags_stretch_ratio = 0.5
+text = "Business blocks don't need any sides exposed to generate coin"
+
+[node name="HSplitContainer" type="HSplitContainer" parent="MarginContainer/Page7/VBoxContainer"]
+layout_mode = 2
+split_offset = 255
+
+[node name="Page7_Return" type="Button" parent="MarginContainer/Page7/VBoxContainer/HSplitContainer"]
+layout_mode = 2
+text = "Return"
+
+[node name="Page7_Forward" type="Button" parent="MarginContainer/Page7/VBoxContainer/HSplitContainer"]
+layout_mode = 2
+text = "Next"
+
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer/Page7/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 10
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/Page7/VBoxContainer/CenterContainer"]
+layout_mode = 2
+texture = ExtResource("1_jr2v2")
+
+[node name="Page8" type="Control" parent="MarginContainer"]
+visible = false
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/Page8"]
+layout_mode = 2
+offset_right = 540.0
+offset_bottom = 880.0
+
+[node name="Label" type="Label" parent="MarginContainer/Page8/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 6
+size_flags_stretch_ratio = 0.5
+text = "They all need to be connected to a Residence Block to work"
+
+[node name="HSplitContainer" type="HSplitContainer" parent="MarginContainer/Page8/VBoxContainer"]
+layout_mode = 2
+split_offset = 255
+
+[node name="Page8_Return" type="Button" parent="MarginContainer/Page8/VBoxContainer/HSplitContainer"]
+layout_mode = 2
+text = "Return"
+
+[node name="Page8_Forward" type="Button" parent="MarginContainer/Page8/VBoxContainer/HSplitContainer"]
+layout_mode = 2
+text = "Next"
+
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer/Page8/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 10
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/Page8/VBoxContainer/CenterContainer"]
+layout_mode = 2
+texture = ExtResource("1_jr2v2")
+
+[node name="Page9" type="Control" parent="MarginContainer"]
+visible = false
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/Page9"]
+layout_mode = 2
+offset_right = 540.0
+offset_bottom = 880.0
+
+[node name="Label" type="Label" parent="MarginContainer/Page9/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 6
+size_flags_stretch_ratio = 0.5
+text = "Build as tall as you can!"
+
+[node name="HSplitContainer" type="HSplitContainer" parent="MarginContainer/Page9/VBoxContainer"]
+layout_mode = 2
+split_offset = 255
+
+[node name="Page9_Return" type="Button" parent="MarginContainer/Page9/VBoxContainer/HSplitContainer"]
+layout_mode = 2
+text = "Return"
+
+[node name="Page9_Forward" type="Button" parent="MarginContainer/Page9/VBoxContainer/HSplitContainer"]
+layout_mode = 2
+text = "Return to Menu"
+
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer/Page9/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 10
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/Page9/VBoxContainer/CenterContainer"]
+layout_mode = 2
+texture = ExtResource("1_jr2v2")
+
+[connection signal="pressed" from="MarginContainer/Page1/VBoxContainer/HSplitContainer/Page1_Return" to="." method="_on_page_1_return_pressed"]
+[connection signal="pressed" from="MarginContainer/Page1/VBoxContainer/HSplitContainer/Page1_Forward" to="." method="_on_page_1_forward_pressed"]
+[connection signal="pressed" from="MarginContainer/Page2/VBoxContainer/HSplitContainer/Page2_Return" to="." method="_on_page_2_return_pressed"]
+[connection signal="pressed" from="MarginContainer/Page2/VBoxContainer/HSplitContainer/Page2_Forward" to="." method="_on_page_2_forward_pressed"]
+[connection signal="pressed" from="MarginContainer/Page3/VBoxContainer/HSplitContainer/Page3_Return" to="." method="_on_page_3_return_pressed"]
+[connection signal="pressed" from="MarginContainer/Page3/VBoxContainer/HSplitContainer/Page3_Forward" to="." method="_on_page_3_forward_pressed"]
+[connection signal="pressed" from="MarginContainer/Page4/VBoxContainer/HSplitContainer/Page4_Return" to="." method="_on_page_4_return_pressed"]
+[connection signal="pressed" from="MarginContainer/Page4/VBoxContainer/HSplitContainer/Page4_Forward" to="." method="_on_page_4_forward_pressed"]
+[connection signal="pressed" from="MarginContainer/Page5/VBoxContainer/HSplitContainer/Page5_Return" to="." method="_on_page_5_return_pressed"]
+[connection signal="pressed" from="MarginContainer/Page5/VBoxContainer/HSplitContainer/Page5_Forward" to="." method="_on_page_5_forward_pressed"]
+[connection signal="pressed" from="MarginContainer/Page6/VBoxContainer/HSplitContainer/Page6_Return" to="." method="_on_page_6_return_pressed"]
+[connection signal="pressed" from="MarginContainer/Page6/VBoxContainer/HSplitContainer/Page6_Forward" to="." method="_on_page_6_forward_pressed"]
+[connection signal="pressed" from="MarginContainer/Page7/VBoxContainer/HSplitContainer/Page7_Return" to="." method="_on_page_7_return_pressed"]
+[connection signal="pressed" from="MarginContainer/Page7/VBoxContainer/HSplitContainer/Page7_Forward" to="." method="_on_page_7_forward_pressed"]
+[connection signal="pressed" from="MarginContainer/Page8/VBoxContainer/HSplitContainer/Page8_Return" to="." method="_on_page_8_return_pressed"]
+[connection signal="pressed" from="MarginContainer/Page8/VBoxContainer/HSplitContainer/Page8_Forward" to="." method="_on_page_8_forward_pressed"]
+[connection signal="pressed" from="MarginContainer/Page9/VBoxContainer/HSplitContainer/Page9_Return" to="." method="_on_page_9_return_pressed"]
+[connection signal="pressed" from="MarginContainer/Page9/VBoxContainer/HSplitContainer/Page9_Forward" to="." method="_on_page_9_forward_pressed"]

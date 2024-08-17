@@ -82,6 +82,15 @@ func get_water(tile_map: TileMapLayer) -> int:
 		# If any above tile is empty
 		if tile_map.get_cell_source_id(cell + Vector2(0, -1)) == -1:
 			return value
+	for cell in coords:
+		# If any above tile is empty
+		var target := cell + Vector2(0, -1) as Vector2
+		if tile_map.get_cell_source_id(target) == type_to_source_map[Type.WATER]:
+			for block in BlockManager.placed_blocks:
+				for coord in block.coords:
+					if coord == target and block.coords != coords:
+						if block.get_water(tile_map) > 0:
+							return value
 	return 0
 
 
