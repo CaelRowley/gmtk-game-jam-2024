@@ -180,11 +180,47 @@ func get_people() -> int:
 	return value
 
 
-func get_coins(tile_map: TileMapLayer) -> int:
+func get_coins(tile_map: TileMapLayer, count := 0) -> int:
+	if count > 1000:
+		return 0
 	if type != Type.BUSINESS:
 		return 0
 	if is_connected_to_residential(tile_map):
 		return value
+	for cell in coords:
+		var target: Vector2
+		# Check top
+		target = cell + Vector2(0, -1)
+		if tile_map.get_cell_source_id(target) == type_to_source_map[Type.BUSINESS]:
+			for block in BlockManager.placed_blocks:
+				for coord in block.coords:
+					if coord == target and block.coords != coords:
+						if block.get_coins(tile_map, count+1) > 0:
+							return value
+		# Check bot
+		target = cell + Vector2(0, 1)
+		if tile_map.get_cell_source_id(target) == type_to_source_map[Type.BUSINESS]:
+			for block in BlockManager.placed_blocks:
+				for coord in block.coords:
+					if coord == target and block.coords != coords: 
+						if block.get_coins(tile_map, count+1) > 0:
+							return value
+		# Check left
+		target = cell + Vector2(1, 0)
+		if tile_map.get_cell_source_id(target) == type_to_source_map[Type.BUSINESS]:
+			for block in BlockManager.placed_blocks:
+				for coord in block.coords:
+					if coord == target and block.coords != coords:
+						if block.get_coins(tile_map, count+1) > 0:
+							return value
+		# Check right
+		target = cell + Vector2(-1, 0)
+		if tile_map.get_cell_source_id(target) == type_to_source_map[Type.BUSINESS]:
+			for block in BlockManager.placed_blocks:
+				for coord in block.coords:
+					if coord == target and block.coords != coords: 
+						if block.get_coins(tile_map, count+1) > 0:
+							return value
 	return 0
 
 
