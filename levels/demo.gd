@@ -143,9 +143,9 @@ func rotate_counter_clockwise() -> void:
 
 
 func income():
-	Player.food = 0
-	Player.water = 0
-	Player.electricity = 0
+	Player.food = 15				#starting value fails in 15 rounds
+	Player.water = 20				#starting value fails in 20 rounds
+	Player.electricity = 30 		#starting value fails in 30 rounds
 	Player.people = 0
 	Player.coins = 0
 	for block in BlockManager.placed_blocks:
@@ -155,16 +155,35 @@ func income():
 		Player.people += block.get_people()
 		Player.coins += block.get_coins(placed_tiles_map)
 	
-	$UI/Label.text = "Food: " + str(Player.food)
-	$UI/Label2.text = "Water: " + str(Player.water)
-	$UI/Label3.text = "Electricity: " + str(Player.electricity)
-	$UI/Label4.text = "People: " + str(Player.people)
-	$UI/Label5.text = "Coins: " + str(Player.coins)
+	#UI Stat Elements
+	$CanvasLayer/GameUI/HList/People.text = "People: " + str(Player.people)
+	
+	#Food
+	var food_min_value = Player.food
+	var food_max_value = Player.food
+	$CanvasLayer/GameUI/HList/Food/ProgressBar.min_value = food_min_value
+	$CanvasLayer/GameUI/HList/Food/ProgressBar.max_value = food_max_value
+	$CanvasLayer/GameUI/HList/Food.text =str(food_min_value) + " / " + str(food_max_value)
+	#Water
+	var water_min_value = Player.water
+	var water_max_value = Player.water
+	$CanvasLayer/GameUI/HList/Water/ProgressBar.min_value = water_min_value
+	$CanvasLayer/GameUI/HList/Water/ProgressBar.max_value = water_max_value
+	$CanvasLayer/GameUI/HList/Water.text =str(water_min_value) + " / " + str(water_max_value)
+	
+	#Electricity
+	var electricity_min_value = Player.electricity
+	var electricity_max_value = Player.electricity
+	$CanvasLayer/GameUI/HList/Electricity/ProgressBar.min_value = Player.electricity
+	$CanvasLayer/GameUI/HList/Electricity/ProgressBar.max_value = Player.electricity
+	$CanvasLayer/GameUI/HList/Electricity.text =str(electricity_min_value) + " / " + str(electricity_max_value)
+	
+	$CanvasLayer/GameUI/HList/Coins.text = "Coins: " + str(Player.coins)
 
 
 func upkeep():
-	Player.food -= 0
-	Player.water -= 0
-	Player.electricity -= 0
-	Player.people -= 0
-	Player.coins -= 0
+	Player.food -= 2 * Player.people
+	Player.water -= 2 * Player.people
+	Player.electricity -= Player.people
+	#Player.people -= 0
+	#Player.coins -= 0

@@ -1,0 +1,6 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://lsghexn2paa"]
+
+[ext_resource type="FontFile" uid="uid://cuac5xw45obdl" path="res://fonts/nunito-cyrillic-700-normal.ttf" id="1_esdfh"]
+
+[resource]
+default_font = ExtResource("1_esdfh")
