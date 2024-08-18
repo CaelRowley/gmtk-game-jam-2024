@@ -236,6 +236,7 @@ func upkeep():
 	Player.electricity += electricity
 	Player.coins += coins
 	Player.people = people
+	
 	Player.food -= Player.people
 	Player.water -= Player.people
 	Player.electricity -= Player.people
@@ -247,15 +248,27 @@ func upkeep():
 
 	#Food
 	$"CanvasLayer/GameUI/PanelContainer/VBoxContainer/HBoxContainer/PanelContainer/GridContainer/Food Container/HBoxContainer/Food".text = str(Player.food)
-	$"CanvasLayer/GameUI/PanelContainer/VBoxContainer/HBoxContainer/PanelContainer/GridContainer/Food Container/HBoxContainer/Change".text = "(+" + str(food) + ")"
+	var food_change := food-Player.people
+	if food_change > 0:
+		$"CanvasLayer/GameUI/PanelContainer/VBoxContainer/HBoxContainer/PanelContainer/GridContainer/Food Container/HBoxContainer/Change".text = "(+" + str(food_change) + ")"
+	else:
+		$"CanvasLayer/GameUI/PanelContainer/VBoxContainer/HBoxContainer/PanelContainer/GridContainer/Food Container/HBoxContainer/Change".text = "(" + str(food_change) + ")"
 	
 	#Water
 	$CanvasLayer/GameUI/PanelContainer/VBoxContainer/HBoxContainer/PanelContainer/GridContainer/WaterContainer/HBoxContainer/Water.text = str(Player.water)
-	$CanvasLayer/GameUI/PanelContainer/VBoxContainer/HBoxContainer/PanelContainer/GridContainer/WaterContainer/HBoxContainer/Change.text = "(+" + str(water) + ")"
+	var water_change := water-Player.people
+	if water_change > 0:
+		$CanvasLayer/GameUI/PanelContainer/VBoxContainer/HBoxContainer/PanelContainer/GridContainer/WaterContainer/HBoxContainer/Change.text = "(+" + str(water_change) + ")"
+	else:
+		$CanvasLayer/GameUI/PanelContainer/VBoxContainer/HBoxContainer/PanelContainer/GridContainer/WaterContainer/HBoxContainer/Change.text = "(" + str(water_change) + ")"
 	
 	#Electricity
 	$CanvasLayer/GameUI/PanelContainer/VBoxContainer/HBoxContainer/PanelContainer/GridContainer/ElectricityContainer/HBoxContainer/Electricity.text = str(Player.electricity)
-	$CanvasLayer/GameUI/PanelContainer/VBoxContainer/HBoxContainer/PanelContainer/GridContainer/ElectricityContainer/HBoxContainer/Change.text = "(+" + str(electricity) + ")"
+	var electricity_change := electricity-Player.people
+	if electricity_change > 0:
+		$CanvasLayer/GameUI/PanelContainer/VBoxContainer/HBoxContainer/PanelContainer/GridContainer/ElectricityContainer/HBoxContainer/Change.text = "(+" + str(electricity_change) + ")"
+	else:
+		$CanvasLayer/GameUI/PanelContainer/VBoxContainer/HBoxContainer/PanelContainer/GridContainer/ElectricityContainer/HBoxContainer/Change.text = "(" + str(electricity_change) + ")"
 	
 	#Coins
 	$CanvasLayer/GameUI/PanelContainer/VBoxContainer/HBoxContainer/PanelContainer/GridContainer/CoinsContainer/HBoxContainer/Coins.text = str(Player.coins)
@@ -278,12 +291,10 @@ func get_cloud_threshold() -> int:
 	return 0
 
 func _on_get_cloud_buster_pressed() -> void:
-	var cloud_buster_cost := 0 * (max_zoom_lvl * max_zoom_lvl) 
-	print("Player.coins: ", Player.coins)
-	print("cloud_buster_cost: ", cloud_buster_cost)
+	var cloud_buster_cost := 30 * (max_zoom_lvl * max_zoom_lvl) 
 	if Player.coins >= cloud_buster_cost:
 		if BlockManager.get_peak() < get_cloud_threshold()+2:
-			if BlockManager.current_block != null:
+			if BlockManager.current_block != null and BlockManager.current_block.type == Block.Type.CLOUD_BUSTER:
 				print("Stop cheating")
 			else:
 				Player.coins -= cloud_buster_cost
