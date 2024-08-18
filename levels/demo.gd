@@ -67,7 +67,7 @@ func _input(event: InputEvent) -> void:
 func place_tile() -> void:
 	var tile := placed_tiles_map.local_to_map(get_local_mouse_position()) as Vector2
 	var place_tile_sfx = [AudioManager.sfx_place_pop_01,AudioManager.sfx_place_pop_02,AudioManager.sfx_place_pop_03]
-	if !is_tile_connected(tile) || is_tile_overlapping(tile):
+	if !is_tile_connected(tile) || is_tile_overlapping(tile) || is_tile_protruding(tile):
 		animate_cant_place()
 		return
 	
@@ -130,6 +130,13 @@ func is_tile_connected(tile: Vector2) -> bool:
 func is_tile_overlapping(tile: Vector2) -> bool:
 	for cell in BlockManager.current_block.coords:
 		if is_instance_valid(placed_tiles_map.get_cell_tile_data(tile + cell)):
+			return true
+	return false
+
+
+func is_tile_protruding(tile: Vector2) -> bool:
+	for cell in BlockManager.current_block.coords:
+		if tile.x + cell.x > ($Camera2D.zoom_level*2) or tile.x + cell.x < (-1 -(2*$Camera2D.zoom_level)):
 			return true
 	return false
 
@@ -211,17 +218,18 @@ func upkeep():
 	var water := 0
 	var electricity := 0
 	var coins := 0
+	var people := 0
 	for block in BlockManager.placed_blocks:
 		food += block.get_food(placed_tiles_map)
 		water += block.get_water(placed_tiles_map)
 		electricity += block.get_electricity(placed_tiles_map)
-		Player.people = block.get_people()
+		people += block.get_people()
 		coins += block.get_coins(placed_tiles_map)
 	Player.food += food
 	Player.water += water
 	Player.electricity += electricity
 	Player.coins += coins
-		
+	Player.people = people
 	Player.food -= Player.people
 	Player.water -= Player.people
 	Player.electricity -= Player.people
@@ -272,7 +280,7 @@ func _on_get_block_button_pressed() -> void:
 
 
 func _on_get_cloud_buster_pressed() -> void:
-	var cloud_buster_cost := 100 * (max_zoom_lvl * max_zoom_lvl) 
+	var cloud_buster_cost := 0 * (max_zoom_lvl * max_zoom_lvl) 
 	print("Player.coins: ", Player.coins)
 	print("cloud_buster_cost: ", cloud_buster_cost)
 	if Player.coins >= cloud_buster_cost:
