@@ -1,13 +1,11 @@
 extends Sprite2D
 class_name BlockDecor
 
-var on_sprite
-var off_sprite
+var decor_type: BlockDecorTypes
 
-func init(_position: Vector2, _on_sprite: Texture2D, _off_sprite: Texture2D):
+func init(_position: Vector2, _decor_type: BlockDecorTypes):
 	global_position = _position
-	on_sprite = _on_sprite
-	off_sprite = _off_sprite
+	decor_type = _decor_type
 	
 func update(is_producing: bool):
-	texture = on_sprite if is_producing else off_sprite
+	texture = decor_type.on_sprite if is_producing else decor_type.off_sprite
