@@ -83,7 +83,7 @@ func select_random_block(lvl := 1):
 	current_block = new_block
 
 
-func get_height() -> int:
+func get_peak() -> int:
 	var peak := 1000
 	for block in placed_blocks:
 		if block.is_placed_by_player:
@@ -91,6 +91,25 @@ func get_height() -> int:
 				if coord.y < peak:
 					peak = coord.y
 	return peak
+
+
+func get_height() -> int:
+	var peak := get_peak()
+	var bot := peak
+	for block in placed_blocks:
+		if block.is_placed_by_player:
+			for coord in block.coords:
+				if coord.y > bot:
+					bot = coord.y
+	return bot - peak
+
+
+func get_block_count() -> int:
+	var count := 0
+	for block in placed_blocks:
+		if block.is_placed_by_player:
+			count += block.coords.size()
+	return count
 
 
 func select_cloud_buster():

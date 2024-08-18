@@ -124,6 +124,15 @@ theme_override_constants/outline_size = 4
 theme_override_font_sizes/font_size = 34
 text = "Height: 0"
 
+[node name="Score" type="Label" parent="CanvasLayer/GameUI/HList"]
+layout_mode = 2
+theme = ExtResource("17_u3nbk")
+theme_override_colors/font_color = Color(0.968627, 0.847059, 0.145098, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 34
+text = "Score: 0"
+
 [node name="People" type="Label" parent="CanvasLayer/GameUI/HList"]
 layout_mode = 2
 theme = ExtResource("18_rfxyh")
@@ -143,6 +152,7 @@ theme_override_font_sizes/font_size = 28
 text = "15 / 15"
 
 [node name="ProgressBar" type="ProgressBar" parent="CanvasLayer/GameUI/HList/Food"]
+visible = false
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
@@ -170,6 +180,7 @@ theme_override_font_sizes/font_size = 28
 text = "20 / 20"
 
 [node name="ProgressBar" type="ProgressBar" parent="CanvasLayer/GameUI/HList/Water"]
+visible = false
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
@@ -197,6 +208,7 @@ theme_override_font_sizes/font_size = 28
 text = "30 / 30"
 
 [node name="ProgressBar" type="ProgressBar" parent="CanvasLayer/GameUI/HList/Electricity"]
+visible = false
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
@@ -228,8 +240,10 @@ layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -58.0
-offset_bottom = 31.0
+offset_left = -102.0
+offset_top = 31.0
+offset_right = -44.0
+offset_bottom = 62.0
 grow_horizontal = 0
 text = "Rando"
 
@@ -240,8 +254,10 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -59.0
-offset_top = -54.0
+offset_left = -112.0
+offset_top = -105.0
+offset_right = -53.0
+offset_bottom = -51.0
 grow_horizontal = 0
 grow_vertical = 0
 text = "Cloud
