@@ -6,6 +6,23 @@ const tile_size := 128
 @onready var next_tile_map := $NextTileMap as TileMapLayer
 @onready var placed_tiles_map := %PlacedTilesMap as TileMapLayer
 
+#Tutorial Pages
+@onready var page_01 = $CanvasLayer/Tutorial/MarginContainer/Page01
+@onready var page_02 = $CanvasLayer/Tutorial/MarginContainer/Page02_Action
+@onready var page_03 = $CanvasLayer/Tutorial/MarginContainer/Page03
+@onready var page_04 = $CanvasLayer/Tutorial/MarginContainer/Page04_Action
+@onready var page_05 = $CanvasLayer/Tutorial/MarginContainer/Page05
+@onready var page_06 = $CanvasLayer/Tutorial/MarginContainer/Page06
+@onready var page_07 = $CanvasLayer/Tutorial/MarginContainer/Page07_Action
+@onready var page_08 = $CanvasLayer/Tutorial/MarginContainer/Page08
+@onready var page_09 = $CanvasLayer/Tutorial/MarginContainer/Page09_Action
+@onready var page_10 = $CanvasLayer/Tutorial/MarginContainer/Page10
+@onready var page_11 = $CanvasLayer/Tutorial/MarginContainer/Page11_Action
+@onready var page_12 = $CanvasLayer/Tutorial/MarginContainer/Page12
+@onready var page_13 = $CanvasLayer/Tutorial/MarginContainer/Page13
+@onready var page_14 = $CanvasLayer/Tutorial/MarginContainer/Page14_Action
+@onready var page_15 = $CanvasLayer/Tutorial/MarginContainer/Page15
+
 var game_scene = preload("res://levels/game.tscn").instantiate()
 
 func _process(_delta: float) -> void:
@@ -197,74 +214,40 @@ func _on_return_button_pressed() -> void:
 	print("Changed scene")
 	SceneManager.goto_scene("res://levels/game.tscn")
 
-
-func _on_page_01_return_button_pressed() -> void:
-	pass # Replace with function body.
-
-
 func _on_page_01_next_button_pressed() -> void:
-	pass # Replace with function body.
-
-
-func _on_page_03_return_button_pressed() -> void:
-	pass # Replace with function body.
-
+	page_01.visible = false
+	page_02.visible = true
 
 func _on_page_03_next_button_pressed() -> void:
-	pass # Replace with function body.
-
-
-func _on_page_05_return_button_pressed() -> void:
-	pass # Replace with function body.
-
+	page_03.visible = false
+	page_04.visible = true
 
 func _on_page_05_next_button_pressed() -> void:
-	pass # Replace with function body.
-
-
-func _on_page_06_return_button_pressed() -> void:
-	pass # Replace with function body.
-
+	page_05.visible = false
+	page_06.visible = true
 
 func _on_page_06_next_button_pressed() -> void:
-	pass # Replace with function body.
-
-
-func _on_page_08_return_button_pressed() -> void:
-	pass # Replace with function body.
-
+	page_06.visible = false
+	page_07.visible = true
 
 func _on_page_08_next_button_pressed() -> void:
-	pass # Replace with function body.
-
-
-func _on_page_10_return_button_pressed() -> void:
-	pass # Replace with function body.
-
+	page_08.visible = false
+	page_09.visible = true
 
 func _on_page_10_next_button_pressed() -> void:
-	pass # Replace with function body.
-
-
-func _on_page_12_return_button_pressed() -> void:
-	pass # Replace with function body.
-
+	page_10.visible = false
+	page_11.visible = true
 
 func _on_page_12_next_button_pressed() -> void:
-	pass # Replace with function body.
-
-
-func _on_page_13_return_button_pressed() -> void:
-	pass # Replace with function body.
+	page_10.visible = false
+	page_11.visible = true
 
 
 func _on_page_13_next_button_pressed() -> void:
-	pass # Replace with function body.
-
-
-func _on_page_15_return_button_pressed() -> void:
-	pass # Replace with function body.
+	page_10.visible = false
+	page_11.visible = true
 
 
 func _on_page_15_exit_button_pressed() -> void:
-	pass # Replace with function body.
+	print("Changed scene")
+	SceneManager.goto_scene("res://levels/game.tscn")

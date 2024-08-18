@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://camera/camera_controller.gd" id="2_4rtyk"]
 [ext_resource type="Material" uid="uid://b76pvvgbvepa4" path="res://environment/sky_material.tres" id="3_trsoe"]
 [ext_resource type="Script" path="res://environment/background_controller.gd" id="4_gdawi"]
-[ext_resource type="TileSet" uid="uid://chgcycaqfc5fj" path="res://blocks/blocks_tileset.tres" id="5_1vw3x"]
+[ext_resource type="TileSet" uid="uid://cu6qu8gox8x2g" path="res://blocks/blocks_tileset.tres" id="5_1vw3x"]
 [ext_resource type="Script" path="res://environment/barrier/barrier_manager.gd" id="6_0vhu1"]
 [ext_resource type="Script" path="res://environment/barrier/barrier.gd" id="7_h38lp"]
 [ext_resource type="PackedScene" uid="uid://e8icy3qr8w80" path="res://environment/barrier/cloud_particles.tscn" id="8_3ahap"]
@@ -34,7 +34,7 @@ content_margin_bottom = 0.0
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_65a87"]
 content_margin_left = 20.0
-content_margin_right = 120.0
+content_margin_right = 180.0
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_c6wkn"]
 content_margin_left = 129.0
@@ -301,11 +301,6 @@ layout_mode = 2
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_65a87")
 
-[node name="Page01_ReturnButton" type="Button" parent="CanvasLayer/Tutorial/MarginContainer/Page01/Buttons/HBoxContainer/ReturnButtonPanel"]
-layout_mode = 2
-theme = ExtResource("11_nc46n")
-text = " Return "
-
 [node name="NextButtonPanel" type="PanelContainer" parent="CanvasLayer/Tutorial/MarginContainer/Page01/Buttons/HBoxContainer"]
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_c6wkn")
@@ -385,11 +380,6 @@ layout_mode = 2
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_65a87")
 
-[node name="Page03_ReturnButton" type="Button" parent="CanvasLayer/Tutorial/MarginContainer/Page03/Buttons/HBoxContainer/ReturnButtonPanel"]
-layout_mode = 2
-theme = ExtResource("11_nc46n")
-text = " Return "
-
 [node name="NextButtonPanel" type="PanelContainer" parent="CanvasLayer/Tutorial/MarginContainer/Page03/Buttons/HBoxContainer"]
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_c6wkn")
@@ -466,11 +456,6 @@ layout_mode = 2
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_65a87")
 
-[node name="Page05_ReturnButton" type="Button" parent="CanvasLayer/Tutorial/MarginContainer/Page05/Buttons/HBoxContainer/ReturnButtonPanel"]
-layout_mode = 2
-theme = ExtResource("11_nc46n")
-text = " Return "
-
 [node name="NextButtonPanel" type="PanelContainer" parent="CanvasLayer/Tutorial/MarginContainer/Page05/Buttons/HBoxContainer"]
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_c6wkn")
@@ -518,11 +503,6 @@ layout_mode = 2
 [node name="ReturnButtonPanel" type="PanelContainer" parent="CanvasLayer/Tutorial/MarginContainer/Page06/Buttons/HBoxContainer"]
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_65a87")
-
-[node name="Page06_ReturnButton" type="Button" parent="CanvasLayer/Tutorial/MarginContainer/Page06/Buttons/HBoxContainer/ReturnButtonPanel"]
-layout_mode = 2
-theme = ExtResource("11_nc46n")
-text = " Return "
 
 [node name="NextButtonPanel" type="PanelContainer" parent="CanvasLayer/Tutorial/MarginContainer/Page06/Buttons/HBoxContainer"]
 layout_mode = 2
@@ -602,11 +582,6 @@ layout_mode = 2
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_65a87")
 
-[node name="Page08_ReturnButton" type="Button" parent="CanvasLayer/Tutorial/MarginContainer/Page08/Buttons/HBoxContainer/ReturnButtonPanel"]
-layout_mode = 2
-theme = ExtResource("11_nc46n")
-text = " Return "
-
 [node name="NextButtonPanel" type="PanelContainer" parent="CanvasLayer/Tutorial/MarginContainer/Page08/Buttons/HBoxContainer"]
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_c6wkn")
@@ -683,11 +658,6 @@ layout_mode = 2
 [node name="ReturnButtonPanel" type="PanelContainer" parent="CanvasLayer/Tutorial/MarginContainer/Page10/Buttons/HBoxContainer"]
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_65a87")
-
-[node name="Page10_ReturnButton" type="Button" parent="CanvasLayer/Tutorial/MarginContainer/Page10/Buttons/HBoxContainer/ReturnButtonPanel"]
-layout_mode = 2
-theme = ExtResource("11_nc46n")
-text = " Return "
 
 [node name="NextButtonPanel" type="PanelContainer" parent="CanvasLayer/Tutorial/MarginContainer/Page10/Buttons/HBoxContainer"]
 layout_mode = 2
@@ -766,11 +736,6 @@ layout_mode = 2
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_65a87")
 
-[node name="Page12_ReturnButton" type="Button" parent="CanvasLayer/Tutorial/MarginContainer/Page12/Buttons/HBoxContainer/ReturnButtonPanel"]
-layout_mode = 2
-theme = ExtResource("11_nc46n")
-text = " Return "
-
 [node name="NextButtonPanel" type="PanelContainer" parent="CanvasLayer/Tutorial/MarginContainer/Page12/Buttons/HBoxContainer"]
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_c6wkn")
@@ -818,11 +783,6 @@ layout_mode = 2
 [node name="ReturnButtonPanel" type="PanelContainer" parent="CanvasLayer/Tutorial/MarginContainer/Page13/Buttons/HBoxContainer"]
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_65a87")
-
-[node name="Page13_ReturnButton" type="Button" parent="CanvasLayer/Tutorial/MarginContainer/Page13/Buttons/HBoxContainer/ReturnButtonPanel"]
-layout_mode = 2
-theme = ExtResource("11_nc46n")
-text = " Return "
 
 [node name="NextButtonPanel" type="PanelContainer" parent="CanvasLayer/Tutorial/MarginContainer/Page13/Buttons/HBoxContainer"]
 layout_mode = 2
@@ -903,11 +863,6 @@ layout_mode = 2
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_65a87")
 
-[node name="Page15_ReturnButton" type="Button" parent="CanvasLayer/Tutorial/MarginContainer/Page15/Buttons/HBoxContainer/ReturnButtonPanel"]
-layout_mode = 2
-theme = ExtResource("11_nc46n")
-text = " Return "
-
 [node name="NextButtonPanel" type="PanelContainer" parent="CanvasLayer/Tutorial/MarginContainer/Page15/Buttons/HBoxContainer"]
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_c6wkn")
@@ -918,35 +873,26 @@ theme = ExtResource("11_nc46n")
 text = "   Exit   "
 
 [connection signal="pressed" from="CanvasLayer/Tutorial/MarginContainer/Page01/SkipContainer/ReturnButton" to="." method="_on_return_button_pressed"]
-[connection signal="pressed" from="CanvasLayer/Tutorial/MarginContainer/Page01/Buttons/HBoxContainer/ReturnButtonPanel/Page01_ReturnButton" to="." method="_on_page_01_return_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/Tutorial/MarginContainer/Page01/Buttons/HBoxContainer/NextButtonPanel/Page01_NextButton" to="." method="_on_page_01_next_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/Tutorial/MarginContainer/Page02_Action/SkipContainer/ReturnButton" to="." method="_on_return_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/Tutorial/MarginContainer/Page03/SkipContainer/ReturnButton" to="." method="_on_return_button_pressed"]
-[connection signal="pressed" from="CanvasLayer/Tutorial/MarginContainer/Page03/Buttons/HBoxContainer/ReturnButtonPanel/Page03_ReturnButton" to="." method="_on_page_03_return_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/Tutorial/MarginContainer/Page03/Buttons/HBoxContainer/NextButtonPanel/Page03_NextButton" to="." method="_on_page_03_next_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/Tutorial/MarginContainer/Page04_Action/SkipContainer/ReturnButton" to="." method="_on_return_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/Tutorial/MarginContainer/Page05/SkipContainer/ReturnButton" to="." method="_on_return_button_pressed"]
-[connection signal="pressed" from="CanvasLayer/Tutorial/MarginContainer/Page05/Buttons/HBoxContainer/ReturnButtonPanel/Page05_ReturnButton" to="." method="_on_page_05_return_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/Tutorial/MarginContainer/Page05/Buttons/HBoxContainer/NextButtonPanel/Page05_NextButton" to="." method="_on_page_05_next_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/Tutorial/MarginContainer/Page06/SkipContainer/ReturnButton" to="." method="_on_return_button_pressed"]
-[connection signal="pressed" from="CanvasLayer/Tutorial/MarginContainer/Page06/Buttons/HBoxContainer/ReturnButtonPanel/Page06_ReturnButton" to="." method="_on_page_06_return_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/Tutorial/MarginContainer/Page06/Buttons/HBoxContainer/NextButtonPanel/Page06_NextButton" to="." method="_on_page_06_next_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/Tutorial/MarginContainer/Page07_Action/SkipContainer/ReturnButton" to="." method="_on_return_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/Tutorial/MarginContainer/Page08/SkipContainer/ReturnButton" to="." method="_on_return_button_pressed"]
-[connection signal="pressed" from="CanvasLayer/Tutorial/MarginContainer/Page08/Buttons/HBoxContainer/ReturnButtonPanel/Page08_ReturnButton" to="." method="_on_page_08_return_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/Tutorial/MarginContainer/Page08/Buttons/HBoxContainer/NextButtonPanel/Page08_NextButton" to="." method="_on_page_08_next_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/Tutorial/MarginContainer/Page09_Action/SkipContainer/ReturnButton" to="." method="_on_return_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/Tutorial/MarginContainer/Page10/SkipContainer/ReturnButton" to="." method="_on_return_button_pressed"]
-[connection signal="pressed" from="CanvasLayer/Tutorial/MarginContainer/Page10/Buttons/HBoxContainer/ReturnButtonPanel/Page10_ReturnButton" to="." method="_on_page_10_return_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/Tutorial/MarginContainer/Page10/Buttons/HBoxContainer/NextButtonPanel/Page10_NextButton" to="." method="_on_page_10_next_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/Tutorial/MarginContainer/Page11_Action/SkipContainer/ReturnButton" to="." method="_on_return_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/Tutorial/MarginContainer/Page12/SkipContainer/ReturnButton" to="." method="_on_return_button_pressed"]
-[connection signal="pressed" from="CanvasLayer/Tutorial/MarginContainer/Page12/Buttons/HBoxContainer/ReturnButtonPanel/Page12_ReturnButton" to="." method="_on_page_12_return_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/Tutorial/MarginContainer/Page12/Buttons/HBoxContainer/NextButtonPanel/Page12_NextButton" to="." method="_on_page_12_next_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/Tutorial/MarginContainer/Page13/SkipContainer/ReturnButton" to="." method="_on_return_button_pressed"]
-[connection signal="pressed" from="CanvasLayer/Tutorial/MarginContainer/Page13/Buttons/HBoxContainer/ReturnButtonPanel/Page13_ReturnButton" to="." method="_on_page_13_return_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/Tutorial/MarginContainer/Page13/Buttons/HBoxContainer/NextButtonPanel/Page13_NextButton" to="." method="_on_page_13_next_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/Tutorial/MarginContainer/Page14_Action/SkipContainer/ReturnButton" to="." method="_on_return_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/Tutorial/MarginContainer/Page15/SkipContainer/ReturnButton" to="." method="_on_return_button_pressed"]
-[connection signal="pressed" from="CanvasLayer/Tutorial/MarginContainer/Page15/Buttons/HBoxContainer/ReturnButtonPanel/Page15_ReturnButton" to="." method="_on_page_15_return_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/Tutorial/MarginContainer/Page15/Buttons/HBoxContainer/NextButtonPanel/Page15_ExitButton" to="." method="_on_page_15_exit_button_pressed"]
