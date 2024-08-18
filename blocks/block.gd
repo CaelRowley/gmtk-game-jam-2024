@@ -33,7 +33,7 @@ func init(new_coords: Array, new_type: Type, new_value: int, placed_by_player :=
 	type = new_type
 	value = new_value
 	is_placed_by_player = placed_by_player
-	value = coords.size()*coords.size()
+	value = coords.size()*2
 
 
 func get_top_cells(tile_map: TileMapLayer) -> Array:

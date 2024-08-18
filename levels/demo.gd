@@ -20,6 +20,15 @@ func _ready() -> void:
 	add_child(decor_manager)
 	decor_manager.init(self)
 	$Camera2D.zoom_changed.connect(_on_zoom_changed)
+	
+	$CanvasLayer/GameUI/HList/Level.text = "Level: " + str(max_zoom_lvl)
+	$CanvasLayer/GameUI/HList/Height.text = "Height: " + str(BlockManager.get_height())
+	$CanvasLayer/GameUI/HList/Score.text = "Score: " + str(Player.score)
+	$CanvasLayer/GameUI/HList/People.text = "People: " + str(Player.people)
+	$CanvasLayer/GameUI/HList/Food.text = "Food: " + str(Player.food)
+	$CanvasLayer/GameUI/HList/Water.text = "Water: " + str(Player.water)
+	$CanvasLayer/GameUI/HList/Electricity.text = "Elect: " + str(Player.electricity)
+	$CanvasLayer/GameUI/HList/Coins.text = "Coins: " + str(Player.coins)
 
 
 func _on_zoom_changed(level: int):
@@ -85,7 +94,6 @@ func place_tile() -> void:
 	BlockManager.add_placed_block(new_block)
 	decor_manager.add_decor(new_block, placed_tiles_map)
 	update_cells()
-	income()
 	upkeep()
 	BlockManager.current_block = null
 
@@ -93,6 +101,7 @@ func place_tile() -> void:
 func update_cells() -> void:
 	for block in BlockManager.placed_blocks:
 		placed_tiles_map.set_cells_terrain_connect(block.coords, 0, block.get_source() - 1, true)
+	for block in BlockManager.placed_blocks:
 		decor_manager.update_decor(block, block.is_producing(placed_tiles_map))
 
 
@@ -191,52 +200,60 @@ func rotate_counter_clockwise() -> void:
 	#return count
 
 
-func income():
-	Player.food = 15				#starting value fails in 15 rounds
-	Player.water = 20				#starting value fails in 20 rounds
-	Player.electricity = 30 		#starting value fails in 30 rounds
-	Player.people = 0
-	Player.coins = 0
+func upkeep():
+	var food := 0
+	var water := 0
+	var electricity := 0
+	var coins := 0
 	for block in BlockManager.placed_blocks:
-		Player.food += block.get_food(placed_tiles_map)
-		Player.water += block.get_water(placed_tiles_map)
-		Player.electricity += block.get_electricity(placed_tiles_map)
-		Player.people += block.get_people()
-		Player.coins += block.get_coins(placed_tiles_map)
+		food += block.get_food(placed_tiles_map)
+		water += block.get_water(placed_tiles_map)
+		electricity += block.get_electricity(placed_tiles_map)
+		Player.people = block.get_people()
+		coins += block.get_coins(placed_tiles_map)
+	Player.food += food
+	Player.water += water
+	Player.electricity += electricity
+	Player.coins += coins
+		
+	Player.food -= Player.people
+	Player.water -= Player.people
+	Player.electricity -= Player.people
+	
+	Player.update_score(max_zoom_lvl)
+	#Player.people -= 0
+	#Player.coins -= 0
+	$CanvasLayer/GameUI/HList/Level.text = "Level: " + str(max_zoom_lvl)
+	$CanvasLayer/GameUI/HList/Height.text = "Height: " + str(BlockManager.get_height())
+	$CanvasLayer/GameUI/HList/Score.text = "Score: " + str(Player.score)
 	
 	#UI Stat Elements
 	$CanvasLayer/GameUI/HList/People.text = "People: " + str(Player.people)
-	
-	#Food
-	var food_min_value = Player.food
-	var food_max_value = Player.food
-	$CanvasLayer/GameUI/HList/Food/ProgressBar.min_value = food_min_value
-	$CanvasLayer/GameUI/HList/Food/ProgressBar.max_value = food_max_value
-	$CanvasLayer/GameUI/HList/Food.text =str(food_min_value) + " / " + str(food_max_value)
-	#Water
-	var water_min_value = Player.water
-	var water_max_value = Player.water
-	$CanvasLayer/GameUI/HList/Water/ProgressBar.min_value = water_min_value
-	$CanvasLayer/GameUI/HList/Water/ProgressBar.max_value = water_max_value
-	$CanvasLayer/GameUI/HList/Water.text =str(water_min_value) + " / " + str(water_max_value)
-	
-	#Electricity
-	var electricity_min_value = Player.electricity
-	var electricity_max_value = Player.electricity
-	$CanvasLayer/GameUI/HList/Electricity/ProgressBar.min_value = Player.electricity
-	$CanvasLayer/GameUI/HList/Electricity/ProgressBar.max_value = Player.electricity
-	$CanvasLayer/GameUI/HList/Electricity.text =str(electricity_min_value) + " / " + str(electricity_max_value)
-	
-	$CanvasLayer/GameUI/HList/Coins.text = "Coins: " + str(Player.coins)
+	##Food
+	#var food_min_value = Player.food
+	#var food_max_value = Player.food
+	#$CanvasLayer/GameUI/HList/Food/ProgressBar.min_value = food_min_value
+	#$CanvasLayer/GameUI/HList/Food/ProgressBar.max_value = food_max_value
+	#$CanvasLayer/GameUI/HList/Food.text =str(food_min_value) + " / " + str(food_max_value)
+	##Water
+	#var water_min_value = Player.water
+	#var water_max_value = Player.water
+	#$CanvasLayer/GameUI/HList/Water/ProgressBar.min_value = water_min_value
+	#$CanvasLayer/GameUI/HList/Water/ProgressBar.max_value = water_max_value
+	#$CanvasLayer/GameUI/HList/Water.text =str(water_min_value) + " / " + str(water_max_value)
+	#
+	##Electricity
+	#var electricity_min_value = Player.electricity
+	#var electricity_max_value = Player.electricity
+	#$CanvasLayer/GameUI/HList/Electricity/ProgressBar.min_value = Player.electricity
+	#$CanvasLayer/GameUI/HList/Electricity/ProgressBar.max_value = Player.electricity
+	#$CanvasLayer/GameUI/HList/Electricity.text =str(electricity_min_value) + " / " + str(electricity_max_value)
 
-
-func upkeep():
-	Player.food -= 2 * Player.people
-	Player.water -= 2 * Player.people
-	Player.electricity -= Player.people
-	#Player.people -= 0
-	#Player.coins -= 0
-
+	$CanvasLayer/GameUI/HList/Food.text = "Food: " + str(Player.food) + " +" + str(food)
+	$CanvasLayer/GameUI/HList/Water.text = "Water: " + str(Player.water) + " +" + str(water)
+	$CanvasLayer/GameUI/HList/Electricity.text = "Elect: " + str(Player.electricity) + " +" + str(electricity)
+	$CanvasLayer/GameUI/HList/Coins.text = "Coins: " + str(Player.coins) + " +" + str(coins)
+		
 
 func get_cloud_threshold() -> int:
 	match max_zoom_lvl:
@@ -259,11 +276,11 @@ func _on_get_block_button_pressed() -> void:
 
 
 func _on_get_cloud_buster_pressed() -> void:
-	var cloud_buster_cost := 15 * (max_zoom_lvl * max_zoom_lvl) 
+	var cloud_buster_cost := 100 * (max_zoom_lvl * max_zoom_lvl) 
 	print("Player.coins: ", Player.coins)
 	print("cloud_buster_cost: ", cloud_buster_cost)
 	if Player.coins >= cloud_buster_cost:
-		if BlockManager.get_height() < get_cloud_threshold()+2:
+		if BlockManager.get_peak() < get_cloud_threshold()+2:
 			if BlockManager.current_block != null:
 				print("Stop cheating")
 			else:
