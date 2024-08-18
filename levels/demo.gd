@@ -35,10 +35,23 @@ func _ready() -> void:
 	$CanvasLayer/GameUI/PanelContainer/VBoxContainer/HBoxContainer/PanelContainer/GridContainer/WaterContainer/HBoxContainer/Water.text = str(Player.water)
 	$CanvasLayer/GameUI/PanelContainer/VBoxContainer/HBoxContainer/PanelContainer/GridContainer/ElectricityContainer/HBoxContainer/Electricity.text = str(Player.electricity)
 	$CanvasLayer/GameUI/PanelContainer/VBoxContainer/HBoxContainer/PanelContainer/GridContainer/CoinsContainer/HBoxContainer/Coins.text = str(Player.coins)
-
+	AudioManager.play_music(AudioManager.music_level01_track)
+	
 
 func _on_zoom_changed(level: int):
 	max_zoom_lvl = maxi(max_zoom_lvl, level)
+	change_music_for_level(level)
+
+func change_music_for_level(level: int):
+	if level == 1:
+		AudioManager.play_music(AudioManager.music_level01_track)
+	elif level == 2:
+		AudioManager.play_music(AudioManager.music_level02_track,false, 0.5)
+	elif level == 3:
+		AudioManager.play_music(AudioManager.music_level03_track,false, 0.5)
+	elif level == 4:
+		AudioManager.play_music(AudioManager.music_level04_track,false, 0.5)
+	pass
 
 
 func _process(_delta: float) -> void:

@@ -7,9 +7,11 @@ script = ExtResource("1_ytwpv")
 
 [node name="MusicPlayer1" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
+bus = &"Music"
 
 [node name="MusicPlayer2" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
+bus = &"Music"
 
 [connection signal="finished" from="MusicPlayer1" to="." method="_on_music_player_1_finished"]
 [connection signal="finished" from="MusicPlayer2" to="." method="_on_music_player_2_finished"]
