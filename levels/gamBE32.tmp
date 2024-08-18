@@ -6,7 +6,7 @@
 [ext_resource type="Script" path="res://environment/background_controller.gd" id="3_xvluc"]
 [ext_resource type="Script" path="res://environment/barrier/barrier_manager.gd" id="4_kjknk"]
 [ext_resource type="Script" path="res://environment/barrier/barrier.gd" id="5_epaxb"]
-[ext_resource type="TileSet" uid="uid://cu6qu8gox8x2g" path="res://blocks/blocks_tileset.tres" id="5_k6swr"]
+[ext_resource type="TileSet" uid="uid://chgcycaqfc5fj" path="res://blocks/blocks_tileset.tres" id="5_k6swr"]
 [ext_resource type="PackedScene" uid="uid://e8icy3qr8w80" path="res://environment/barrier/cloud_particles.tscn" id="6_724k2"]
 [ext_resource type="Texture2D" uid="uid://ds12e2rjxhiel" path="res://environment/barrier/barrier_ground.png" id="7_gme3i"]
 [ext_resource type="Theme" uid="uid://lsghexn2paa" path="res://assets/themes/h2_theme.tres" id="17_u3nbk"]
@@ -87,13 +87,10 @@ visible = false
 
 [node name="GameUI" type="Control" parent="CanvasLayer"]
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
+anchors_preset = 9
 anchor_bottom = 1.0
-grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 2
-mouse_filter = 1
 
 [node name="HList" type="VBoxContainer" parent="CanvasLayer/GameUI"]
 layout_mode = 1
@@ -220,15 +217,3 @@ theme_override_colors/font_outline_color = Color(0.205333, 0, 0.56, 1)
 theme_override_constants/outline_size = 4
 theme_override_font_sizes/font_size = 28
 text = "Coins: 0"
-
-[node name="GetBlockButton" type="Button" parent="CanvasLayer/GameUI"]
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -58.0
-offset_bottom = 31.0
-grow_horizontal = 0
-text = "Rando"
-
-[connection signal="pressed" from="CanvasLayer/GameUI/GetBlockButton" to="." method="_on_get_block_button_pressed"]

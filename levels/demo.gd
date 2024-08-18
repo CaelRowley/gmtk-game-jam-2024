@@ -1,4 +1,5 @@
 extends Node2D
+class_name Demo
 
 const tile_size := 128
 
@@ -6,6 +7,17 @@ const tile_size := 128
 @onready var next_tile_map := $NextTileMap as TileMapLayer
 @onready var placed_tiles_map := %PlacedTilesMap as TileMapLayer
 
+var decor_manager: BlockDecorManager
+var main_camera: CameraController
+
+func _ready() -> void:
+	for child in get_children():
+		if child is CameraController:
+			main_camera = child
+	
+	decor_manager = BlockDecorManager.new()
+	add_child(decor_manager)
+	decor_manager.init(self)
 
 func _process(_delta: float) -> void:
 	if BlockManager.current_block != null:
@@ -44,6 +56,7 @@ func place_tile() -> void:
 	var new_block := Block.new()
 	new_block.init(coords, BlockManager.current_block.type, BlockManager.current_block.value)
 	BlockManager.add_placed_block(new_block)
+	decor_manager.add_decor(new_block, placed_tiles_map)
 	update_cells()
 	income()
 	upkeep()
@@ -53,7 +66,7 @@ func place_tile() -> void:
 func update_cells() -> void:
 	for block in BlockManager.placed_blocks:
 		placed_tiles_map.set_cells_terrain_connect(block.coords, 0, block.get_source() - 1, true)
-			
+		decor_manager.update_decor(block, block.is_producing(placed_tiles_map))
 
 func is_tile_connected(tile: Vector2) -> bool:
 	for cell in  BlockManager.current_block.coords:
