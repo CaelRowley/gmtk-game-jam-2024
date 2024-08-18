@@ -7,6 +7,48 @@ var placed_blocks: Array[Block]
 var current_block: Block
 
 
+func _ready() -> void:
+	var ran_1_count := 1
+	var ran_2_count := randi_range(2, 3)
+	var ran_3_count := randi_range(3, 5)
+	var ran_4_count := randi_range(15, 20)
+
+	for i in ran_1_count:
+		var new_block := Block.new()
+		new_block.init([Vector2(randi_range(-4, 3), randi_range(-18, -30))], get_random_block_type(), 1)
+		BlockManager.add_placed_block(new_block)
+	
+	for i in ran_2_count:
+		var new_block := Block.new()
+		var ran_block_shape := get_random_block_shape(1)
+		var ran_offset := Vector2(randi_range(-6, 4), randi_range(-45, -85))
+		var coords = []
+		for cell in ran_block_shape.coords:
+			coords.push_back(ran_offset + cell)
+		new_block.init(coords, get_random_block_type(), 1)
+		BlockManager.add_placed_block(new_block)
+
+	for i in ran_3_count:
+		var new_block := Block.new()
+		var ran_block_shape := get_random_block_shape(1)
+		var ran_offset := Vector2(randi_range(-8, 7), randi_range(-96, -150))
+		var coords = []
+		for cell in ran_block_shape.coords:
+			coords.push_back(ran_offset + cell)
+		new_block.init(coords, get_random_block_type(), 1)
+		BlockManager.add_placed_block(new_block)
+	
+	for i in ran_4_count:
+		var new_block := Block.new()
+		var ran_block_shape := get_random_block_shape(2)
+		var ran_offset := Vector2(randi_range(-8, 7), randi_range(-150, -600))
+		var coords = []
+		for cell in ran_block_shape.coords:
+			coords.push_back(ran_offset + cell)
+		new_block.init(coords, get_random_block_type(), 1)
+		BlockManager.add_placed_block(new_block)
+
+
 func add_placed_block(new_block: Block) -> void:
 	placed_blocks.push_back(new_block)
 	block_added.emit(new_block)
