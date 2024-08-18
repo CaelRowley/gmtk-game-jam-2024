@@ -12,9 +12,12 @@ func _process(_delta: float) -> void:
 		next_tile_map.clear()
 		shadow_tile_map.clear()
 		var tile := shadow_tile_map.local_to_map(get_local_mouse_position()) as Vector2
-		for cell in BlockManager.current_block.coords:
-			next_tile_map.set_cell(cell, BlockManager.current_block.get_source(), Vector2.ZERO)
-			shadow_tile_map.set_cell(tile + cell, 0, Vector2.ONE)
+		next_tile_map.set_cells_terrain_connect(BlockManager.current_block.coords, 0, BlockManager.current_block.get_source() - 1, true)
+		var shadow_coords = []
+		for c in BlockManager.current_block.coords:
+			shadow_coords.append(tile + c)
+		shadow_tile_map.set_cells_terrain_connect(shadow_coords, 0, BlockManager.current_block.get_source() - 1, true)
+
 	next_tile_map.position = get_local_mouse_position() - (Vector2.ONE * tile_size / 2.0)
 
 
@@ -50,10 +53,7 @@ func place_tile() -> void:
 func update_cells() -> void:
 	for block in BlockManager.placed_blocks:
 		placed_tiles_map.set_cells_terrain_connect(block.coords, 0, block.get_source() - 1, true)
-		#for coord in block.coords:
-		#	placed_tiles_map.set_cell(coord, block.get_source(), Vector2.ZERO)
 			
-
 
 func is_tile_connected(tile: Vector2) -> bool:
 	for cell in  BlockManager.current_block.coords:

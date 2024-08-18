@@ -35,6 +35,8 @@ script = ExtResource("3_xvluc")
 
 [node name="ShadowTileMap" type="TileMapLayer" parent="."]
 unique_name_in_owner = true
+modulate = Color(0, 0, 0, 0.501961)
+self_modulate = Color(0, 0, 0, 0.501961)
 tile_set = ExtResource("5_k6swr")
 
 [node name="PlacedTilesMap" type="TileMapLayer" parent="."]
