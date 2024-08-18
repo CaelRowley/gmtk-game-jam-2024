@@ -49,6 +49,13 @@ const sfx_place_pop_01 := preload("res://audio/sfx/3pops/pop1.ogg")
 const sfx_place_pop_02 := preload("res://audio/sfx/3pops/pop2.ogg")
 const sfx_place_pop_03 := preload("res://audio/sfx/3pops/pop3.ogg")
 
+const sfx_door_close_01 := preload("res://audio/sfx/qubodup-DoorSet/qubodup-DoorSet/ogg/qubodup-DoorClose01.ogg")
+const sfx_door_close_02 := preload("res://audio/sfx/qubodup-DoorSet/qubodup-DoorSet/ogg/qubodup-DoorClose02.ogg")
+const sfx_door_close_03 := preload("res://audio/sfx/qubodup-DoorSet/qubodup-DoorSet/ogg/qubodup-DoorClose03.ogg")
+const sfx_door_open_01 := preload("res://audio/sfx/qubodup-DoorSet/qubodup-DoorSet/ogg/qubodup-DoorOpen01.ogg")
+const sfx_door_open_02 := preload("res://audio/sfx/qubodup-DoorSet/qubodup-DoorSet/ogg/qubodup-DoorOpen03.ogg")
+const sfx_door_open_03 := preload("res://audio/sfx/qubodup-DoorSet/qubodup-DoorSet/ogg/qubodup-DoorOpen06.ogg")
+
 var music_one_shot := false
 
 @onready var music_player_1 := %MusicPlayer1 as AudioStreamPlayer
@@ -90,8 +97,16 @@ func play_music(audio: AudioStream, one_shot := false, time_out := 0.1, time_in 
 	prev_music_player.stop()
 
 
-func play_sfx(audio: AudioStream) -> void:
+func play_sfx(audio: AudioStream, flag : bool = false) -> void:
 	var audio_player := AudioStreamPlayer.new()
+	var sfx_index= AudioServer.get_bus_index("SFX")
+	
+	#Play SFX Louder than default	
+	if flag:
+		AudioServer.set_bus_volume_db(sfx_index, -8.0)
+	else:
+		AudioServer.set_bus_volume_db(sfx_index, -28.0)
+
 	audio_player.set_bus(AUDIO_BUSES.SFX)
 	add_child(audio_player)
 	audio_player.stream = audio
@@ -147,3 +162,4 @@ func _on_music_player_2_finished() -> void:
 
 func is_music_playing() -> bool:
 	return music_player_1.playing || music_player_2.playing
+	
