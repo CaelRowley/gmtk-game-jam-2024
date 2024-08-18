@@ -7,29 +7,31 @@ var placed_blocks: Array[Block]
 var current_block: Block
 
 
-func _ready() -> void:
-	pass
-	var new_block := Block.new()
-	new_block.init(weighted_block_shapes_lvl1.IBlock2.item.coords, Block.Type.WATER, weighted_block_shapes_lvl1.IBlock2.item.value)
-	current_block = new_block
-
-
 func add_placed_block(new_block: Block) -> void:
 	placed_blocks.push_back(new_block)
 	block_added.emit(new_block)
 
 
-func get_random_block_shape() -> Dictionary:
-	return Random.get_weighted_random(weighted_block_shapes_lvl1, true)
+func get_random_block_shape(lvl := 1) -> Dictionary:
+	match lvl:
+		1:
+			return Random.get_weighted_random(weighted_block_shapes_lvl1, true)
+		2:
+			return Random.get_weighted_random(weighted_block_shapes_lvl2, true)
+		3:
+			return Random.get_weighted_random(weighted_block_shapes_lvl3, true)
+		4:
+			return Random.get_weighted_random(weighted_block_shapes_lvl4, true)
+	return Random.get_weighted_random(weighted_block_shapes_lvl4, true)
 
 
 func get_random_block_type() -> Block.Type:
 	return Random.get_weighted_random(weighted_block_types, true)
 
 
-func select_random_block():
+func select_random_block(lvl := 1):
 	var new_block := Block.new()
-	var ran_block_shape := get_random_block_shape()
+	var ran_block_shape := get_random_block_shape(lvl)
 	new_block.init(ran_block_shape.coords, get_random_block_type(), ran_block_shape.value)
 	current_block = new_block
 
@@ -122,7 +124,7 @@ var weighted_block_shapes_lvl1 = {
 	},
 }
 
-var weighted_block_shapes_lvl_2 = {
+var weighted_block_shapes_lvl2 = {
 	"Block2": {
 		item = {
 			"coords": [Vector2(0,0)],
@@ -275,7 +277,7 @@ var weighted_block_shapes_lvl_2 = {
 	},
 }
 
-var weighted_block_shapes_lvl_3 = {
+var weighted_block_shapes_lvl3 = {
 	"Block2": {
 		item = {
 			"coords": [Vector2(0,0)],
@@ -508,7 +510,7 @@ var weighted_block_shapes_lvl_3 = {
 	},
 }
 
-var weighted_block_shapes_lvl_4 = {
+var weighted_block_shapes_lvl4 = {
 	"Block2": {
 		item = {
 			"coords": [Vector2(0,0)],

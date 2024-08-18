@@ -47,7 +47,7 @@ func place_tile() -> void:
 	update_cells()
 	income()
 	upkeep()
-	BlockManager.select_random_block()
+	BlockManager.current_block = null
 
 
 func update_cells() -> void:
@@ -190,3 +190,10 @@ func upkeep():
 	Player.electricity -= Player.people
 	#Player.people -= 0
 	#Player.coins -= 0
+
+
+func _on_get_block_button_pressed() -> void:
+	if BlockManager.current_block != null:
+		print("Stop cheating")
+	else:
+		BlockManager.select_random_block($Camera2D.zoom_level)
