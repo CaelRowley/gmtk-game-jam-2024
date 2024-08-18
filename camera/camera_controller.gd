@@ -1,6 +1,8 @@
 extends Camera2D
 class_name CameraController
 
+signal zoom_changed(level: int)
+
 const camera_acceleration = 0.3
 const camera_drag = 3
 const barrier_drag = 12
@@ -98,6 +100,7 @@ func break_barrier(barrier: Barrier):
 	broken_barrier = barrier;
 	is_broken_barrier_above = barrier.is_above(self)
 	zoom_level = zoom_level + 1 if barrier.is_above(self) else zoom_level - 1
+	zoom_changed.emit(zoom_level)
 	is_mouse_down = false
 	barrier_break_timer = 0
 	barrier_manager.update_barriers()

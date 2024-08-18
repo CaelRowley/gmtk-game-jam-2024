@@ -9,6 +9,7 @@ const tile_size := 128
 
 var decor_manager: BlockDecorManager
 var main_camera: CameraController
+var max_zoom_lvl := 1
 
 func _ready() -> void:
 	for child in get_children():
@@ -18,6 +19,12 @@ func _ready() -> void:
 	decor_manager = BlockDecorManager.new()
 	add_child(decor_manager)
 	decor_manager.init(self)
+	$Camera2D.zoom_changed.connect(_on_zoom_changed)
+
+
+func _on_zoom_changed(level: int):
+	max_zoom_lvl = maxi(max_zoom_lvl, level)
+
 
 func _process(_delta: float) -> void:
 	if BlockManager.current_block != null:
@@ -48,6 +55,17 @@ func place_tile() -> void:
 	if !is_tile_connected(tile) || is_tile_overlapping(tile):
 		animate_cant_place()
 		return
+	
+	if max_zoom_lvl < 4:
+		if BlockManager.current_block.type == Block.Type.CLOUD_BUSTER:
+			if BlockManager.current_block.get_peak(tile) > get_cloud_threshold()-5:
+				animate_cant_place()
+				return
+		else:
+			if BlockManager.current_block.get_peak(tile) < get_cloud_threshold()+1:
+				animate_cant_place()
+				return
+	
 	AudioManager.play_sfx(place_tile_sfx.pick_random())
 	next_tile_map.clear()
 	var coords = []
@@ -96,21 +114,23 @@ func animate_cant_place() -> void:
 
 
 func rotate_clockwise() -> void:
-	for i in range(BlockManager.current_block.coords.size()):
-		var new_coords := BlockManager.current_block.coords.duplicate() as Array
-		var new_rotation := new_coords[i].rotated(deg_to_rad(90)) as Vector2
-		new_coords[i].x = roundi(new_rotation.x)
-		new_coords[i].y = roundi(new_rotation.y)
-		BlockManager.current_block.coords = new_coords
+	if BlockManager.current_block.type != Block.Type.CLOUD_BUSTER:
+		for i in range(BlockManager.current_block.coords.size()):
+			var new_coords := BlockManager.current_block.coords.duplicate() as Array
+			var new_rotation := new_coords[i].rotated(deg_to_rad(90)) as Vector2
+			new_coords[i].x = roundi(new_rotation.x)
+			new_coords[i].y = roundi(new_rotation.y)
+			BlockManager.current_block.coords = new_coords
 
 
 func rotate_counter_clockwise() -> void:
-	for i in range(BlockManager.current_block.coords.size()):
-		var new_coords := BlockManager.current_block.coords.duplicate() as Array
-		var new_rotation := new_coords[i].rotated(deg_to_rad(-90)) as Vector2
-		new_coords[i].x = roundi(new_rotation.x)
-		new_coords[i].y = roundi(new_rotation.y)
-		BlockManager.current_block.coords = new_coords
+	if BlockManager.current_block.type != Block.Type.CLOUD_BUSTER:
+		for i in range(BlockManager.current_block.coords.size()):
+			var new_coords := BlockManager.current_block.coords.duplicate() as Array
+			var new_rotation := new_coords[i].rotated(deg_to_rad(-90)) as Vector2
+			new_coords[i].x = roundi(new_rotation.x)
+			new_coords[i].y = roundi(new_rotation.y)
+			BlockManager.current_block.coords = new_coords
 
 
 #func get_water() -> int:
@@ -205,8 +225,29 @@ func upkeep():
 	#Player.coins -= 0
 
 
+func get_cloud_threshold() -> int:
+	match max_zoom_lvl:
+		1:
+			return -10
+		2:
+			return -32
+		3:
+			return -87
+		4:
+			return -99999999
+	return 0
+
+
 func _on_get_block_button_pressed() -> void:
 	if BlockManager.current_block != null:
 		print("Stop cheating")
 	else:
-		BlockManager.select_random_block($Camera2D.zoom_level)
+		BlockManager.select_random_block(max_zoom_lvl)
+
+
+func _on_get_cloud_buster_pressed() -> void:
+	if BlockManager.get_height() < get_cloud_threshold()+3:
+		if BlockManager.current_block != null:
+			print("Stop cheating")
+		else:
+			BlockManager.select_cloud_buster()

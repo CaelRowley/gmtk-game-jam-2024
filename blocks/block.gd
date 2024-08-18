@@ -9,6 +9,7 @@ enum Type {
 	RESIDENTIAL,
 	BUSINESS,
 	FRAME,
+	CLOUD_BUSTER,
 }
 
 const type_to_source_map = {
@@ -18,6 +19,7 @@ const type_to_source_map = {
 	Block.Type.BUSINESS: 4,
 	Block.Type.RESIDENTIAL: 5,
 	Block.Type.ELECTRICITY: 6,
+	Block.Type.CLOUD_BUSTER: 3,
 }
 
 var coords: Array
@@ -61,6 +63,14 @@ func get_right_cells(tile_map: TileMapLayer) -> Array:
 
 func get_source():
 	return type_to_source_map[type]
+
+
+func get_peak(tile := Vector2.ZERO) -> int:
+	var peak := 1000
+	for cell in coords:
+		if tile.y + cell.y < peak:
+			peak = tile.y + cell.y
+	return peak
 
 
 func get_food(tile_map: TileMapLayer, count := 0, visited := []) -> int:

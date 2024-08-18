@@ -36,6 +36,22 @@ func select_random_block(lvl := 1):
 	current_block = new_block
 
 
+func get_height() -> int:
+	var peak := 1000
+	for block in placed_blocks:
+		for coord in block.coords:
+			if coord.y < peak:
+				peak = coord.y
+	return peak
+
+
+func select_cloud_buster():
+	var new_block := Block.new()
+	new_block.init(cloud_buster_block, Block.Type.CLOUD_BUSTER, 0)
+	current_block = new_block
+
+var cloud_buster_block := [Vector2(0,0), Vector2(-1,0), Vector2(1,0), Vector2(0,-1), Vector2(0,-2), Vector2(0,-3), Vector2(0,-4), Vector2(0,-5)]
+
 var weighted_block_types = {
 	Block.Type.FOOD: {
 		item = Block.Type.FOOD,
