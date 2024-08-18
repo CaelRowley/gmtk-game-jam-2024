@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=4 uid="uid://cyr7ychp7hvhx"]
+[gd_scene load_steps=33 format=4 uid="uid://cyr7ychp7hvhx"]
 
 [ext_resource type="Script" path="res://levels/tutorial.gd" id="1_n127b"]
 [ext_resource type="Script" path="res://camera/camera_controller.gd" id="2_4rtyk"]
@@ -9,18 +9,44 @@
 [ext_resource type="Script" path="res://environment/barrier/barrier.gd" id="7_h38lp"]
 [ext_resource type="PackedScene" uid="uid://e8icy3qr8w80" path="res://environment/barrier/cloud_particles.tscn" id="8_3ahap"]
 [ext_resource type="Texture2D" uid="uid://ds12e2rjxhiel" path="res://environment/barrier/barrier_ground.png" id="9_rnge2"]
+[ext_resource type="Texture2D" uid="uid://cfpkhvyik6150" path="res://assets/ui/kenney/Blue/Default/check_square_grey.png" id="10_2203g"]
 [ext_resource type="Theme" uid="uid://lsghexn2paa" path="res://assets/themes/h2_theme.tres" id="10_njbuh"]
 [ext_resource type="Theme" uid="uid://cp6kq4e452w4s" path="res://assets/themes/default_theme.tres" id="11_nc46n"]
-[ext_resource type="StyleBox" uid="uid://dai7viuvoaukc" path="res://assets/themes/progressbar_bg_food.tres" id="12_0hgln"]
-[ext_resource type="StyleBox" uid="uid://c3o3vvvwyuet2" path="res://assets/themes/progressbar_food.tres" id="13_26dwc"]
-[ext_resource type="StyleBox" uid="uid://dyxmai864r0jq" path="res://assets/themes/progressbar_bg_water.tres" id="14_ovjt5"]
-[ext_resource type="StyleBox" uid="uid://xbcyns7wyhuk" path="res://assets/themes/progressbar_water.tres" id="15_qlyho"]
-[ext_resource type="StyleBox" uid="uid://dvp768cajmo6d" path="res://assets/themes/progressbar_bg_electric.tres" id="16_74q3k"]
-[ext_resource type="StyleBox" uid="uid://len6poum6l7f" path="res://assets/themes/progressbar_electric.tres" id="17_woxcl"]
+[ext_resource type="Texture2D" uid="uid://dts6sjswhpbe3" path="res://assets/ui/Icon_Residence.png" id="11_wc7fj"]
+[ext_resource type="Texture2D" uid="uid://cioxs7lek1mb5" path="res://assets/ui/Icon_Food.png" id="14_76dll"]
+[ext_resource type="Texture2D" uid="uid://da57xp2bogcpj" path="res://assets/ui/Icon_Water.png" id="15_hoo8e"]
+[ext_resource type="Texture2D" uid="uid://c83i43c6blpur" path="res://assets/ui/Icon_Electricity.png" id="16_5qhs0"]
+[ext_resource type="Texture2D" uid="uid://c63nekivwpcf3" path="res://assets/ui/Icon_Business.png" id="17_iam3e"]
 [ext_resource type="StyleBox" uid="uid://dio5jgo7r0eft" path="res://assets/themes/text_prompt.tres" id="18_8cyiv"]
 [ext_resource type="Theme" uid="uid://d05830ku1mn0j" path="res://assets/themes/button_skip_theme.tres" id="18_r7sa1"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_jj5xk"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_v6wbq"]
+content_margin_left = 20.0
+content_margin_top = 10.0
+content_margin_right = 20.0
+texture = ExtResource("10_2203g")
+texture_margin_left = 5.0
+texture_margin_top = 5.0
+texture_margin_right = 5.0
+texture_margin_bottom = 10.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8hcwt"]
+content_margin_top = 14.0
+
+[sub_resource type="Theme" id="Theme_082vu"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jf5eu"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_b7sto"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dbert"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_16jwk"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7k24e"]
+content_margin_left = 0.0
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gure3"]
 content_margin_left = 360.0
@@ -107,21 +133,34 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = 671.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 2
 mouse_filter = 2
 
-[node name="HList" type="VBoxContainer" parent="CanvasLayer/GameUI"]
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/GameUI"]
 layout_mode = 1
-offset_left = 16.0
-offset_top = 20.0
-offset_right = 334.0
-offset_bottom = 640.0
-size_flags_horizontal = 0
-size_flags_vertical = 0
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -106.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxTexture_v6wbq")
 
-[node name="Level" type="Label" parent="CanvasLayer/GameUI/HList"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/GameUI/PanelContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/GameUI/PanelContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/GameUI/PanelContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 2
+
+[node name="Level" type="Label" parent="CanvasLayer/GameUI/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("10_njbuh")
 theme_override_colors/font_color = Color(0.97, 0.846325, 0.1455, 1)
@@ -130,120 +169,177 @@ theme_override_constants/outline_size = 4
 theme_override_font_sizes/font_size = 24
 text = "Level: 0"
 
-[node name="Height" type="Label" parent="CanvasLayer/GameUI/HList"]
+[node name="Height" type="Label" parent="CanvasLayer/GameUI/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("10_njbuh")
 theme_override_colors/font_color = Color(0.968627, 0.847059, 0.145098, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 4
 theme_override_font_sizes/font_size = 24
-text = "Height: 0"
+text = "Floors: 0"
 
-[node name="People" type="Label" parent="CanvasLayer/GameUI/HList"]
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/GameUI/PanelContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/GameUI/PanelContainer/VBoxContainer/HBoxContainer/CenterContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/GameUI/PanelContainer/VBoxContainer/HBoxContainer/CenterContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("11_wc7fj")
+expand_mode = 3
+
+[node name="People" type="Label" parent="CanvasLayer/GameUI/PanelContainer/VBoxContainer/HBoxContainer/CenterContainer/HBoxContainer"]
 layout_mode = 2
 theme = ExtResource("11_nc46n")
 theme_override_colors/font_color = Color(0.88, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(0.49, 0, 0, 1)
 theme_override_constants/outline_size = 4
-theme_override_font_sizes/font_size = 18
-text = "People: 0"
+theme_override_font_sizes/font_size = 60
+text = "0"
 
-[node name="Food" type="Label" parent="CanvasLayer/GameUI/HList"]
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/GameUI/PanelContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_8hcwt")
+
+[node name="GridContainer" type="GridContainer" parent="CanvasLayer/GameUI/PanelContainer/VBoxContainer/HBoxContainer/PanelContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = SubResource("Theme_082vu")
+theme_override_constants/h_separation = 10
+theme_override_constants/v_separation = 10
+columns = 2
+
+[node name="Food Container" type="PanelContainer" parent="CanvasLayer/GameUI/PanelContainer/VBoxContainer/HBoxContainer/PanelContainer/GridContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_jf5eu")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/GameUI/PanelContainer/VBoxContainer/HBoxContainer/PanelContainer/GridContainer/Food Container"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/GameUI/PanelContainer/VBoxContainer/HBoxContainer/PanelContainer/GridContainer/Food Container/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("14_76dll")
+expand_mode = 2
+
+[node name="Food" type="Label" parent="CanvasLayer/GameUI/PanelContainer/VBoxContainer/HBoxContainer/PanelContainer/GridContainer/Food Container/HBoxContainer"]
 layout_mode = 2
 theme = ExtResource("11_nc46n")
-theme_override_colors/font_color = Color(0.286275, 0.772549, 0, 1)
-theme_override_colors/font_outline_color = Color(0, 0.4, 0.126667, 1)
-theme_override_constants/outline_size = 4
-theme_override_font_sizes/font_size = 18
-text = "15 / 15"
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+text = "15"
 
-[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer/GameUI/HList/Food"]
+[node name="Change" type="Label" parent="CanvasLayer/GameUI/PanelContainer/VBoxContainer/HBoxContainer/PanelContainer/GridContainer/Food Container/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("11_nc46n")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+text = "(+0)"
+
+[node name="WaterContainer" type="PanelContainer" parent="CanvasLayer/GameUI/PanelContainer/VBoxContainer/HBoxContainer/PanelContainer/GridContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_b7sto")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/GameUI/PanelContainer/VBoxContainer/HBoxContainer/PanelContainer/GridContainer/WaterContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/GameUI/PanelContainer/VBoxContainer/HBoxContainer/PanelContainer/GridContainer/WaterContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("15_hoo8e")
+expand_mode = 2
+
+[node name="Water" type="Label" parent="CanvasLayer/GameUI/PanelContainer/VBoxContainer/HBoxContainer/PanelContainer/GridContainer/WaterContainer/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("11_nc46n")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "20"
+
+[node name="Change" type="Label" parent="CanvasLayer/GameUI/PanelContainer/VBoxContainer/HBoxContainer/PanelContainer/GridContainer/WaterContainer/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("11_nc46n")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+text = "(+0)"
+
+[node name="ElectricityContainer" type="PanelContainer" parent="CanvasLayer/GameUI/PanelContainer/VBoxContainer/HBoxContainer/PanelContainer/GridContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_dbert")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/GameUI/PanelContainer/VBoxContainer/HBoxContainer/PanelContainer/GridContainer/ElectricityContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/GameUI/PanelContainer/VBoxContainer/HBoxContainer/PanelContainer/GridContainer/ElectricityContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("16_5qhs0")
+expand_mode = 2
+
+[node name="Electricity" type="Label" parent="CanvasLayer/GameUI/PanelContainer/VBoxContainer/HBoxContainer/PanelContainer/GridContainer/ElectricityContainer/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("11_nc46n")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 0
+text = "30"
+
+[node name="Change" type="Label" parent="CanvasLayer/GameUI/PanelContainer/VBoxContainer/HBoxContainer/PanelContainer/GridContainer/ElectricityContainer/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("11_nc46n")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+text = "(+0)"
+
+[node name="CoinsContainer" type="PanelContainer" parent="CanvasLayer/GameUI/PanelContainer/VBoxContainer/HBoxContainer/PanelContainer/GridContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_16jwk")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/GameUI/PanelContainer/VBoxContainer/HBoxContainer/PanelContainer/GridContainer/CoinsContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/GameUI/PanelContainer/VBoxContainer/HBoxContainer/PanelContainer/GridContainer/CoinsContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("17_iam3e")
+expand_mode = 3
+
+[node name="Coins" type="Label" parent="CanvasLayer/GameUI/PanelContainer/VBoxContainer/HBoxContainer/PanelContainer/GridContainer/CoinsContainer/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("11_nc46n")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "0"
+
+[node name="Change" type="Label" parent="CanvasLayer/GameUI/PanelContainer/VBoxContainer/HBoxContainer/PanelContainer/GridContainer/CoinsContainer/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("11_nc46n")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+text = "(+0)"
+
+[node name="PanelContainer2" type="PanelContainer" parent="CanvasLayer/GameUI"]
 layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = 94.0
-offset_top = -11.5
-offset_right = 297.0
-offset_bottom = 15.5
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -671.0
+offset_bottom = -907.0
+grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("11_nc46n")
-theme_override_styles/background = ExtResource("12_0hgln")
-theme_override_styles/fill = ExtResource("13_26dwc")
-max_value = 15.0
-step = 1.0
-value = 15.0
-show_percentage = false
+theme_override_styles/panel = SubResource("StyleBoxEmpty_7k24e")
 
-[node name="Water" type="Label" parent="CanvasLayer/GameUI/HList"]
+[node name="Score" type="Label" parent="CanvasLayer/GameUI/PanelContainer2"]
 layout_mode = 2
-theme = ExtResource("11_nc46n")
-theme_override_colors/font_color = Color(0, 0.458824, 0.921569, 1)
+theme = ExtResource("10_njbuh")
+theme_override_colors/font_color = Color(0.97, 0.846325, 0.1455, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 4
-theme_override_font_sizes/font_size = 18
-text = "20 / 20"
-
-[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer/GameUI/HList/Water"]
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = 94.0
-offset_top = -9.5
-offset_right = 297.0
-offset_bottom = 16.5
-grow_vertical = 2
-theme = ExtResource("11_nc46n")
-theme_override_styles/background = ExtResource("14_ovjt5")
-theme_override_styles/fill = ExtResource("15_qlyho")
-max_value = 20.0
-step = 1.0
-value = 20.0
-show_percentage = false
-
-[node name="Electricity" type="Label" parent="CanvasLayer/GameUI/HList"]
-layout_mode = 2
-theme = ExtResource("11_nc46n")
-theme_override_colors/font_color = Color(0.968627, 0.847059, 0.145098, 1)
-theme_override_colors/font_outline_color = Color(0.74, 0.320667, 0.111, 1)
-theme_override_constants/outline_size = 4
-theme_override_font_sizes/font_size = 18
-text = "30 / 30"
-
-[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer/GameUI/HList/Electricity"]
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = 94.0
-offset_top = -6.5
-offset_right = 297.0
-offset_bottom = 16.5
-grow_vertical = 2
-theme = ExtResource("11_nc46n")
-theme_override_styles/background = ExtResource("16_74q3k")
-theme_override_styles/fill = ExtResource("17_woxcl")
-max_value = 30.0
-step = 1.0
-value = 30.0
-show_percentage = false
-
-[node name="Coins" type="Label" parent="CanvasLayer/GameUI/HList"]
-layout_mode = 2
-theme = ExtResource("11_nc46n")
-theme_override_colors/font_color = Color(0.6125, 0, 0.75, 1)
-theme_override_colors/font_outline_color = Color(0.205333, 0, 0.56, 1)
-theme_override_constants/outline_size = 4
-theme_override_font_sizes/font_size = 18
-text = "Coins: 0"
+text = "Score: 0"
+horizontal_alignment = 1
 
 [node name="Tutorial" type="Control" parent="CanvasLayer"]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = 283.0
+offset_top = 98.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
