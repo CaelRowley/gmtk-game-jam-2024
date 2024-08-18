@@ -25,12 +25,14 @@ const type_to_source_map = {
 var coords: Array
 var type := Type.FRAME
 var value: int
+var is_placed_by_player := false
 
 
-func init(new_coords: Array, new_type: Type, new_value: int) -> void:
+func init(new_coords: Array, new_type: Type, new_value: int, placed_by_player := false) -> void:
 	coords = new_coords
 	type = new_type
 	value = new_value
+	is_placed_by_player = placed_by_player
 
 
 func get_top_cells(tile_map: TileMapLayer) -> Array:

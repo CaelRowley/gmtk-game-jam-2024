@@ -70,7 +70,7 @@ func place_tile() -> void:
 					-87:
 						$BarrierManager/CloudsBarrier3.is_unbreakable = false
 		else:
-			if BlockManager.current_block.get_peak(tile) < get_cloud_threshold()+1:
+			if BlockManager.current_block.get_peak(tile) < get_cloud_threshold():
 				animate_cant_place()
 				return
 	
@@ -80,7 +80,7 @@ func place_tile() -> void:
 	for cell in BlockManager.current_block.coords:
 		coords.push_back(tile + cell)
 	var new_block := Block.new()
-	new_block.init(coords, BlockManager.current_block.type, BlockManager.current_block.value)
+	new_block.init(coords, BlockManager.current_block.type, BlockManager.current_block.value, true)
 	BlockManager.add_placed_block(new_block)
 	decor_manager.add_decor(new_block, placed_tiles_map)
 	update_cells()
@@ -254,6 +254,8 @@ func _on_get_block_button_pressed() -> void:
 
 
 func _on_get_cloud_buster_pressed() -> void:
+	print(BlockManager.get_height())
+	print(get_cloud_threshold()+3)
 	if BlockManager.get_height() < get_cloud_threshold()+3:
 		if BlockManager.current_block != null:
 			print("Stop cheating")
