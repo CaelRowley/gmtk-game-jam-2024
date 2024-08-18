@@ -61,6 +61,14 @@ func place_tile() -> void:
 			if BlockManager.current_block.get_peak(tile) > get_cloud_threshold()-5:
 				animate_cant_place()
 				return
+			else:
+				match get_cloud_threshold():
+					-10:
+						$BarrierManager/CloudsBarrier1.is_unbreakable = false
+					-32:
+						$BarrierManager/CloudsBarrier2.is_unbreakable = false
+					-87:
+						$BarrierManager/CloudsBarrier3.is_unbreakable = false
 		else:
 			if BlockManager.current_block.get_peak(tile) < get_cloud_threshold()+1:
 				animate_cant_place()

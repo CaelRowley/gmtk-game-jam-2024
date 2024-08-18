@@ -56,6 +56,7 @@ script = ExtResource("4_kjknk")
 position = Vector2(-27, -11317)
 scale = Vector2(0.5, 0.5)
 script = ExtResource("5_epaxb")
+is_unbreakable = true
 
 [node name="CloudParticles" parent="BarrierManager/CloudsBarrier3" instance=ExtResource("6_724k2")]
 
@@ -63,6 +64,7 @@ script = ExtResource("5_epaxb")
 position = Vector2(0, -4320)
 scale = Vector2(0.5, 0.5)
 script = ExtResource("5_epaxb")
+is_unbreakable = true
 
 [node name="CloudParticles" parent="BarrierManager/CloudsBarrier2" instance=ExtResource("6_724k2")]
 
@@ -70,6 +72,7 @@ script = ExtResource("5_epaxb")
 position = Vector2(0, -1440)
 scale = Vector2(0.5, 0.5)
 script = ExtResource("5_epaxb")
+is_unbreakable = true
 
 [node name="CloudParticles" parent="BarrierManager/CloudsBarrier1" instance=ExtResource("6_724k2")]
 
@@ -83,7 +86,6 @@ is_unbreakable = true
 texture = ExtResource("7_gme3i")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
-visible = false
 
 [node name="GameUI" type="Control" parent="CanvasLayer"]
 layout_mode = 3
