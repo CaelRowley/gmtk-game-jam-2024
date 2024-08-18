@@ -1,0 +1,82 @@
+[gd_scene load_steps=14 format=3 uid="uid://c63rsyer6s5nm"]
+
+[ext_resource type="Texture2D" uid="uid://bm60mbefca71h" path="res://gui/block_dispenser.png" id="1_fer04"]
+[ext_resource type="Script" path="res://blocks/block_dispenser.gd" id="2_ojhbp"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fmsnj"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_yn8he"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mnyqc"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ab5ub"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_r58hq"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_cutq6"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rsmoy"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_r7enq"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_f0kcc"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ds745"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_yg5ff"]
+
+[node name="BlockDispenserWindow" type="MarginContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+mouse_filter = 2
+texture = ExtResource("1_fer04")
+stretch_mode = 2
+
+[node name="GetBlockButton" type="Button" parent="."]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_fmsnj")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_yn8he")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_mnyqc")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_ab5ub")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_r58hq")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_cutq6")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_rsmoy")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_r7enq")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_f0kcc")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_ds745")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_yg5ff")
+script = ExtResource("2_ojhbp")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+clip_contents = true
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 12
+
+[node name="PreviewClip" type="Control" parent="MarginContainer"]
+clip_contents = true
+layout_mode = 2
+mouse_filter = 2
+
+[node name="PreviewAnchor" type="Control" parent="MarginContainer/PreviewClip"]
+layout_mode = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_top = 56.0
+grow_horizontal = 0

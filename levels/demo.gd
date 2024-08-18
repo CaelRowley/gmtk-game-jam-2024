@@ -10,12 +10,16 @@ const tile_size := 128
 var decor_manager: BlockDecorManager
 var npc_manager: NPCManager
 var main_camera: CameraController
+var block_dispenser: BlockDispenser
 var max_zoom_lvl := 1
 
 func _ready() -> void:
-	for child in get_children():
+	var parent = self
+	for child in GetUtil.get_all_children(self):
 		if child is CameraController:
 			main_camera = child
+		if child is BlockDispenser:
+			block_dispenser = child
 	
 	decor_manager = BlockDecorManager.new()
 	add_child(decor_manager)
@@ -37,6 +41,10 @@ func _ready() -> void:
 	$CanvasLayer/GameUI/PanelContainer/VBoxContainer/HBoxContainer/PanelContainer/GridContainer/CoinsContainer/HBoxContainer/Coins.text = str(Player.coins)
 	AudioManager.play_music(AudioManager.music_level01_track)
 	
+	block_dispenser.init(self)
+
+func get_max_zoom() -> int:
+	return max_zoom_lvl
 
 func _on_zoom_changed(level: int):
 	max_zoom_lvl = maxi(max_zoom_lvl, level)
@@ -52,21 +60,6 @@ func change_music_for_level(level: int):
 	elif level == 4:
 		AudioManager.play_music(AudioManager.music_level04_track,false, 0.5)
 	pass
-
-
-func _process(_delta: float) -> void:
-	if BlockManager.current_block != null:
-		next_tile_map.clear()
-		shadow_tile_map.clear()
-		var tile := shadow_tile_map.local_to_map(get_local_mouse_position()) as Vector2
-		next_tile_map.set_cells_terrain_connect(BlockManager.current_block.coords, 0, BlockManager.current_block.get_source() - 1, true)
-		var shadow_coords = []
-		for c in BlockManager.current_block.coords:
-			shadow_coords.append(tile + c)
-		shadow_tile_map.set_cells_terrain_connect(shadow_coords, 0, BlockManager.current_block.get_source() - 1, true)
-
-	next_tile_map.position = get_local_mouse_position() - (Vector2.ONE * tile_size / 2.0)
-
 
 func _input(event: InputEvent) -> void:
 	if  BlockManager.current_block != null && event.is_action_pressed("ui_accept"):
@@ -283,14 +276,6 @@ func get_cloud_threshold() -> int:
 		4:
 			return -99999999
 	return 0
-
-
-func _on_get_block_button_pressed() -> void:
-	if BlockManager.current_block != null:
-		print("Stop cheating")
-	else:
-		BlockManager.select_random_block(max_zoom_lvl)
-
 
 func _on_get_cloud_buster_pressed() -> void:
 	var cloud_buster_cost := 0 * (max_zoom_lvl * max_zoom_lvl) 
