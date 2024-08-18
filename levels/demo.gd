@@ -8,6 +8,7 @@ const tile_size := 128
 @onready var placed_tiles_map := %PlacedTilesMap as TileMapLayer
 
 var decor_manager: BlockDecorManager
+var npc_manager: NPCManager
 var main_camera: CameraController
 var max_zoom_lvl := 1
 
@@ -19,6 +20,11 @@ func _ready() -> void:
 	decor_manager = BlockDecorManager.new()
 	add_child(decor_manager)
 	decor_manager.init(self)
+	
+	npc_manager = NPCManager.new()
+	add_child(npc_manager)
+	npc_manager.init(self)
+	
 	$Camera2D.zoom_changed.connect(_on_zoom_changed)
 	
 	$CanvasLayer/GameUI/HList/Level.text = "Level: " + str(max_zoom_lvl)

@@ -1,0 +1,79 @@
+[gd_scene load_steps=12 format=3 uid="uid://binrrbxa4uqam"]
+
+[ext_resource type="Texture2D" uid="uid://bsyaa2lsao261" path="res://environment/npcs/salamug_fly_0.png" id="1_6sb76"]
+[ext_resource type="Texture2D" uid="uid://w6hivh7swhf2" path="res://environment/npcs/salamug_fly_1.png" id="2_67nnl"]
+[ext_resource type="Texture2D" uid="uid://bqq2gkx13a6e1" path="res://environment/npcs/salamug_fly_2.png" id="3_nm3xt"]
+[ext_resource type="Texture2D" uid="uid://dub1wdnajbda4" path="res://environment/npcs/salamug_fly_3.png" id="4_jr4h6"]
+[ext_resource type="Texture2D" uid="uid://hdkuo81x6xgx" path="res://environment/npcs/salamug_fly_3_blink.png" id="5_hv07u"]
+[ext_resource type="Texture2D" uid="uid://dw854ittyjs5l" path="res://environment/npcs/salamug_work_0.png" id="6_60b71"]
+[ext_resource type="Texture2D" uid="uid://bxtxy3pagoytx" path="res://environment/npcs/salamug_work_1.png" id="7_66atb"]
+[ext_resource type="Texture2D" uid="uid://bsy5na3hujhhc" path="res://environment/npcs/salamug_work_2.png" id="8_033s1"]
+[ext_resource type="Texture2D" uid="uid://b5mpumfpl2bbr" path="res://environment/npcs/salamug_work_3.png" id="9_qyj4v"]
+[ext_resource type="Script" path="res://environment/npcs/npc.gd" id="10_osvdl"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7b8k0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_6sb76")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_67nnl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_nm3xt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_jr4h6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_nm3xt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_67nnl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_6sb76")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_67nnl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_nm3xt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_hv07u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_nm3xt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_67nnl")
+}],
+"loop": true,
+"name": &"salamug_fly",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_60b71")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_66atb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_033s1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_qyj4v")
+}],
+"loop": true,
+"name": &"salamug_work",
+"speed": 8.0
+}]
+
+[node name="Salamug" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_7b8k0")
+animation = &"salamug_fly"
+frame_progress = 0.542682
+script = ExtResource("10_osvdl")
