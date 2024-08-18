@@ -112,6 +112,24 @@ func get_block_count() -> int:
 	return count
 
 
+func get_filled_rows_count() -> int:
+	var count := 0
+	var peak := get_peak()
+	var current_height := 1
+	while current_height > peak:
+		var row := [Vector2(-2, current_height),Vector2(-1, current_height),Vector2(0, current_height),Vector2(1, current_height)]
+		for block in placed_blocks:
+			for coord in block.coords:
+				row.erase(coord)
+				if row.size() <= 0:
+					count+=1
+					break
+			if row.size() <= 0:
+				break
+		current_height -= 1
+	return count
+
+
 func select_cloud_buster():
 	var new_block := Block.new()
 	new_block.init(cloud_buster_block, Block.Type.CLOUD_BUSTER, 0)
