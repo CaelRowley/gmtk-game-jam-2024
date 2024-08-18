@@ -15,7 +15,7 @@ func _ready() -> void:
 
 	for i in ran_1_count:
 		var new_block := Block.new()
-		new_block.init([Vector2(randi_range(-4, 3), randi_range(-18, -30))], get_random_block_type(), 1)
+		new_block.init([Vector2(randi_range(-4, 3), randi_range(-18, -30))], [Block.Type.FOOD, Block.Type.WATER, Block.Type.ELECTRICITY].pick_random(), 1)
 		BlockManager.add_placed_block(new_block)
 	
 	for i in ran_2_count:
@@ -25,7 +25,7 @@ func _ready() -> void:
 		var coords = []
 		for cell in ran_block_shape.coords:
 			coords.push_back(ran_offset + cell)
-		new_block.init(coords, get_random_block_type(), 1)
+		new_block.init(coords, [Block.Type.FOOD, Block.Type.WATER, Block.Type.ELECTRICITY].pick_random(), 1)
 		BlockManager.add_placed_block(new_block)
 
 	for i in ran_3_count:
@@ -35,7 +35,7 @@ func _ready() -> void:
 		var coords = []
 		for cell in ran_block_shape.coords:
 			coords.push_back(ran_offset + cell)
-		new_block.init(coords, get_random_block_type(), 1)
+		new_block.init(coords, [Block.Type.FOOD, Block.Type.WATER, Block.Type.ELECTRICITY].pick_random(), 1)
 		BlockManager.add_placed_block(new_block)
 	
 	for i in ran_4_count:
@@ -45,7 +45,7 @@ func _ready() -> void:
 		var coords = []
 		for cell in ran_block_shape.coords:
 			coords.push_back(ran_offset + cell)
-		new_block.init(coords, get_random_block_type(), 1)
+		new_block.init(coords, [Block.Type.FOOD, Block.Type.WATER, Block.Type.ELECTRICITY].pick_random(), 1)
 		BlockManager.add_placed_block(new_block)
 
 
@@ -81,9 +81,10 @@ func select_random_block(lvl := 1):
 func get_height() -> int:
 	var peak := 1000
 	for block in placed_blocks:
-		for coord in block.coords:
-			if coord.y < peak:
-				peak = coord.y
+		if block.is_placed_by_player:
+			for coord in block.coords:
+				if coord.y < peak:
+					peak = coord.y
 	return peak
 
 
