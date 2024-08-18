@@ -75,13 +75,17 @@ func get_random_block_shape(lvl := 1) -> Dictionary:
 func get_random_block_type() -> Block.Type:
 	return Random.get_weighted_random(weighted_block_types, true)
 
-
-func select_random_block(lvl := 1):
+func get_random_block(lvl := 1) -> Block:
 	var new_block := Block.new()
 	var ran_block_shape := get_random_block_shape(lvl)
 	new_block.init(ran_block_shape.coords, get_random_block_type(), ran_block_shape.value)
-	current_block = new_block
+	return new_block
 
+func select_random_block(lvl := 1):
+	set_current_block(get_random_block(lvl))
+
+func set_current_block(block: Block):
+	current_block = block
 
 func get_peak() -> int:
 	var peak := 1000

@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=4 uid="uid://th56aldp1a1x"]
+[gd_scene load_steps=28 format=4 uid="uid://th56aldp1a1x"]
 
 [ext_resource type="Script" path="res://levels/demo.gd" id="1_4mqve"]
 [ext_resource type="Script" path="res://camera/camera_controller.gd" id="1_tm8sg"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://e8icy3qr8w80" path="res://environment/barrier/cloud_particles.tscn" id="6_724k2"]
 [ext_resource type="Texture2D" uid="uid://ds12e2rjxhiel" path="res://environment/barrier/barrier_ground.png" id="7_gme3i"]
 [ext_resource type="Texture2D" uid="uid://cfpkhvyik6150" path="res://assets/ui/kenney/Blue/Default/check_square_grey.png" id="10_mlkbh"]
+[ext_resource type="PackedScene" uid="uid://c63rsyer6s5nm" path="res://levels/block_dispenser_ui.tscn" id="10_trac6"]
 [ext_resource type="Texture2D" uid="uid://dts6sjswhpbe3" path="res://assets/ui/Icon_Residence.png" id="12_vb0yu"]
 [ext_resource type="Texture2D" uid="uid://cioxs7lek1mb5" path="res://assets/ui/Icon_Food.png" id="14_jw50g"]
 [ext_resource type="Texture2D" uid="uid://da57xp2bogcpj" path="res://assets/ui/Icon_Water.png" id="15_0ggir"]
@@ -72,7 +73,6 @@ tile_set = ExtResource("5_k6swr")
 
 [node name="NextTileMap" type="TileMapLayer" parent="."]
 unique_name_in_owner = true
-position = Vector2(-1419, -333)
 tile_set = ExtResource("5_k6swr")
 
 [node name="BarrierManager" type="Node2D" parent="."]
@@ -113,6 +113,8 @@ position = Vector2(0, -268)
 texture = ExtResource("7_gme3i")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="BlockDispenserWindow" parent="CanvasLayer" instance=ExtResource("10_trac6")]
 
 [node name="GameUI" type="Control" parent="CanvasLayer"]
 layout_mode = 3
@@ -319,21 +321,6 @@ theme_override_constants/outline_size = 4
 text = "Score: 0"
 horizontal_alignment = 1
 
-[node name="GetBlockButton" type="Button" parent="CanvasLayer/GameUI"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 1.0
-anchor_top = -2.28
-anchor_right = 1.0
-anchor_bottom = -2.28
-offset_left = -102.0
-offset_top = 18.92
-offset_right = -44.0
-offset_bottom = 49.92
-grow_horizontal = 0
-text = "Rando"
-metadata/_edit_use_anchors_ = true
-
 [node name="GetCloudBuster" type="Button" parent="CanvasLayer/GameUI"]
 layout_mode = 1
 anchors_preset = -1
@@ -350,5 +337,4 @@ size_flags_vertical = 0
 text = "Cloud
 Buster"
 
-[connection signal="pressed" from="CanvasLayer/GameUI/GetBlockButton" to="." method="_on_get_block_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/GameUI/GetCloudBuster" to="." method="_on_get_cloud_buster_pressed"]
