@@ -20,7 +20,7 @@ func create_decor(coords: Array, block: Block, decor_type: BlockDecorTypes):
 		return
 		
 	var decor = BlockDecor.new()
-	add_child(decor)
+	demo.placed_tiles_map.add_child(decor)
 	var index = randi() % coords.size()
 	decor.init(coords[index], decor_type)
 	coords.remove_at(index)
