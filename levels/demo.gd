@@ -27,14 +27,14 @@ func _ready() -> void:
 	
 	$Camera2D.zoom_changed.connect(_on_zoom_changed)
 	
-	$CanvasLayer/GameUI/HList/Level.text = "Level: " + str(max_zoom_lvl)
-	$CanvasLayer/GameUI/HList/Height.text = "Height: " + str(BlockManager.get_height())
-	$CanvasLayer/GameUI/HList/Score.text = "Score: " + str(Player.score)
-	$CanvasLayer/GameUI/HList/People.text = "People: " + str(Player.people)
-	$CanvasLayer/GameUI/HList/Food.text = "Food: " + str(Player.food)
-	$CanvasLayer/GameUI/HList/Water.text = "Water: " + str(Player.water)
-	$CanvasLayer/GameUI/HList/Electricity.text = "Elect: " + str(Player.electricity)
-	$CanvasLayer/GameUI/HList/Coins.text = "Coins: " + str(Player.coins)
+	$CanvasLayer/GameUI/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer/Level.text = "Level: " + str(max_zoom_lvl)
+	$CanvasLayer/GameUI/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer/Floors.text = "Floors: " + str(BlockManager.get_height())
+	$CanvasLayer/GameUI/PanelContainer2/Score.text = "Score: " + str(Player.score)
+	$CanvasLayer/GameUI/PanelContainer/VBoxContainer/HBoxContainer/CenterContainer/HBoxContainer/People.text = str(Player.people)
+	$"CanvasLayer/GameUI/PanelContainer/VBoxContainer/HBoxContainer/PanelContainer/GridContainer/Food Container/HBoxContainer/Food".text = str(Player.food)
+	$CanvasLayer/GameUI/PanelContainer/VBoxContainer/HBoxContainer/PanelContainer/GridContainer/WaterContainer/HBoxContainer/Water.text = str(Player.water)
+	$CanvasLayer/GameUI/PanelContainer/VBoxContainer/HBoxContainer/PanelContainer/GridContainer/ElectricityContainer/HBoxContainer/Electricity.text = str(Player.electricity)
+	$CanvasLayer/GameUI/PanelContainer/VBoxContainer/HBoxContainer/PanelContainer/GridContainer/CoinsContainer/HBoxContainer/Coins.text = str(Player.coins)
 
 
 func _on_zoom_changed(level: int):
@@ -227,38 +227,28 @@ func upkeep():
 	Player.electricity -= Player.people
 	
 	Player.update_score(max_zoom_lvl)
-	#Player.people -= 0
-	#Player.coins -= 0
-	$CanvasLayer/GameUI/HList/Level.text = "Level: " + str(max_zoom_lvl)
-	$CanvasLayer/GameUI/HList/Height.text = "Height: " + str(BlockManager.get_height())
-	$CanvasLayer/GameUI/HList/Score.text = "Score: " + str(Player.score)
+	$CanvasLayer/GameUI/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer/Level.text = "Level: " + str(max_zoom_lvl)
+	$CanvasLayer/GameUI/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer/Floors.text = "Floors: " + str(BlockManager.get_height())
+	$CanvasLayer/GameUI/PanelContainer2/Score.text = "Score: " + str(Player.score)
+
+	#Food
+	$"CanvasLayer/GameUI/PanelContainer/VBoxContainer/HBoxContainer/PanelContainer/GridContainer/Food Container/HBoxContainer/Food".text = str(Player.food)
+	$"CanvasLayer/GameUI/PanelContainer/VBoxContainer/HBoxContainer/PanelContainer/GridContainer/Food Container/HBoxContainer/Change".text = "(+" + str(food) + ")"
+	
+	#Water
+	$CanvasLayer/GameUI/PanelContainer/VBoxContainer/HBoxContainer/PanelContainer/GridContainer/WaterContainer/HBoxContainer/Water.text = str(Player.water)
+	$CanvasLayer/GameUI/PanelContainer/VBoxContainer/HBoxContainer/PanelContainer/GridContainer/WaterContainer/HBoxContainer/Change.text = "(+" + str(water) + ")"
+	
+	#Electricity
+	$CanvasLayer/GameUI/PanelContainer/VBoxContainer/HBoxContainer/PanelContainer/GridContainer/ElectricityContainer/HBoxContainer/Electricity.text = str(Player.electricity)
+	$CanvasLayer/GameUI/PanelContainer/VBoxContainer/HBoxContainer/PanelContainer/GridContainer/ElectricityContainer/HBoxContainer/Change.text = "(+" + str(electricity) + ")"
+	
+	#Coins
+	$CanvasLayer/GameUI/PanelContainer/VBoxContainer/HBoxContainer/PanelContainer/GridContainer/CoinsContainer/HBoxContainer/Coins.text = str(Player.coins)
+	$CanvasLayer/GameUI/PanelContainer/VBoxContainer/HBoxContainer/PanelContainer/GridContainer/CoinsContainer/HBoxContainer/Change.text = "(+" + str(coins) + ")"
 	
 	#UI Stat Elements
-	$CanvasLayer/GameUI/HList/People.text = "People: " + str(Player.people)
-	##Food
-	#var food_min_value = Player.food
-	#var food_max_value = Player.food
-	#$CanvasLayer/GameUI/HList/Food/ProgressBar.min_value = food_min_value
-	#$CanvasLayer/GameUI/HList/Food/ProgressBar.max_value = food_max_value
-	#$CanvasLayer/GameUI/HList/Food.text =str(food_min_value) + " / " + str(food_max_value)
-	##Water
-	#var water_min_value = Player.water
-	#var water_max_value = Player.water
-	#$CanvasLayer/GameUI/HList/Water/ProgressBar.min_value = water_min_value
-	#$CanvasLayer/GameUI/HList/Water/ProgressBar.max_value = water_max_value
-	#$CanvasLayer/GameUI/HList/Water.text =str(water_min_value) + " / " + str(water_max_value)
-	#
-	##Electricity
-	#var electricity_min_value = Player.electricity
-	#var electricity_max_value = Player.electricity
-	#$CanvasLayer/GameUI/HList/Electricity/ProgressBar.min_value = Player.electricity
-	#$CanvasLayer/GameUI/HList/Electricity/ProgressBar.max_value = Player.electricity
-	#$CanvasLayer/GameUI/HList/Electricity.text =str(electricity_min_value) + " / " + str(electricity_max_value)
-
-	$CanvasLayer/GameUI/HList/Food.text = "Food: " + str(Player.food) + " +" + str(food)
-	$CanvasLayer/GameUI/HList/Water.text = "Water: " + str(Player.water) + " +" + str(water)
-	$CanvasLayer/GameUI/HList/Electricity.text = "Elect: " + str(Player.electricity) + " +" + str(electricity)
-	$CanvasLayer/GameUI/HList/Coins.text = "Coins: " + str(Player.coins) + " +" + str(coins)
+	$CanvasLayer/GameUI/PanelContainer/VBoxContainer/HBoxContainer/CenterContainer/HBoxContainer/People.text = str(Player.people)
 		
 
 func get_cloud_threshold() -> int:
