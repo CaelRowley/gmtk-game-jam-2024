@@ -1,0 +1,11 @@
+[gd_resource type="StyleBoxTexture" load_steps=2 format=3 uid="uid://cftr8tliv4hvu"]
+
+[ext_resource type="Texture2D" uid="uid://gdy2si0ebk0q" path="res://assets/ui/kenney/Red/Default/button_rectangle_flat.png" id="1_wignq"]
+
+[resource]
+texture = ExtResource("1_wignq")
+texture_margin_left = 5.0
+texture_margin_top = 5.0
+texture_margin_right = 5.0
+texture_margin_bottom = 10.0
+modulate_color = Color(0.79, 0.00789999, 0.00789999, 1)
