@@ -8,6 +8,11 @@ var current_block: Block
 
 
 func _ready() -> void:
+	for i in [-4,-3,-2,-1,0,1,2,3]:
+		var new_block := Block.new()
+		new_block.init([Vector2(i, 3)], Block.Type.FRAME, 0, true)
+		BlockManager.add_placed_block(new_block)
+	
 	var ran_1_count := 1
 	var ran_2_count := randi_range(2, 3)
 	var ran_3_count := randi_range(3, 5)
@@ -119,10 +124,10 @@ var weighted_block_types = {
 	},
 	Block.Type.RESIDENTIAL: {
 		item = Block.Type.RESIDENTIAL,
-		weight = 100,
-		default_weight = 100,
+		weight = 150,
+		default_weight = 150,
 		neg_accumulator = 35,
-		pos_accumulator = 25,
+		pos_accumulator = 35,
 	},
 	Block.Type.BUSINESS: {
 		item = Block.Type.BUSINESS,
@@ -133,10 +138,10 @@ var weighted_block_types = {
 	},
 	Block.Type.FRAME: {
 		item = Block.Type.FRAME,
-		weight = 100,
-		default_weight = 100,
-		neg_accumulator = 35,
-		pos_accumulator = 25,
+		weight = 50,
+		default_weight = 50,
+		neg_accumulator = 25,
+		pos_accumulator = 10,
 	},
 }
 

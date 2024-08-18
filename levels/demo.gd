@@ -64,9 +64,10 @@ func place_tile() -> void:
 	
 	if max_zoom_lvl < 4:
 		if BlockManager.current_block.type == Block.Type.CLOUD_BUSTER:
-			if BlockManager.current_block.get_peak(tile) > get_cloud_threshold()-5:
+			if BlockManager.current_block.get_peak(tile) > get_cloud_threshold()-4:
 				animate_cant_place()
 				return
+		
 			else:
 				match get_cloud_threshold():
 					-10:
@@ -100,16 +101,20 @@ func update_cells() -> void:
 		placed_tiles_map.set_cells_terrain_connect(block.coords, 0, block.get_source() - 1, true)
 		decor_manager.update_decor(block, block.is_producing(placed_tiles_map))
 
+
 func is_tile_connected(tile: Vector2) -> bool:
 	for cell in  BlockManager.current_block.coords:
-		if is_instance_valid(placed_tiles_map.get_cell_tile_data(tile + cell + Vector2(0, -1))):
-			return true
-		if is_instance_valid(placed_tiles_map.get_cell_tile_data(tile + cell + Vector2(0, 1))):
-			return true
-		if is_instance_valid(placed_tiles_map.get_cell_tile_data(tile + cell + Vector2(1, 0))):
-			return true
-		if is_instance_valid(placed_tiles_map.get_cell_tile_data(tile + cell + Vector2(-1, 0))):
-			return true
+		for block in BlockManager.placed_blocks:
+			if block.is_placed_by_player:
+				for coord in block.coords:
+					if coord == tile + cell + Vector2(0, -1):
+						return true
+					if coord == tile + cell + Vector2(0, 1):
+						return true
+					if coord == tile + cell + Vector2(1, 0):
+						return true
+					if coord == tile + cell + Vector2(-1, 0):
+						return true
 	return false
 
 
@@ -260,10 +265,13 @@ func _on_get_block_button_pressed() -> void:
 
 
 func _on_get_cloud_buster_pressed() -> void:
-	print(BlockManager.get_height())
-	print(get_cloud_threshold()+3)
-	if BlockManager.get_height() < get_cloud_threshold()+3:
-		if BlockManager.current_block != null:
-			print("Stop cheating")
-		else:
-			BlockManager.select_cloud_buster()
+	var cloud_buster_cost := 15 * (max_zoom_lvl * max_zoom_lvl) 
+	print("Player.coins: ", Player.coins)
+	print("cloud_buster_cost: ", cloud_buster_cost)
+	if Player.coins >= cloud_buster_cost:
+		if BlockManager.get_height() < get_cloud_threshold()+2:
+			if BlockManager.current_block != null:
+				print("Stop cheating")
+			else:
+				Player.coins -= cloud_buster_cost
+				BlockManager.select_cloud_buster()
