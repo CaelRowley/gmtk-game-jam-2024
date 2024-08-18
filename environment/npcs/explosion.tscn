@@ -1,0 +1,56 @@
+[gd_scene load_steps=12 format=3 uid="uid://crjbtmofg4m0x"]
+
+[ext_resource type="Texture2D" uid="uid://hjjy8xxjan6y" path="res://assets/explosion/Explosion/explosion00.png" id="1_8crwj"]
+[ext_resource type="Script" path="res://environment/npcs/explosion.gd" id="1_kv54l"]
+[ext_resource type="Texture2D" uid="uid://bfnmpj3pnnt06" path="res://assets/explosion/Explosion/explosion01.png" id="2_tgpqd"]
+[ext_resource type="Texture2D" uid="uid://crcl8fnksbcq" path="res://assets/explosion/Explosion/explosion02.png" id="3_fveqk"]
+[ext_resource type="Texture2D" uid="uid://d073vwx5lvdj8" path="res://assets/explosion/Explosion/explosion03.png" id="4_o6fk7"]
+[ext_resource type="Texture2D" uid="uid://dqkxku5yt2u8p" path="res://assets/explosion/Explosion/explosion04.png" id="5_q7qfb"]
+[ext_resource type="Texture2D" uid="uid://ccypk8sbld81e" path="res://assets/explosion/Explosion/explosion05.png" id="6_xfp6x"]
+[ext_resource type="Texture2D" uid="uid://bv6u6fckrwiia" path="res://assets/explosion/Explosion/explosion06.png" id="7_qjtew"]
+[ext_resource type="Texture2D" uid="uid://dthjmurilpcvi" path="res://assets/explosion/Explosion/explosion07.png" id="8_44g02"]
+[ext_resource type="Texture2D" uid="uid://dsi6022ry30gv" path="res://assets/explosion/Explosion/explosion08.png" id="9_tkodh"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8u144"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_8crwj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_tgpqd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_fveqk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_o6fk7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_q7qfb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_xfp6x")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_qjtew")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_44g02")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_tkodh")
+}],
+"loop": false,
+"name": &"default",
+"speed": 30.0
+}]
+
+[node name="Explosion" type="Node2D"]
+scale = Vector2(0.3, 0.3)
+script = ExtResource("1_kv54l")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_8u144")
+frame = 8
+frame_progress = 1.0

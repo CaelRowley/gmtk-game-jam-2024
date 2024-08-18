@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://binrrbxa4uqam"]
+[gd_scene load_steps=14 format=3 uid="uid://binrrbxa4uqam"]
 
 [ext_resource type="Texture2D" uid="uid://bsyaa2lsao261" path="res://environment/npcs/salamug_fly_0.png" id="1_6sb76"]
 [ext_resource type="Texture2D" uid="uid://w6hivh7swhf2" path="res://environment/npcs/salamug_fly_1.png" id="2_67nnl"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://bsy5na3hujhhc" path="res://environment/npcs/salamug_work_2.png" id="8_033s1"]
 [ext_resource type="Texture2D" uid="uid://b5mpumfpl2bbr" path="res://environment/npcs/salamug_work_3.png" id="9_qyj4v"]
 [ext_resource type="Script" path="res://environment/npcs/npc.gd" id="10_osvdl"]
+[ext_resource type="PackedScene" uid="uid://crjbtmofg4m0x" path="res://environment/npcs/explosion.tscn" id="11_lgo6f"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_7b8k0"]
 animations = [{
@@ -72,8 +73,18 @@ animations = [{
 "speed": 8.0
 }]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_0pxlb"]
+radius = 44.1814
+
 [node name="Salamug" type="AnimatedSprite2D"]
 sprite_frames = SubResource("SpriteFrames_7b8k0")
 animation = &"salamug_fly"
-frame_progress = 0.542682
 script = ExtResource("10_osvdl")
+death = ExtResource("11_lgo6f")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_0pxlb")
+
+[connection signal="input_event" from="Area2D" to="." method="_on_area_2d_input_event"]

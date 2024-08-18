@@ -1,6 +1,8 @@
 extends AnimatedSprite2D
 class_name NPC
 
+@export var death: PackedScene
+
 const MAX_DISTANCE = 512 * 512;
 
 var npc_manager: NPCManager
@@ -55,3 +57,21 @@ static func is_valid_target_block(block: Block) -> bool:
 
 static func is_valid_target(door: BlockDecor, target: BlockDecor) -> bool:
 	return door.global_position.distance_squared_to(target.global_position) < MAX_DISTANCE and target.is_on
+
+
+var count := 0
+
+
+func explode():
+	visible = false
+	AudioManager.play_sfx(AudioManager.sfx_explosion)
+	var death_scene := death.instantiate() as Node2D
+	death_scene.global_position = global_position
+	get_parent().add_child(death_scene)
+
+
+func _on_area_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
+	if(event.is_pressed()):
+		count += 1
+		if count > 4:
+			explode()

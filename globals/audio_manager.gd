@@ -56,6 +56,8 @@ const sfx_door_open_01 := preload("res://audio/sfx/qubodup-DoorSet/qubodup-DoorS
 const sfx_door_open_02 := preload("res://audio/sfx/qubodup-DoorSet/qubodup-DoorSet/ogg/qubodup-DoorOpen03.ogg")
 const sfx_door_open_03 := preload("res://audio/sfx/qubodup-DoorSet/qubodup-DoorSet/ogg/qubodup-DoorOpen06.ogg")
 
+const sfx_explosion := preload("res://audio/sfx/kenny/explosionCrunch_000.ogg")
+
 var music_one_shot := false
 
 @onready var music_player_1 := %MusicPlayer1 as AudioStreamPlayer
