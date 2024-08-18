@@ -34,3 +34,9 @@ func update_decor(block: Block, is_producing: bool):
 	if all_decor.has(block):
 		for decor in all_decor[block]:
 			decor.update(is_producing)
+
+func get_decor(block: Block) -> Array:
+	if all_decor.has(block):
+		return all_decor[block]
+	return []
+	

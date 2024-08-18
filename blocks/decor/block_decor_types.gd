@@ -20,10 +20,10 @@ static var COGS = create(Block.Type.CLOUD_BUSTER, "cogs", "cogs")
 var on_sprite
 var off_sprite
 
-static func create(type: Block.Type, on_sprite: String, off_sprite: String) -> BlockDecorTypes:
+static func create(type: Block.Type, on_sprite_path: String, off_sprite_path: String) -> BlockDecorTypes:
 	var new_decor_type = BlockDecorTypes.new()
-	new_decor_type.on_sprite = load("res://blocks/decor/" + on_sprite + ".png")
-	new_decor_type.off_sprite = load("res://blocks/decor/" + off_sprite + ".png")	
+	new_decor_type.on_sprite = load("res://blocks/decor/" + on_sprite_path + ".png")
+	new_decor_type.off_sprite = load("res://blocks/decor/" + off_sprite_path + ".png")	
 	
 	# Add the new decor type to the dictionary under the specefied type for later use
 	var decor_types = registered_decor_types[type] if registered_decor_types.has(type) else []
