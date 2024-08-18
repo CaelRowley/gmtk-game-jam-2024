@@ -201,3 +201,18 @@ func is_connected_to_residential(tile_map: TileMapLayer, visited := []) -> bool:
 							if block.is_connected_to_residential(tile_map, visited):
 								return true
 	return false
+
+
+func is_producing(tile_map: TileMapLayer) -> bool:
+	match type:
+		Type.FOOD:
+			return get_food(tile_map) > 0
+		Type.WATER:
+			return get_water(tile_map) > 0
+		Type.ELECTRICITY:
+			return get_electricity(tile_map) > 0
+		Type.RESIDENTIAL:
+			return get_people() > 0
+		Type.BUSINESS:
+			return get_coins(tile_map) > 0
+	return false
