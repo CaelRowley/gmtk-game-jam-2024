@@ -1,0 +1,374 @@
+[gd_scene load_steps=13 format=3 uid="uid://b8gfastnligcc"]
+
+[ext_resource type="Texture2D" uid="uid://b8c2ud785tf3a" path="res://misc/branding/gmtk2024_logo.png" id="1_3mej8"]
+[ext_resource type="Script" path="res://levels/splash.gd" id="1_mwlo5"]
+[ext_resource type="Texture2D" uid="uid://b0veil1dmwk7i" path="res://assets/original-outline-horizontal-light.svg" id="2_ie1s5"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4wm6g"]
+content_margin_top = 250.0
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nxwd4"]
+content_margin_top = 20.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6rnl5"]
+content_margin_left = 40.0
+content_margin_top = 120.0
+content_margin_right = 40.0
+content_margin_bottom = 150.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lwcqv"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_q0ywf"]
+content_margin_top = 270.0
+content_margin_bottom = 100.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5b8fo"]
+content_margin_left = 30.0
+content_margin_right = 30.0
+
+[sub_resource type="Animation" id="Animation_4oakx"]
+resource_name = "splash_screen_animation"
+length = 10.0
+step = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/Created:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5, 3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(1, 1, 1, 1), Color(0, 0, 0, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasLayer/Engine:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(3, 4.5, 6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(1, 1, 1, 1), Color(0, 0, 0, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CanvasLayer/Created:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CanvasLayer/Engine:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 3, 6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("CanvasLayer/GMTK:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(6, 7.5, 9),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(1, 1, 1, 1), Color(0, 0, 0, 1)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("CanvasLayer/GMTK:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 6, 9),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/6/type = "method"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath(".")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(10),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"play_next_scene"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_0sc8y"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/Created:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasLayer/Created:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CanvasLayer/Engine:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CanvasLayer/Engine:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("CanvasLayer/GMTK:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("CanvasLayer/GMTK:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3yf8v"]
+_data = {
+"RESET": SubResource("Animation_0sc8y"),
+"splash_screen_animation": SubResource("Animation_4oakx")
+}
+
+[node name="Splash" type="Node2D"]
+script = ExtResource("1_mwlo5")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="GMTK" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 2
+mouse_filter = 2
+
+[node name="Background" type="PanelContainer" parent="CanvasLayer/GMTK"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_4wm6g")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/GMTK/Background"]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/GMTK/Background/VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_nxwd4")
+
+[node name="Label" type="Label" parent="CanvasLayer/GMTK/Background/VBoxContainer/PanelContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+text = "A Game Submission for"
+horizontal_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/GMTK/Background/VBoxContainer"]
+custom_minimum_size = Vector2(0, 500)
+layout_mode = 2
+texture = ExtResource("1_3mej8")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="Created" type="Control" parent="CanvasLayer"]
+visible = false
+modulate = Color(0, 0, 0, 1)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 2
+mouse_filter = 2
+
+[node name="Background" type="PanelContainer" parent="CanvasLayer/Created"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_4wm6g")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Created/Background"]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/Created/Background/VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_nxwd4")
+
+[node name="Label" type="Label" parent="CanvasLayer/Created/Background/VBoxContainer/PanelContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+text = "Created by"
+horizontal_alignment = 1
+
+[node name="PanelContainer2" type="PanelContainer" parent="CanvasLayer/Created/Background/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_6rnl5")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Created/Background/VBoxContainer/PanelContainer2"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/Created/Background/VBoxContainer/PanelContainer2/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Tessa"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="CanvasLayer/Created/Background/VBoxContainer/PanelContainer2/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Luke"
+horizontal_alignment = 1
+
+[node name="Label3" type="Label" parent="CanvasLayer/Created/Background/VBoxContainer/PanelContainer2/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Cael"
+horizontal_alignment = 1
+
+[node name="Label4" type="Label" parent="CanvasLayer/Created/Background/VBoxContainer/PanelContainer2/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Ashley"
+horizontal_alignment = 1
+
+[node name="Label5" type="Label" parent="CanvasLayer/Created/Background/VBoxContainer/PanelContainer2/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Sasha"
+
+[node name="Engine" type="Control" parent="CanvasLayer"]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 2
+mouse_filter = 2
+
+[node name="Background" type="PanelContainer" parent="CanvasLayer/Engine"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_lwcqv")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Engine/Background"]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/Engine/Background/VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_q0ywf")
+
+[node name="Label" type="Label" parent="CanvasLayer/Engine/Background/VBoxContainer/PanelContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+text = "Run on"
+horizontal_alignment = 1
+
+[node name="PanelContainer2" type="PanelContainer" parent="CanvasLayer/Engine/Background/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_5b8fo")
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Engine/Background/VBoxContainer/PanelContainer2"]
+custom_minimum_size = Vector2(0, 500)
+layout_mode = 2
+texture = ExtResource("2_ie1s5")
+expand_mode = 4
+stretch_mode = 4
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_3yf8v")
+}
