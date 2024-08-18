@@ -75,5 +75,5 @@ animations = [{
 [node name="Salamug" type="AnimatedSprite2D"]
 sprite_frames = SubResource("SpriteFrames_7b8k0")
 animation = &"salamug_fly"
-frame_progress = 0.100602
+frame_progress = 0.542682
 script = ExtResource("10_osvdl")

@@ -40,3 +40,8 @@ func get_decor(block: Block) -> Array:
 		return all_decor[block]
 	return []
 	
+func get_all_decor() -> Array:
+	var all_combined = []
+	for block in all_decor.keys():
+		all_combined.append_array(all_decor[block])
+	return all_combined
