@@ -27,7 +27,7 @@ Player="*res://globals/player.tscn"
 window/size/viewport_width=540
 window/size/viewport_height=960
 window/stretch/mode="viewport"
-window/stretch/aspect="expand"
+window/stretch/aspect="keep_width"
 
 [input]
 

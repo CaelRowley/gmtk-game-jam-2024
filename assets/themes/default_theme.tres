@@ -1,7 +1,7 @@
 [gd_resource type="Theme" load_steps=7 format=3 uid="uid://cp6kq4e452w4s"]
 
 [ext_resource type="FontFile" uid="uid://cipx1s86p18uh" path="res://fonts/nunito-cyrillic-300-normal.ttf" id="1_7lh5g"]
-[ext_resource type="StyleBox" uid="uid://djvnjgac746wr" path="res://assets/themes/button_next_style_normal.tres" id="1_csl81"]
+[ext_resource type="StyleBox" path="res://assets/themes/button_next_style_normal.tres" id="1_csl81"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ots7o"]
 content_margin_left = 4.0

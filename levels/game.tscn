@@ -67,7 +67,7 @@ tile_set = ExtResource("5_k6swr")
 
 [node name="PlacedTilesMap" type="TileMapLayer" parent="."]
 unique_name_in_owner = true
-tile_map_data = PackedByteArray("AAD8/wMAAwAAAAAAAAD9/wMAAwAAAAAAAAD+/wMAAwAAAAAAAAD//wMAAwAAAAAAAAAAAAMAAwAAAAAAAAABAAMAAwAAAAAAAAACAAMAAwAAAAAAAAADAAMAAwAAAAAAAAA=")
+tile_map_data = PackedByteArray("AAD8/wIAAwADAAMAAAD9/wIAAwADAAMAAAD+/wIAAwADAAMAAAD//wIAAwADAAMAAAAAAAIAAwADAAMAAAABAAIAAwADAAMAAAACAAIAAwADAAMAAAADAAIAAwADAAMAAAA=")
 tile_set = ExtResource("5_k6swr")
 
 [node name="NextTileMap" type="TileMapLayer" parent="."]
@@ -109,6 +109,7 @@ script = ExtResource("5_epaxb")
 is_unbreakable = true
 
 [node name="Sprite2D" type="Sprite2D" parent="BarrierManager/GroundBarrier"]
+position = Vector2(0, -268)
 texture = ExtResource("7_gme3i")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]

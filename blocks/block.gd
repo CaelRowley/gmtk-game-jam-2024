@@ -178,7 +178,7 @@ func get_electricity(tile_map: TileMapLayer, count := 0, visited := []) -> int:
 func get_people() -> int:
 	if type != Type.RESIDENTIAL:
 		return 0
-	return value
+	return value/2
 
 
 func get_coins(tile_map: TileMapLayer) -> int:

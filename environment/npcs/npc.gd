@@ -73,5 +73,5 @@ func explode():
 func _on_area_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	if(event.is_pressed()):
 		count += 1
-		if count > 4:
+		if count >= 10:
 			explode()
