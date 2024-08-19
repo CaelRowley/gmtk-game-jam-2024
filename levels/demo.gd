@@ -43,8 +43,11 @@ func _ready() -> void:
 	$CanvasLayer/GameUI/PanelContainer/VBoxContainer/HBoxContainer/PanelContainer/GridContainer/ElectricityContainer/HBoxContainer/Electricity.text = str(Player.electricity)
 	$CanvasLayer/GameUI/PanelContainer/VBoxContainer/HBoxContainer/PanelContainer/GridContainer/CoinsContainer/HBoxContainer/Coins.text = str(Player.coins)
 	AudioManager.play_music(AudioManager.music_level01_track)
-	
 	block_dispenser.init(self)
+	$CanvasLayer/PauseMenu/VBoxContainer/MasterSlider.value = Settings.get_value(Settings.SECTIONS.Audio, Settings.KEYS.Master)
+	$CanvasLayer/PauseMenu/VBoxContainer/MusicSlider.value = Settings.get_value(Settings.SECTIONS.Audio, Settings.KEYS.Music)
+	$CanvasLayer/PauseMenu/VBoxContainer/SFXSlider.value = Settings.get_value(Settings.SECTIONS.Audio, Settings.KEYS.SFX)
+	$CanvasLayer/PauseMenu/VBoxContainer/CheckBox.set_pressed_no_signal(Settings.get_value(Settings.SECTIONS.Display, Settings.KEYS.Fullscreen))
 
 
 func _on_coins_changed():
@@ -66,6 +69,7 @@ func change_music_for_level(level: int):
 		AudioManager.play_music(AudioManager.music_level04_track,false, 0.5)
 	pass
 
+
 func _input(event: InputEvent) -> void:
 	if  BlockManager.current_block != null && event.is_action_pressed("ui_accept"):
 		place_tile()
@@ -73,6 +77,8 @@ func _input(event: InputEvent) -> void:
 		rotate_clockwise()
 	if BlockManager.current_block != null && event.is_action_pressed("counter_clockwise"):
 		rotate_counter_clockwise()
+	if event.is_action_pressed("ui_cancel"):
+		$CanvasLayer/PauseMenu.visible = !$CanvasLayer/PauseMenu.visible
 
 
 func place_tile() -> void:
@@ -317,3 +323,38 @@ func get_cloud_threshold() -> int:
 			#else:
 				#Player.coins -= cloud_buster_cost
 			#BlockManager.select_cloud_buster()
+
+
+func _on_master_slider_value_changed(value: float) -> void:
+	Settings.set_value(Settings.SECTIONS.Audio, Settings.KEYS.Master, value)
+	AudioManager.set_volume(AudioManager.AUDIO_BUSES.Master, value)
+	Settings.save_config()
+
+func _on_music_slider_value_changed(value: float) -> void:
+	Settings.set_value(Settings.SECTIONS.Audio, Settings.KEYS.Music, value)
+	AudioManager.set_volume(AudioManager.AUDIO_BUSES.Music, value)
+	Settings.save_config()
+
+func _on_sfx_slider_value_changed(value: float) -> void:
+	Settings.set_value(Settings.SECTIONS.Audio, Settings.KEYS.SFX, value)
+	AudioManager.set_volume(AudioManager.AUDIO_BUSES.SFX, value)
+	Settings.save_config()
+
+func _on_check_box_toggled(button_pressed: bool) -> void:
+	Settings.set_value(Settings.SECTIONS.Display, Settings.KEYS.Fullscreen, button_pressed)
+	if (get_window().mode != get_window().MODE_FULLSCREEN and Settings.get_value(Settings.SECTIONS.Display, Settings.KEYS.Fullscreen)) or (get_window().mode == get_window().MODE_FULLSCREEN and !Settings.get_value(Settings.SECTIONS.Display, Settings.KEYS.Fullscreen)):
+		get_window().mode = get_window().MODE_FULLSCREEN if Settings.get_value(Settings.SECTIONS.Display, Settings.KEYS.Fullscreen) else get_window().MODE_WINDOWED
+	Settings.save_config()
+
+
+func _on_restart_button_pressed() -> void:
+	SceneManager.goto_scene("res://levels/game.tscn")
+
+
+func _on_quit_button_pressed() -> void:
+	await get_tree().create_timer(0.2).timeout
+	get_tree().quit()
+
+
+func _on_resume_button_pressed() -> void:
+	$CanvasLayer/PauseMenu.visible = !$CanvasLayer/PauseMenu.visible
