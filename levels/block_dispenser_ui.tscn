@@ -72,6 +72,73 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 text = "Cloud Buster"
 
+[node name="Label" type="Label" parent="GetBlockButton/CloudBusterButton"]
+layout_mode = 0
+offset_top = 36.0
+offset_right = 40.0
+offset_bottom = 59.0
+text = "100"
+
+[node name="FoodButton" type="Button" parent="GetBlockButton"]
+layout_mode = 0
+offset_left = 34.0
+offset_top = 153.0
+offset_right = 81.0
+offset_bottom = 184.0
+text = "Food"
+
+[node name="Label" type="Label" parent="GetBlockButton/FoodButton"]
+layout_mode = 0
+offset_top = 32.0
+offset_right = 40.0
+offset_bottom = 55.0
+text = "10"
+
+[node name="WaterButton" type="Button" parent="GetBlockButton"]
+layout_mode = 0
+offset_left = 34.0
+offset_top = 219.0
+offset_right = 89.0
+offset_bottom = 250.0
+text = "Water"
+
+[node name="Label" type="Label" parent="GetBlockButton/WaterButton"]
+layout_mode = 0
+offset_top = 32.0
+offset_right = 40.0
+offset_bottom = 55.0
+text = "10"
+
+[node name="ElectricityButton" type="Button" parent="GetBlockButton"]
+layout_mode = 0
+offset_left = 34.0
+offset_top = 282.0
+offset_right = 118.0
+offset_bottom = 313.0
+text = "Electricity"
+
+[node name="Label" type="Label" parent="GetBlockButton/ElectricityButton"]
+layout_mode = 0
+offset_top = 32.0
+offset_right = 40.0
+offset_bottom = 55.0
+text = "10"
+
+[node name="BusinessButton" type="Button" parent="GetBlockButton"]
+layout_mode = 0
+offset_left = 34.0
+offset_top = 342.0
+offset_right = 118.0
+offset_bottom = 373.0
+text = "Business"
+
+[node name="Label" type="Label" parent="GetBlockButton/BusinessButton"]
+layout_mode = 0
+offset_top = 32.0
+offset_right = 40.0
+offset_bottom = 55.0
+text = "50"
+
 [node name="MarginContainer" type="MarginContainer" parent="."]
 clip_contents = true
 layout_mode = 2
@@ -93,3 +160,7 @@ offset_top = 56.0
 grow_horizontal = 0
 
 [connection signal="pressed" from="GetBlockButton/CloudBusterButton" to="GetBlockButton" method="_on_cloud_buster_button_pressed"]
+[connection signal="pressed" from="GetBlockButton/FoodButton" to="GetBlockButton" method="_on_food_button_pressed"]
+[connection signal="pressed" from="GetBlockButton/WaterButton" to="GetBlockButton" method="_on_water_button_pressed"]
+[connection signal="pressed" from="GetBlockButton/ElectricityButton" to="GetBlockButton" method="_on_electricity_button_pressed"]
+[connection signal="pressed" from="GetBlockButton/BusinessButton" to="GetBlockButton" method="_on_business_button_pressed"]

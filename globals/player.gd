@@ -1,5 +1,7 @@
 extends Node
 
+signal coins_changed()
+
 @export var food := 0
 @export var water := 0
 @export var electricity := 0
@@ -8,6 +10,11 @@ extends Node
 
 var lvl := 1
 var score := 0
+
+
+func update_coins(new_coins: int) -> void:
+	coins = new_coins
+	coins_changed.emit()
 
 
 func update_score() -> void:

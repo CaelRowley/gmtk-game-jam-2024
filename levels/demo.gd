@@ -14,6 +14,8 @@ var block_dispenser: BlockDispenser
 
 
 func _ready() -> void:
+	Player.update_coins(50)
+	Player.coins_changed.connect(_on_coins_changed)
 	shadow_tile_map.clear()
 	var parent = self
 	for child in GetUtil.get_all_children(self):
@@ -43,6 +45,10 @@ func _ready() -> void:
 	AudioManager.play_music(AudioManager.music_level01_track)
 	
 	block_dispenser.init(self)
+
+
+func _on_coins_changed():
+	$CanvasLayer/GameUI/PanelContainer/VBoxContainer/HBoxContainer/PanelContainer/GridContainer/CoinsContainer/HBoxContainer/Coins.text = str(Player.coins)
 
 
 func _on_zoom_changed(level: int):
@@ -106,7 +112,7 @@ func place_tile() -> void:
 	update_cells()
 	upkeep()
 	BlockManager.current_block = null
-	block_dispenser.progress_upcoming_block()
+	block_dispenser.progress_upcoming_block(null)
 	shadow_tile_map.clear()
 
 
