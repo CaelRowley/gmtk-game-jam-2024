@@ -28,6 +28,36 @@ var game_scene = preload("res://levels/game.tscn").instantiate()
 var tutorial_page := 2
 
 
+func _ready() -> void:
+	# reset all player stats
+	BlockManager.placed_blocks = []
+	BlockManager.current_block = null
+	Player.food = 0
+	Player.water = 0
+	Player.electricity = 0
+	Player.people = 0
+	Player.coins = 0
+	Player.lvl = 1
+	Player.score = 0
+	
+	if Settings.get_value(Settings.SECTIONS.Gameplay, Settings.KEYS.SkipTutorial):
+		$CanvasLayer/Tutorial/MarginContainer/Page01/SkipContainer.show()
+		$CanvasLayer/Tutorial/MarginContainer/Page02_Action/SkipContainer.show()
+		$CanvasLayer/Tutorial/MarginContainer/Page03/SkipContainer.show()
+		$CanvasLayer/Tutorial/MarginContainer/Page04_Action/SkipContainer.show()
+		$CanvasLayer/Tutorial/MarginContainer/Page05/SkipContainer.show()
+		$CanvasLayer/Tutorial/MarginContainer/Page06/SkipContainer.show()
+		$CanvasLayer/Tutorial/MarginContainer/Page07_Action/SkipContainer.show()
+		$CanvasLayer/Tutorial/MarginContainer/Page08/SkipContainer.show()
+		$CanvasLayer/Tutorial/MarginContainer/Page09_Action/SkipContainer.show()
+		$CanvasLayer/Tutorial/MarginContainer/Page10/SkipContainer.show()
+		$CanvasLayer/Tutorial/MarginContainer/Page11_Action/SkipContainer.show()
+		$CanvasLayer/Tutorial/MarginContainer/Page12/SkipContainer.show()
+		$CanvasLayer/Tutorial/MarginContainer/Page13/SkipContainer.show()
+		$CanvasLayer/Tutorial/MarginContainer/Page14_Action/SkipContainer.show()
+		$CanvasLayer/Tutorial/MarginContainer/Page15/SkipContainer.show()
+
+
 func _process(_delta: float) -> void:
 	if BlockManager.current_block != null:
 		next_tile_map.clear()
@@ -234,9 +264,9 @@ func upkeep():
 
 #Tutorial Menu Actions
 func _on_return_button_pressed() -> void:
-	Settings.skip_tutorial = true
-	print("Changed scene")
+	Settings.set_value(Settings.SECTIONS.Gameplay, Settings.KEYS.SkipTutorial, true)
 	SceneManager.goto_scene("res://levels/game.tscn")
+
 
 func _on_page_01_next_button_pressed() -> void:
 	tutorial_page = 2
@@ -304,5 +334,5 @@ func _on_page_13_next_button_pressed() -> void:
 
 
 func _on_page_15_exit_button_pressed() -> void:
-	print("Changed scene")
+	Settings.set_value(Settings.SECTIONS.Gameplay, Settings.KEYS.SkipTutorial, true)
 	SceneManager.goto_scene("res://levels/game.tscn")

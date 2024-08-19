@@ -107,12 +107,6 @@ func play_music(audio: AudioStream, one_shot := false, time_out := 0.1, time_in 
 func play_sfx(audio: AudioStream, flag : bool = false) -> void:
 	var audio_player := AudioStreamPlayer.new()
 	var sfx_index= AudioServer.get_bus_index("SFX")
-	
-	#Play SFX Louder than default	
-	if flag:
-		AudioServer.set_bus_volume_db(sfx_index, -8.0)
-	else:
-		AudioServer.set_bus_volume_db(sfx_index, -28.0)
 
 	audio_player.set_bus(AUDIO_BUSES.SFX)
 	add_child(audio_player)

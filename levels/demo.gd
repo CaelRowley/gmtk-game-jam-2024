@@ -14,6 +14,17 @@ var main_camera: CameraController
 var block_dispenser: BlockDispenser
 
 func _ready() -> void:
+	# reset all player stats
+	BlockManager.placed_blocks = []
+	BlockManager.current_block = null
+	Player.food = 0
+	Player.water = 0
+	Player.electricity = 0
+	Player.people = 0
+	Player.coins = 0
+	Player.lvl = 1
+	Player.score = 0
+	
 	Player.update_coins(50)
 	Player.coins_changed.connect(_on_coins_changed)
 	shadow_tile_map.clear()
@@ -358,3 +369,7 @@ func _on_quit_button_pressed() -> void:
 
 func _on_resume_button_pressed() -> void:
 	$CanvasLayer/PauseMenu.visible = !$CanvasLayer/PauseMenu.visible
+
+
+func _on_tutorial_button_pressed() -> void:
+	SceneManager.goto_scene("res://levels/tutorial.tscn")

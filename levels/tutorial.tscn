@@ -363,6 +363,7 @@ layout_mode = 2
 mouse_filter = 2
 
 [node name="SkipContainer" type="PanelContainer" parent="CanvasLayer/Tutorial/MarginContainer/Page01"]
+visible = false
 layout_mode = 2
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_gure3")
@@ -412,6 +413,7 @@ layout_mode = 2
 mouse_filter = 2
 
 [node name="SkipContainer" type="PanelContainer" parent="CanvasLayer/Tutorial/MarginContainer/Page02_Action"]
+visible = false
 layout_mode = 2
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_gure3")
@@ -442,6 +444,7 @@ layout_mode = 2
 mouse_filter = 2
 
 [node name="SkipContainer" type="PanelContainer" parent="CanvasLayer/Tutorial/MarginContainer/Page03"]
+visible = false
 layout_mode = 2
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_gure3")
@@ -491,6 +494,7 @@ layout_mode = 2
 mouse_filter = 2
 
 [node name="SkipContainer" type="PanelContainer" parent="CanvasLayer/Tutorial/MarginContainer/Page04_Action"]
+visible = false
 layout_mode = 2
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_gure3")
@@ -519,6 +523,7 @@ layout_mode = 2
 mouse_filter = 2
 
 [node name="SkipContainer" type="PanelContainer" parent="CanvasLayer/Tutorial/MarginContainer/Page05"]
+visible = false
 layout_mode = 2
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_gure3")
@@ -567,6 +572,7 @@ layout_mode = 2
 mouse_filter = 2
 
 [node name="SkipContainer" type="PanelContainer" parent="CanvasLayer/Tutorial/MarginContainer/Page06"]
+visible = false
 layout_mode = 2
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_gure3")
@@ -615,6 +621,7 @@ layout_mode = 2
 mouse_filter = 2
 
 [node name="SkipContainer" type="PanelContainer" parent="CanvasLayer/Tutorial/MarginContainer/Page07_Action"]
+visible = false
 layout_mode = 2
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_gure3")
@@ -644,6 +651,7 @@ layout_mode = 2
 mouse_filter = 2
 
 [node name="SkipContainer" type="PanelContainer" parent="CanvasLayer/Tutorial/MarginContainer/Page08"]
+visible = false
 layout_mode = 2
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_gure3")
@@ -693,6 +701,7 @@ layout_mode = 2
 mouse_filter = 2
 
 [node name="SkipContainer" type="PanelContainer" parent="CanvasLayer/Tutorial/MarginContainer/Page09_Action"]
+visible = false
 layout_mode = 2
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_gure3")
@@ -721,6 +730,7 @@ layout_mode = 2
 mouse_filter = 2
 
 [node name="SkipContainer" type="PanelContainer" parent="CanvasLayer/Tutorial/MarginContainer/Page10"]
+visible = false
 layout_mode = 2
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_gure3")
@@ -770,6 +780,7 @@ layout_mode = 2
 mouse_filter = 2
 
 [node name="SkipContainer" type="PanelContainer" parent="CanvasLayer/Tutorial/MarginContainer/Page11_Action"]
+visible = false
 layout_mode = 2
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_gure3")
@@ -798,6 +809,7 @@ layout_mode = 2
 mouse_filter = 2
 
 [node name="SkipContainer" type="PanelContainer" parent="CanvasLayer/Tutorial/MarginContainer/Page12"]
+visible = false
 layout_mode = 2
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_gure3")
@@ -847,6 +859,7 @@ layout_mode = 2
 mouse_filter = 2
 
 [node name="SkipContainer" type="PanelContainer" parent="CanvasLayer/Tutorial/MarginContainer/Page13"]
+visible = false
 layout_mode = 2
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_gure3")
@@ -895,6 +908,7 @@ layout_mode = 2
 mouse_filter = 2
 
 [node name="SkipContainer" type="PanelContainer" parent="CanvasLayer/Tutorial/MarginContainer/Page14_Action"]
+visible = false
 layout_mode = 2
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_gure3")
@@ -923,6 +937,7 @@ layout_mode = 2
 mouse_filter = 2
 
 [node name="SkipContainer" type="PanelContainer" parent="CanvasLayer/Tutorial/MarginContainer/Page15"]
+visible = false
 layout_mode = 2
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_gure3")

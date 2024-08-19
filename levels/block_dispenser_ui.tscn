@@ -150,6 +150,7 @@ theme_override_styles/pressed = ExtResource("9_vx5in")
 theme_override_styles/normal = ExtResource("10_3igmh")
 
 [node name="Label" type="Label" parent="GetBlockButton/GridContainer/FoodButton"]
+layout_mode = 0
 offset_left = 26.0
 offset_top = 43.2
 offset_right = 66.0
@@ -168,6 +169,7 @@ theme_override_styles/pressed = ExtResource("13_o5jqa")
 theme_override_styles/normal = ExtResource("14_eq34h")
 
 [node name="Label" type="Label" parent="GetBlockButton/GridContainer/WaterButton"]
+layout_mode = 0
 offset_left = 26.0
 offset_top = 43.2
 offset_right = 66.0
@@ -186,6 +188,7 @@ theme_override_styles/pressed = ExtResource("17_8gd5g")
 theme_override_styles/normal = ExtResource("18_1rgnl")
 
 [node name="Label" type="Label" parent="GetBlockButton/GridContainer/ElectricityButton"]
+layout_mode = 0
 offset_left = 26.0
 offset_top = 43.2
 offset_right = 66.0
@@ -204,6 +207,7 @@ theme_override_styles/pressed = ExtResource("21_3kw6s")
 theme_override_styles/normal = ExtResource("22_62ptd")
 
 [node name="Label" type="Label" parent="GetBlockButton/GridContainer/BusinessButton"]
+layout_mode = 0
 offset_left = 26.0
 offset_top = 43.2
 offset_right = 66.0
