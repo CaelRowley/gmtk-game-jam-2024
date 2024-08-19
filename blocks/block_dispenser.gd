@@ -52,7 +52,7 @@ func progress_held_block():
 	update_held_tile_map(BlockManager.current_block)
 
 func update_held_tile_map(block: Block):
-	print("update held tile map :D")
+	#print("update held tile map :D")
 	demo.next_tile_map.clear()
 	demo.shadow_tile_map.clear()
 	if block == null:

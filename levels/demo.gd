@@ -88,9 +88,9 @@ func place_tile() -> void:
 				match get_cloud_threshold():
 					-10:
 						$BarrierManager/CloudsBarrier1.is_unbreakable = false
-					-32:
+					-31:
 						$BarrierManager/CloudsBarrier2.is_unbreakable = false
-					-87:
+					-86:
 						$BarrierManager/CloudsBarrier3.is_unbreakable = false
 		else:
 			if BlockManager.current_block.get_peak(tile) < get_cloud_threshold():
@@ -145,7 +145,7 @@ func is_tile_overlapping(tile: Vector2) -> bool:
 
 func is_tile_protruding(tile: Vector2) -> bool:
 	for cell in BlockManager.current_block.coords:
-		if tile.x + cell.x > ($Camera2D.zoom_level*2) or tile.x + cell.x < (-1 -(2*$Camera2D.zoom_level)):
+		if tile.x + cell.x > ($Camera2D.zoom_level*2 -1) or tile.x + cell.x < (-(2*$Camera2D.zoom_level)):
 			return true
 	return false
 
@@ -286,15 +286,15 @@ func get_cloud_threshold() -> int:
 		1:
 			return -10
 		2:
-			return -32
+			return -31
 		3:
-			return -87
+			return -86
 		4:
 			return -99999999
 	return 0
 
 func _on_get_cloud_buster_pressed() -> void:
-	var cloud_buster_cost := 30 * (max_zoom_lvl * max_zoom_lvl) 
+	var cloud_buster_cost := 0 * (max_zoom_lvl * max_zoom_lvl) 
 	if Player.coins >= cloud_buster_cost:
 		if BlockManager.get_peak() < get_cloud_threshold()+2:
 			if BlockManager.current_block != null and BlockManager.current_block.type == Block.Type.CLOUD_BUSTER:

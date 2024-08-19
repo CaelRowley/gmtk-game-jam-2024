@@ -122,6 +122,12 @@ func get_filled_rows_count() -> int:
 	var current_height := 1
 	while current_height > peak:
 		var row := [Vector2(-2, current_height),Vector2(-1, current_height),Vector2(0, current_height),Vector2(1, current_height)]
+		if current_height < -11:
+			row = [Vector2(-4, current_height), Vector2(-3, current_height), Vector2(-2, current_height),Vector2(-1, current_height),Vector2(0, current_height),Vector2(1, current_height), Vector2(2, current_height), Vector2(3, current_height)]
+		if current_height < -34:
+			row = [Vector2(-6, current_height), Vector2(-5, current_height), Vector2(-4, current_height), Vector2(-3, current_height), Vector2(-2, current_height),Vector2(-1, current_height),Vector2(0, current_height),Vector2(1, current_height), Vector2(2, current_height), Vector2(3, current_height), Vector2(4, current_height), Vector2(5, current_height)]
+		if current_height < -88:
+			row = [Vector2(-8, current_height), Vector2(-7, current_height), Vector2(-6, current_height), Vector2(-5, current_height), Vector2(-4, current_height), Vector2(-3, current_height), Vector2(-2, current_height),Vector2(-1, current_height),Vector2(0, current_height),Vector2(1, current_height), Vector2(2, current_height), Vector2(3, current_height), Vector2(4, current_height), Vector2(5, current_height), Vector2(6, current_height), Vector2(7, current_height)]
 		for block in placed_blocks:
 			for coord in block.coords:
 				row.erase(coord)
@@ -139,7 +145,7 @@ func select_cloud_buster():
 	new_block.init(cloud_buster_block, Block.Type.CLOUD_BUSTER, 0)
 	current_block = new_block
 
-var cloud_buster_block := [Vector2(0,0), Vector2(-1,0), Vector2(1,0), Vector2(0,-1), Vector2(0,-2), Vector2(0,-3), Vector2(0,-4), Vector2(0,-5)]
+var cloud_buster_block := [Vector2(0,0), Vector2(-1,0), Vector2(1,0), Vector2(0,-1), Vector2(0,-2), Vector2(0,-3), Vector2(0,-4), Vector2(0,-5), Vector2(0,-6), Vector2(0,-7)]
 
 var weighted_block_types = {
 	Block.Type.FOOD: {

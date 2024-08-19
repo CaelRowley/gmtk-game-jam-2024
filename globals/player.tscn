@@ -7,5 +7,3 @@ script = ExtResource("1_ibuof")
 food = 30
 water = 40
 electricity = 30
-people = null
-coins = null
