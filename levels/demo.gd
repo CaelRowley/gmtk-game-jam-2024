@@ -24,6 +24,7 @@ func _ready() -> void:
 	Player.coins = 0
 	Player.lvl = 1
 	Player.score = 0
+	BlockManager.reset()
 	
 	Player.update_coins(50)
 	Player.coins_changed.connect(_on_coins_changed)

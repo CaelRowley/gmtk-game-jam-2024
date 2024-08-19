@@ -17,8 +17,8 @@
 [ext_resource type="Texture2D" uid="uid://da57xp2bogcpj" path="res://assets/ui/Icon_Water.png" id="15_hoo8e"]
 [ext_resource type="Texture2D" uid="uid://c83i43c6blpur" path="res://assets/ui/Icon_Electricity.png" id="16_5qhs0"]
 [ext_resource type="Texture2D" uid="uid://c63nekivwpcf3" path="res://assets/ui/Icon_Business.png" id="17_iam3e"]
-[ext_resource type="StyleBox" uid="uid://dio5jgo7r0eft" path="res://assets/themes/text_prompt.tres" id="18_8cyiv"]
-[ext_resource type="Theme" uid="uid://d05830ku1mn0j" path="res://assets/themes/button_skip_theme.tres" id="18_r7sa1"]
+[ext_resource type="StyleBox" path="res://assets/themes/text_prompt.tres" id="18_8cyiv"]
+[ext_resource type="Theme" uid="uid://cmj8hf5q50coi" path="res://assets/themes/button_skip_theme.tres" id="18_r7sa1"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_jj5xk"]
 
@@ -66,7 +66,7 @@ content_margin_right = 180.0
 content_margin_left = 129.0
 content_margin_right = 20.0
 
-[node name="Game" type="Node2D"]
+[node name="Game2" type="Node2D"]
 script = ExtResource("1_n127b")
 
 [node name="Camera2D" type="Camera2D" parent="."]

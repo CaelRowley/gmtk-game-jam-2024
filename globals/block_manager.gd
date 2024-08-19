@@ -8,6 +8,10 @@ var current_block: Block
 
 
 func _ready() -> void:
+	reset()
+
+
+func reset() -> void:
 	for i in [-4,-3,-2,-1,0,1,2,3]:
 		var new_block := Block.new()
 		new_block.init([Vector2(i, 2)], Block.Type.CLOUD_BUSTER, 0, true)
