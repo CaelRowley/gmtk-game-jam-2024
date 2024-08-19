@@ -39,10 +39,12 @@ func _ready():
 
 func _input(event: InputEvent) -> void:
 	# We don't want to listen to input during the barrier break animation
-	if broken_barrier != null || BlockManager.current_block != null:
+	if broken_barrier != null || event is not InputEventMouseButton:
 		return 
-	if event is InputEventMouseButton && event.get_button_index() == 1:
-		is_mouse_down = event.is_pressed()
+	if !event.is_pressed():
+		is_mouse_down = false
+	elif BlockManager.current_block == null || event.get_button_index() == 2:
+		is_mouse_down = true
 
 func _process(delta: float):
 	var barrier_overshoot = 0
@@ -84,7 +86,7 @@ func handle_mouse_input(delta: float, barrier_overshoot: float):
 
 func handle_camera_shake(delta: float, barrier: Barrier, barrier_overshoot: float):
 	barrier_break_timer = 0.0 if abs(barrier_overshoot) < 0.8 else barrier_break_timer + delta
-	if barrier_break_timer > (0.3 if barrier.has_been_broken else 1.2):
+	if barrier_break_timer > (0.2 if barrier.has_been_broken else 1.0):
 		break_barrier(barrier)
 	if barrier.has_been_broken:
 		return	

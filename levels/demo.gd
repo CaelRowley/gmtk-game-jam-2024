@@ -96,6 +96,7 @@ func place_tile() -> void:
 				animate_cant_place()
 				return
 			else:
+				AudioManager.play_sfx(AudioManager.sfx_merge_crackle_03)
 				match get_cloud_threshold():
 					-10:
 						$BarrierManager/CloudsBarrier1.is_unbreakable = false

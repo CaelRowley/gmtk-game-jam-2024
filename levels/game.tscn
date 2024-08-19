@@ -79,7 +79,7 @@ tile_set = ExtResource("5_k6swr")
 script = ExtResource("4_kjknk")
 
 [node name="CloudsBarrier3" type="Node2D" parent="BarrierManager"]
-position = Vector2(-27, -11317)
+position = Vector2(-27, -11334)
 scale = Vector2(0.5, 0.5)
 script = ExtResource("5_epaxb")
 is_unbreakable = true
@@ -87,7 +87,7 @@ is_unbreakable = true
 [node name="CloudParticles" parent="BarrierManager/CloudsBarrier3" instance=ExtResource("6_724k2")]
 
 [node name="CloudsBarrier2" type="Node2D" parent="BarrierManager"]
-position = Vector2(0, -4320)
+position = Vector2(0, -4305)
 scale = Vector2(0.5, 0.5)
 script = ExtResource("5_epaxb")
 is_unbreakable = true
@@ -95,7 +95,7 @@ is_unbreakable = true
 [node name="CloudParticles" parent="BarrierManager/CloudsBarrier2" instance=ExtResource("6_724k2")]
 
 [node name="CloudsBarrier1" type="Node2D" parent="BarrierManager"]
-position = Vector2(0, -1440)
+position = Vector2(0, -1473)
 scale = Vector2(0.5, 0.5)
 script = ExtResource("5_epaxb")
 is_unbreakable = true
@@ -137,6 +137,9 @@ offset_top = -106.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_styles/panel = SubResource("StyleBoxTexture_0ddao")
+
+[node name="ResourceUIContainer" type="VBoxContainer" parent="CanvasLayer/GameUI/PanelContainer"]
+layout_mode = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/GameUI/PanelContainer"]
 layout_mode = 2
