@@ -121,7 +121,7 @@ func _on_cloud_buster_button_pressed() -> void:
 			if BlockManager.current_block != null and BlockManager.current_block.type == Block.Type.CLOUD_BUSTER:
 				print("Stop cheating")
 			else:
-				$CloudBusterButton/Label.text = str(cloud_buster_cost * ((Player.lvl+1) * (Player.lvl+1)) )
+				$CloudBusterButton/Label.text = str(cloud_buster_cost * ((Player.lvl+1) * (Player.lvl+1)))
 				Player.coins -= cost
 				demo.next_tile_map.reparent(demo, true)
 				demo.next_tile_map.position = demo.get_local_mouse_position() - (Vector2.ONE * demo.tile_size / 2.0)
@@ -136,9 +136,9 @@ func get_cloud_threshold() -> int:
 		1:
 			return -10
 		2:
-			return -31
+			return -32
 		3:
-			return -86
+			return -87
 		4:
 			return -99999999
 	return 0

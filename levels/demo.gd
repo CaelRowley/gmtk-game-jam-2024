@@ -14,7 +14,7 @@ var block_dispenser: BlockDispenser
 
 
 func _ready() -> void:
-	Player.update_coins(50)
+	Player.update_coins(50000)
 	Player.coins_changed.connect(_on_coins_changed)
 	shadow_tile_map.clear()
 	var parent = self
@@ -91,9 +91,9 @@ func place_tile() -> void:
 				match get_cloud_threshold():
 					-10:
 						$BarrierManager/CloudsBarrier1.is_unbreakable = false
-					-31:
+					-32:
 						$BarrierManager/CloudsBarrier2.is_unbreakable = false
-					-86:
+					-87:
 						$BarrierManager/CloudsBarrier3.is_unbreakable = false
 		else:
 			if BlockManager.current_block.get_peak(tile) < get_cloud_threshold():
@@ -294,9 +294,9 @@ func get_cloud_threshold() -> int:
 		1:
 			return -10
 		2:
-			return -31
+			return -32
 		3:
-			return -86
+			return -87
 		4:
 			return -99999999
 	return 0
