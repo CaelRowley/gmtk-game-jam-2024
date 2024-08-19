@@ -11,10 +11,10 @@ var decor_manager: BlockDecorManager
 var npc_manager: NPCManager
 var main_camera: CameraController
 var block_dispenser: BlockDispenser
-var max_zoom_lvl := 1
 
 
 func _ready() -> void:
+	shadow_tile_map.clear()
 	var parent = self
 	for child in GetUtil.get_all_children(self):
 		if child is CameraController:
@@ -32,7 +32,7 @@ func _ready() -> void:
 	
 	$Camera2D.zoom_changed.connect(_on_zoom_changed)
 	
-	$CanvasLayer/GameUI/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer/Level.text = "Level: " + str(max_zoom_lvl)
+	$CanvasLayer/GameUI/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer/Level.text = "Level: " + str(Player.lvl)
 	$CanvasLayer/GameUI/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer/Floors.text = "Floors: " + str(BlockManager.get_height())
 	$CanvasLayer/GameUI/PanelContainer2/Score.text = "Score: " + str(Player.score)
 	$CanvasLayer/GameUI/PanelContainer/VBoxContainer/HBoxContainer/CenterContainer/HBoxContainer/People.text = str(Player.people)
@@ -44,11 +44,9 @@ func _ready() -> void:
 	
 	block_dispenser.init(self)
 
-func get_max_zoom() -> int:
-	return max_zoom_lvl
 
 func _on_zoom_changed(level: int):
-	max_zoom_lvl = maxi(max_zoom_lvl, level)
+	Player.lvl = maxi(Player.lvl, level)
 	change_music_for_level(level)
 
 func change_music_for_level(level: int):
@@ -78,7 +76,7 @@ func place_tile() -> void:
 		animate_cant_place()
 		return
 	
-	if max_zoom_lvl < 4:
+	if Player.lvl < 4:
 		if BlockManager.current_block.type == Block.Type.CLOUD_BUSTER:
 			if BlockManager.current_block.get_peak(tile) > get_cloud_threshold()-4:
 				animate_cant_place()
@@ -114,7 +112,10 @@ func place_tile() -> void:
 
 func update_cells() -> void:
 	for block in BlockManager.placed_blocks:
-		placed_tiles_map.set_cells_terrain_connect(block.coords, 0, block.get_source() - 1, true)
+		var terrain_id := block.get_source() - 1
+		if terrain_id >= 6:
+			terrain_id = 2
+		placed_tiles_map.set_cells_terrain_connect(block.coords, 0, terrain_id, true)
 		if !block.is_placed_by_player:
 			block.is_placed_by_player = block.is_connected_to_player_block()
 	for block in BlockManager.placed_blocks:
@@ -245,8 +246,8 @@ func upkeep():
 	Player.water -= Player.people
 	Player.electricity -= Player.people
 	
-	Player.update_score(max_zoom_lvl)
-	$CanvasLayer/GameUI/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer/Level.text = "Level: " + str(max_zoom_lvl)
+	Player.update_score()
+	$CanvasLayer/GameUI/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer/Level.text = "Level: " + str(Player.lvl)
 	$CanvasLayer/GameUI/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer/Floors.text = "Floors: " + str(BlockManager.get_height())
 	$CanvasLayer/GameUI/PanelContainer2/Score.text = "Score: " + str(Player.score)
 
@@ -283,7 +284,7 @@ func upkeep():
 		
 
 func get_cloud_threshold() -> int:
-	match max_zoom_lvl:
+	match Player.lvl:
 		1:
 			return -10
 		2:
@@ -294,12 +295,12 @@ func get_cloud_threshold() -> int:
 			return -99999999
 	return 0
 
-func _on_get_cloud_buster_pressed() -> void:
-	var cloud_buster_cost := 0 * (max_zoom_lvl * max_zoom_lvl) 
-	if Player.coins >= cloud_buster_cost:
-		if BlockManager.get_peak() < get_cloud_threshold()+2:
-			if BlockManager.current_block != null and BlockManager.current_block.type == Block.Type.CLOUD_BUSTER:
-				print("Stop cheating")
-			else:
-				Player.coins -= cloud_buster_cost
-				BlockManager.select_cloud_buster()
+#func _on_get_cloud_buster_pressed() -> void:
+	#var cloud_buster_cost := 0 * (Player.lvl * Player.lvl) 
+	#if Player.coins >= cloud_buster_cost:
+		#if BlockManager.get_peak() < get_cloud_threshold()+2:
+			#if BlockManager.current_block != null and BlockManager.current_block.type == Block.Type.CLOUD_BUSTER:
+				#print("Stop cheating")
+			#else:
+				#Player.coins -= cloud_buster_cost
+			#BlockManager.select_cloud_buster()

@@ -62,6 +62,16 @@ theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_ds745")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_yg5ff")
 script = ExtResource("2_ojhbp")
 
+[node name="CloudBusterButton" type="Button" parent="GetBlockButton"]
+layout_mode = 2
+offset_left = -353.0
+offset_top = 24.0
+offset_right = -245.0
+offset_bottom = 55.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "Cloud Buster"
+
 [node name="MarginContainer" type="MarginContainer" parent="."]
 clip_contents = true
 layout_mode = 2
@@ -81,3 +91,5 @@ anchor_left = 1.0
 anchor_right = 1.0
 offset_top = 56.0
 grow_horizontal = 0
+
+[connection signal="pressed" from="GetBlockButton/CloudBusterButton" to="GetBlockButton" method="_on_cloud_buster_button_pressed"]

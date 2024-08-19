@@ -64,7 +64,7 @@ func get_right_cells(tile_map: TileMapLayer) -> Array:
 	return top_cells
 
 
-func get_source():
+func get_source() -> int:
 	return type_to_source_map[type]
 
 

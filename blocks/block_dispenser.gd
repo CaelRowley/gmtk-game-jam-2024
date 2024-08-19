@@ -29,7 +29,7 @@ func _process(_delta: float) -> void:
 		demo.next_tile_map.position = demo.get_local_mouse_position() - (Vector2.ONE * demo.tile_size / 2.0)
 
 func progress_upcoming_block():
-	upcoming_block = BlockManager.get_random_block(demo.get_max_zoom())
+	upcoming_block = BlockManager.get_random_block(Player.lvl)
 	demo.next_tile_map.reparent(preview_anchor, true)
 	var block_size = 1 + upcoming_block.get_peak()
 	demo.next_tile_map.position = Vector2(-64 * block_size, 16 * block_size)
@@ -58,11 +58,14 @@ func update_held_tile_map(block: Block):
 	if block == null:
 		return
 	var tile := demo.shadow_tile_map.local_to_map(demo.get_local_mouse_position()) as Vector2
-	demo.next_tile_map.set_cells_terrain_connect(block.coords, 0, block.get_source() - 1, true)
+	var terrain_id := block.get_source() - 1
+	if terrain_id >= 6:
+		terrain_id = 2
+	demo.next_tile_map.set_cells_terrain_connect(block.coords, 0, terrain_id, true)
 	var shadow_coords = []
 	for c in block.coords:
 		shadow_coords.append(tile + c)
-	demo.shadow_tile_map.set_cells_terrain_connect(shadow_coords, 0, block.get_source() - 1, true)
+	demo.shadow_tile_map.set_cells_terrain_connect(shadow_coords, 0, terrain_id, true)
 
 func find_demo() -> Demo:
 	var i = 0
@@ -79,3 +82,38 @@ func find_demo() -> Demo:
 	if demo == null:
 		print("Block Dispenser can't find the Demo script!")
 	return null
+
+
+func _on_cloud_buster_button_pressed() -> void:
+
+	
+	#create_tween().tween_property(demo.next_tile_map, "position", Vector2.ZERO, 0.3).set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_ELASTIC)
+	#create_tween().tween_property(demo.next_tile_map, "scale", Vector2.ONE, 0.3).set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_ELASTIC)
+	#create_tween().tween_property(demo.next_tile_map, "rotation", 0, 0.3).set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_ELASTIC)
+	
+	var cloud_buster_cost := 0 * (Player.lvl * Player.lvl) 
+	if Player.coins >= cloud_buster_cost:
+		if BlockManager.get_peak() < get_cloud_threshold()+2:
+			if BlockManager.current_block != null and BlockManager.current_block.type == Block.Type.CLOUD_BUSTER:
+				print("Stop cheating")
+			else:
+				Player.coins -= cloud_buster_cost
+				demo.next_tile_map.reparent(demo, true)
+				demo.next_tile_map.position = demo.get_local_mouse_position() - (Vector2.ONE * demo.tile_size / 2.0)
+				demo.next_tile_map.scale = Vector2.ONE
+				demo.next_tile_map.rotation = 0
+				BlockManager.select_cloud_buster()
+				update_held_tile_map(BlockManager.current_block)
+
+
+func get_cloud_threshold() -> int:
+	match Player.lvl:
+		1:
+			return -10
+		2:
+			return -31
+		3:
+			return -86
+		4:
+			return -99999999
+	return 0

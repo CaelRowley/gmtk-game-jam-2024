@@ -1350,7 +1350,7 @@ texture_region_size = Vector2i(128, 128)
 9:2/0/terrains_peering_bit/left_side = 5
 9:2/0/terrains_peering_bit/top_side = 5
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_17uqa"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rwl7j"]
 texture = ExtResource("4_ctblg")
 texture_region_size = Vector2i(128, 128)
 0:0/0 = 0
@@ -1409,4 +1409,4 @@ sources/3 = SubResource("TileSetAtlasSource_f7f58")
 sources/4 = SubResource("TileSetAtlasSource_blbr2")
 sources/5 = SubResource("TileSetAtlasSource_lsg3r")
 sources/6 = SubResource("TileSetAtlasSource_3dv6b")
-sources/7 = SubResource("TileSetAtlasSource_17uqa")
+sources/7 = SubResource("TileSetAtlasSource_rwl7j")
