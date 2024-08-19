@@ -376,6 +376,10 @@ layout_mode = 2
 text = "Fullscreen
 "
 
+[node name="TutorialButton" type="Button" parent="CanvasLayer/PauseMenu/VBoxContainer"]
+layout_mode = 2
+text = "Tutorial"
+
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/PauseMenu/VBoxContainer"]
 layout_mode = 2
 alignment = 1
@@ -396,5 +400,6 @@ text = "Quit"
 [connection signal="value_changed" from="CanvasLayer/PauseMenu/VBoxContainer/MusicSlider" to="." method="_on_music_slider_value_changed"]
 [connection signal="value_changed" from="CanvasLayer/PauseMenu/VBoxContainer/SFXSlider" to="." method="_on_sfx_slider_value_changed"]
 [connection signal="toggled" from="CanvasLayer/PauseMenu/VBoxContainer/CheckBox" to="." method="_on_check_box_toggled"]
+[connection signal="pressed" from="CanvasLayer/PauseMenu/VBoxContainer/TutorialButton" to="." method="_on_tutorial_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/PauseMenu/VBoxContainer/HBoxContainer/RestartButton" to="." method="_on_restart_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/PauseMenu/VBoxContainer/HBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
