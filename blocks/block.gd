@@ -216,6 +216,22 @@ func is_connected_to_residential(tile_map: TileMapLayer, visited := []) -> bool:
 	return false
 
 
+func is_connected_to_player_block() -> bool:
+	for block in BlockManager.placed_blocks:
+		if block.is_placed_by_player:
+			if coords != block.coords:
+				for coord in coords:
+					if block.coords.has(Vector2(coord.x, coord.y+1)):
+						return true
+					if block.coords.has(Vector2(coord.x, coord.y-1)):
+						return true
+					if block.coords.has(Vector2(coord.x+1, coord.y)):
+						return true
+					if block.coords.has(Vector2(coord.x-1, coord.y)):
+						return true
+	return false
+
+
 func is_producing(tile_map: TileMapLayer) -> bool:
 	match type:
 		Type.FOOD:

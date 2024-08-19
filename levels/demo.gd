@@ -83,7 +83,6 @@ func place_tile() -> void:
 			if BlockManager.current_block.get_peak(tile) > get_cloud_threshold()-4:
 				animate_cant_place()
 				return
-		
 			else:
 				match get_cloud_threshold():
 					-10:
@@ -116,6 +115,8 @@ func place_tile() -> void:
 func update_cells() -> void:
 	for block in BlockManager.placed_blocks:
 		placed_tiles_map.set_cells_terrain_connect(block.coords, 0, block.get_source() - 1, true)
+		if !block.is_placed_by_player:
+			block.is_placed_by_player = block.is_connected_to_player_block()
 	for block in BlockManager.placed_blocks:
 		decor_manager.update_decor(block, block.is_producing(placed_tiles_map))
 
