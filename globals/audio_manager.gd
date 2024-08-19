@@ -62,6 +62,7 @@ const rustle := preload("res://audio/sfx/Owlish Media Sound Effects/Cloth, Rustl
 const burst_01:= preload("res://audio/sfx/561744_timbre__magic-poof-01.wav")
 const burst_04:= preload("res://audio/sfx/561744_timbre__magic-poof-04.wav")
 const coin_drop := preload("res://audio/sfx/750240__universfield__coin-drop.mp3")
+const drill := preload("res://audio/sfx/505825__jedg__drill-1-multiple.wav")
 
 var music_one_shot := false
 
