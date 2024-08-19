@@ -17,8 +17,8 @@
 [ext_resource type="Texture2D" uid="uid://da57xp2bogcpj" path="res://assets/ui/Icon_Water.png" id="15_hoo8e"]
 [ext_resource type="Texture2D" uid="uid://c83i43c6blpur" path="res://assets/ui/Icon_Electricity.png" id="16_5qhs0"]
 [ext_resource type="Texture2D" uid="uid://c63nekivwpcf3" path="res://assets/ui/Icon_Business.png" id="17_iam3e"]
-[ext_resource type="StyleBox" uid="uid://dio5jgo7r0eft" path="res://assets/themes/text_prompt.tres" id="18_8cyiv"]
-[ext_resource type="Theme" uid="uid://d05830ku1mn0j" path="res://assets/themes/button_skip_theme.tres" id="18_r7sa1"]
+[ext_resource type="StyleBox" path="res://assets/themes/text_prompt.tres" id="18_8cyiv"]
+[ext_resource type="Theme" uid="uid://cmj8hf5q50coi" path="res://assets/themes/button_skip_theme.tres" id="18_r7sa1"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_jj5xk"]
 
@@ -85,7 +85,7 @@ tile_set = ExtResource("5_1vw3x")
 
 [node name="PlacedTilesMap" type="TileMapLayer" parent="."]
 unique_name_in_owner = true
-tile_map_data = PackedByteArray("AAD8/wMAAwAAAAAAAAD9/wMAAwAAAAAAAAD+/wMAAwAAAAAAAAD//wMAAwAAAAAAAAAAAAMAAwAAAAAAAAABAAMAAwAAAAAAAAACAAMAAwAAAAAAAAADAAMAAwAAAAAAAAA=")
+tile_map_data = PackedByteArray("AAD8/wIAAwADAAMAAAD9/wIAAwADAAMAAAD+/wIAAwADAAMAAAD//wIAAwADAAMAAAAAAAIAAwADAAMAAAABAAIAAwADAAMAAAACAAIAAwADAAMAAAADAAIAAwADAAMAAAA=")
 tile_set = ExtResource("5_1vw3x")
 
 [node name="NextTileMap" type="TileMapLayer" parent="."]
@@ -124,6 +124,7 @@ script = ExtResource("7_h38lp")
 is_unbreakable = true
 
 [node name="Sprite2D" type="Sprite2D" parent="BarrierManager/GroundBarrier"]
+position = Vector2(0, -242)
 texture = ExtResource("9_rnge2")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]

@@ -86,6 +86,12 @@ func get_random_block(lvl := 1) -> Block:
 	return new_block
 
 
+func set_block(type: Block.Type, shape) -> void:
+	var new_block := Block.new()
+	new_block.init(shape.coords, type, shape.value)
+	set_current_block(new_block)
+
+
 func select_random_block(lvl := 1):
 	set_current_block(get_random_block(lvl))
 

@@ -25,6 +25,9 @@ const tile_size := 128
 
 var game_scene = preload("res://levels/game.tscn").instantiate()
 
+var tutorial_page := 2
+
+
 func _process(_delta: float) -> void:
 	if BlockManager.current_block != null:
 		next_tile_map.clear()
@@ -62,7 +65,27 @@ func place_tile() -> void:
 	update_cells()
 	income()
 	upkeep()
-	BlockManager.select_random_block()
+	BlockManager.current_block = null
+	match tutorial_page:
+		2:
+			page_02.visible = false
+			page_03.visible = true
+		4:
+			page_04.visible = false
+			page_05.visible = true
+		7:
+			page_07.visible = false
+			page_08.visible = true
+		9:
+			page_09.visible = false
+			page_10.visible = true
+		11:
+			page_11.visible = false
+			page_12.visible = true
+		14: 
+			page_14.visible = false
+			page_15.visible = true
+	#BlockManager.select_random_block()
 
 
 func update_cells() -> void:
@@ -177,29 +200,29 @@ func income():
 		Player.coins += block.get_coins(placed_tiles_map)
 	
 	#UI Stat Elements
-	$CanvasLayer/GameUI/HList/People.text = "People: " + str(Player.people)
+	#$CanvasLayer/GameUI/HList/People.text = "People: " + str(Player.people)
 	
 	#Food
 	var food_min_value = Player.food
 	var food_max_value = Player.food
-	$CanvasLayer/GameUI/HList/Food/ProgressBar.min_value = food_min_value
-	$CanvasLayer/GameUI/HList/Food/ProgressBar.max_value = food_max_value
-	$CanvasLayer/GameUI/HList/Food.text =str(food_min_value) + " / " + str(food_max_value)
+	#$CanvasLayer/GameUI/HList/Food/ProgressBar.min_value = food_min_value
+	#$CanvasLayer/GameUI/HList/Food/ProgressBar.max_value = food_max_value
+	#$CanvasLayer/GameUI/HList/Food.text =str(food_min_value) + " / " + str(food_max_value)
 	#Water
 	var water_min_value = Player.water
 	var water_max_value = Player.water
-	$CanvasLayer/GameUI/HList/Water/ProgressBar.min_value = water_min_value
-	$CanvasLayer/GameUI/HList/Water/ProgressBar.max_value = water_max_value
-	$CanvasLayer/GameUI/HList/Water.text =str(water_min_value) + " / " + str(water_max_value)
+	#$CanvasLayer/GameUI/HList/Water/ProgressBar.min_value = water_min_value
+	#$CanvasLayer/GameUI/HList/Water/ProgressBar.max_value = water_max_value
+	#$CanvasLayer/GameUI/HList/Water.text =str(water_min_value) + " / " + str(water_max_value)
 	
 	#Electricity
 	var electricity_min_value = Player.electricity
 	var electricity_max_value = Player.electricity
-	$CanvasLayer/GameUI/HList/Electricity/ProgressBar.min_value = Player.electricity
-	$CanvasLayer/GameUI/HList/Electricity/ProgressBar.max_value = Player.electricity
-	$CanvasLayer/GameUI/HList/Electricity.text =str(electricity_min_value) + " / " + str(electricity_max_value)
+	#$CanvasLayer/GameUI/HList/Electricity/ProgressBar.min_value = Player.electricity
+	#$CanvasLayer/GameUI/HList/Electricity/ProgressBar.max_value = Player.electricity
+	#$CanvasLayer/GameUI/HList/Electricity.text =str(electricity_min_value) + " / " + str(electricity_max_value)
 	
-	$CanvasLayer/GameUI/HList/Coins.text = "Coins: " + str(Player.coins)
+	#$CanvasLayer/GameUI/HList/Coins.text = "Coins: " + str(Player.coins)
 
 
 func upkeep():
@@ -215,10 +238,20 @@ func _on_return_button_pressed() -> void:
 	SceneManager.goto_scene("res://levels/game.tscn")
 
 func _on_page_01_next_button_pressed() -> void:
+	tutorial_page = 2
+	BlockManager.set_block(Block.Type.RESIDENTIAL, {
+			"coords": [Vector2(0,0), Vector2(1,0), Vector2(0,1)],
+			"value": 3,
+		})
 	page_01.visible = false
 	page_02.visible = true
 
 func _on_page_03_next_button_pressed() -> void:
+	tutorial_page = 4
+	BlockManager.set_block(Block.Type.FOOD, {
+			"coords": [Vector2(0,0)],
+			"value": 3,
+		})
 	page_03.visible = false
 	page_04.visible = true
 
@@ -227,25 +260,46 @@ func _on_page_05_next_button_pressed() -> void:
 	page_06.visible = true
 
 func _on_page_06_next_button_pressed() -> void:
+	tutorial_page = 7
+	BlockManager.set_block(Block.Type.WATER, {
+			"coords": [Vector2(0,0), Vector2(0,1)],
+			"value": 3,
+		})
 	page_06.visible = false
 	page_07.visible = true
 
 func _on_page_08_next_button_pressed() -> void:
+	tutorial_page = 9
+	BlockManager.set_block(Block.Type.ELECTRICITY, {
+			"coords": [Vector2(0,0)],
+			"value": 3,
+		})
 	page_08.visible = false
 	page_09.visible = true
 
 func _on_page_10_next_button_pressed() -> void:
+	tutorial_page = 11
+	BlockManager.set_block(Block.Type.BUSINESS, {
+		"coords": [Vector2(0,0), Vector2(0,1)],
+		"value": 3,
+	})
 	page_10.visible = false
 	page_11.visible = true
 
 func _on_page_12_next_button_pressed() -> void:
-	page_10.visible = false
-	page_11.visible = true
+	print("12")
+	page_12.visible = false
+	page_13.visible = true
 
 
 func _on_page_13_next_button_pressed() -> void:
-	page_10.visible = false
-	page_11.visible = true
+	tutorial_page = 14
+	BlockManager.set_block(Block.Type.FRAME, {
+		"coords": [Vector2(0,0), Vector2(0,1)],
+		"value": 3,
+	})
+	page_13.visible = false
+	page_14.visible = true
 
 
 func _on_page_15_exit_button_pressed() -> void:
