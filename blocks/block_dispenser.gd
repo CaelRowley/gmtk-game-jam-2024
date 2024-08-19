@@ -163,7 +163,7 @@ func get_cloud_threshold() -> int:
 
 
 func _on_food_button_pressed() -> void:
-	if Player.coins >= food_cost:
+	if BlockManager.current_block == null and Player.coins >= food_cost:
 		Player.update_coins(Player.coins-food_cost)
 		food_cost = mini(food_cost_max, food_cost+food_cost_increase)
 		progress_upcoming_block(Block.Type.FOOD)
@@ -171,7 +171,7 @@ func _on_food_button_pressed() -> void:
 
 
 func _on_water_button_pressed() -> void:
-	if Player.coins >= water_cost:
+	if BlockManager.current_block == null and Player.coins >= water_cost:
 		Player.update_coins(Player.coins-water_cost)
 		water_cost = mini(water_cost_max, water_cost+water_cost_increase)
 		progress_upcoming_block(Block.Type.WATER)
@@ -179,7 +179,7 @@ func _on_water_button_pressed() -> void:
 
 
 func _on_electricity_button_pressed() -> void:
-	if Player.coins >= electricity_cost:
+	if BlockManager.current_block == null and Player.coins >= electricity_cost:
 		Player.update_coins(Player.coins-electricity_cost)
 		electricity_cost = mini(electricity_cost_max, electricity_cost+electricity_cost_increase)
 		progress_upcoming_block(Block.Type.ELECTRICITY)
@@ -187,7 +187,7 @@ func _on_electricity_button_pressed() -> void:
 
 
 func _on_business_button_pressed() -> void:
-	if Player.coins >= business_cost:
+	if BlockManager.current_block == null and Player.coins >= business_cost:
 		Player.update_coins(Player.coins-business_cost)
 		business_cost = mini(business_cost_max, business_cost+business_cost_increase)
 		progress_upcoming_block(Block.Type.BUSINESS)

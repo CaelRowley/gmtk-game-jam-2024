@@ -14,7 +14,7 @@ var block_dispenser: BlockDispenser
 
 
 func _ready() -> void:
-	Player.update_coins(50000)
+	Player.update_coins(50)
 	Player.coins_changed.connect(_on_coins_changed)
 	shadow_tile_map.clear()
 	var parent = self
