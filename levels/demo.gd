@@ -6,6 +6,7 @@ const tile_size := 128
 @onready var shadow_tile_map := $ShadowTileMap as TileMapLayer
 @onready var next_tile_map := $NextTileMap as TileMapLayer
 @onready var placed_tiles_map := %PlacedTilesMap as TileMapLayer
+@onready var row_confetti := preload("res://blocks/row_confetti.tscn")
 
 var decor_manager: BlockDecorManager
 var npc_manager: NPCManager
@@ -76,7 +77,9 @@ func _input(event: InputEvent) -> void:
 
 
 func place_tile() -> void:
-	var tile := placed_tiles_map.local_to_map(get_local_mouse_position()) as Vector2
+	var filled_rows_before := BlockManager.get_filled_rows_count()
+	var mouse_pos := get_local_mouse_position()
+	var tile := placed_tiles_map.local_to_map(mouse_pos) as Vector2
 	var place_tile_sfx = [AudioManager.sfx_place_pop_01,AudioManager.sfx_place_pop_02,AudioManager.sfx_place_pop_03]
 	if !is_tile_connected(tile) || is_tile_overlapping(tile) || is_tile_protruding(tile):
 		animate_cant_place()
@@ -106,6 +109,7 @@ func place_tile() -> void:
 	for cell in BlockManager.current_block.coords:
 		coords.push_back(tile + cell)
 	var new_block := Block.new()
+
 	new_block.init(coords, BlockManager.current_block.type, BlockManager.current_block.value, true)
 	BlockManager.add_placed_block(new_block)
 	decor_manager.add_decor(new_block, placed_tiles_map)
@@ -114,6 +118,12 @@ func place_tile() -> void:
 	BlockManager.current_block = null
 	block_dispenser.progress_upcoming_block(null)
 	shadow_tile_map.clear()
+	var filled_rows_after := BlockManager.get_filled_rows_count()
+	if filled_rows_after > filled_rows_before:
+		print(filled_rows_after)
+		var row_confetti_scene := row_confetti.instantiate() as Node2D
+		row_confetti_scene.position = mouse_pos
+		add_child(row_confetti_scene)
 
 
 func update_cells() -> void:

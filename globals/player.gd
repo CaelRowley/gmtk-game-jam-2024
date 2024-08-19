@@ -21,5 +21,4 @@ func update_score() -> void:
 	var height := BlockManager.get_height()
 	var block_count := BlockManager.get_block_count()
 	var filled_rows := BlockManager.get_filled_rows_count()
-	print("filled_rows: ", filled_rows)
 	score = max(score, (block_count + food + water + electricity + people + coins) * (height + (lvl * (1+filled_rows))))

@@ -47,7 +47,8 @@ content_margin_top = 14.0
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qs34u"]
 content_margin_left = 0.0
 
-[node name="Game" type="Node2D"]
+[node name="Game2" type="Node2D"]
+position = Vector2(0, 1)
 script = ExtResource("1_4mqve")
 
 [node name="Camera2D" type="Camera2D" parent="."]

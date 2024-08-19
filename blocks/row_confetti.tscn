@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://bkg6fejtybe37"]
+
+[ext_resource type="Script" path="res://blocks/row_confetti.gd" id="1_76rr1"]
+[ext_resource type="Texture2D" uid="uid://g6kvn130fxw1" path="res://assets/ui/kenney/Blue/Default/star_outline.png" id="1_xn13t"]
+
+[sub_resource type="Curve" id="Curve_0waka"]
+min_value = -1.0
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[node name="RowConfetti" type="Node2D"]
+script = ExtResource("1_76rr1")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+skew = 0.284489
+emitting = false
+amount = 1024
+one_shot = true
+speed_scale = 1.97
+explosiveness = 0.35
+randomness = 0.41
+texture = ExtResource("1_xn13t")
+emission_shape = 3
+emission_rect_extents = Vector2(2000, 200)
+spread = 91.13
+gravity = Vector2(0, -100)
+hue_variation_min = -0.78
+hue_variation_max = 0.76
+hue_variation_curve = SubResource("Curve_0waka")
