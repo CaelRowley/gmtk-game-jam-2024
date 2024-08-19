@@ -39,6 +39,12 @@ func init(_demo: Demo) -> void:
 			break
 	progress_upcoming_block(null)
 
+
+func _input(event: InputEvent) -> void:
+	if  BlockManager.current_block != null && event.is_action_pressed("ui_cancel"):
+		return_block(BlockManager.current_block)
+
+
 func _pressed() -> void:
 	print("pressed")
 	if BlockManager.current_block != null: print("Stop cheating")
@@ -62,6 +68,18 @@ func progress_upcoming_block(type):
 	demo.next_tile_map.rotation = 5
 	update_held_tile_map(upcoming_block)
 	demo.shadow_tile_map.clear()
+
+
+func return_block(block):
+	BlockManager.current_block = null
+	demo.next_tile_map.reparent(preview_anchor, true)
+	var block_size = 1 + block.get_peak()
+	demo.next_tile_map.position = Vector2(-64 * block_size, 16 * block_size)
+	demo.next_tile_map.scale = Vector2.ONE / (3 + block_size)
+	demo.next_tile_map.rotation = 5
+	update_held_tile_map(block)
+	demo.shadow_tile_map.clear()
+
 
 func progress_held_block():
 	print("anchor pos: " + str(preview_anchor.global_position))
