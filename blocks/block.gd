@@ -19,7 +19,7 @@ const type_to_source_map = {
 	Block.Type.BUSINESS: 4,
 	Block.Type.RESIDENTIAL: 5,
 	Block.Type.ELECTRICITY: 6,
-	Block.Type.CLOUD_BUSTER: 3,
+	Block.Type.CLOUD_BUSTER: 7,
 }
 
 var coords: Array
@@ -76,6 +76,12 @@ func get_peak(tile := Vector2.ZERO) -> int:
 	return peak
 
 
+func get_value(tile_map: TileMapLayer) -> int:
+	if is_connected_to_frame(tile_map):
+		return value*2
+	return value
+
+
 func get_food(tile_map: TileMapLayer, count := 0, visited := []) -> int:
 	# Prevent stack overflow
 	if count > 1000:
@@ -89,9 +95,9 @@ func get_food(tile_map: TileMapLayer, count := 0, visited := []) -> int:
 	for cell in coords:
 		# If any side tile is empty
 		if tile_map.get_cell_source_id(cell + Vector2(1, 0)) == -1:
-			return value
+			return get_value(tile_map)
 		if tile_map.get_cell_source_id(cell + Vector2(-1, 0)) == -1:
-			return value
+			return get_value(tile_map)
 	# Prevent loop from revisting self
 	if visited.has(coords):
 		return 0
@@ -104,7 +110,7 @@ func get_food(tile_map: TileMapLayer, count := 0, visited := []) -> int:
 					for coord in block.coords:
 						if coord == cell + target and block.coords != coords:
 							if block.get_food(tile_map, count+1, visited) > 0:
-								return value
+								return get_value(tile_map)
 	return 0
 
 
@@ -122,7 +128,7 @@ func get_water(tile_map: TileMapLayer, count := 0, visited := []) -> int:
 		for cell in coords:
 			# If any above tile is empty
 			if tile_map.get_cell_source_id(cell + Vector2(0, -1)) == -1:
-				return value
+				return get_value(tile_map)
 	# Prevent loop from revisting self
 	if visited.has(coords):
 		return 0
@@ -135,7 +141,7 @@ func get_water(tile_map: TileMapLayer, count := 0, visited := []) -> int:
 					for coord in block.coords:
 						if coord == cell + target and block.coords != coords:
 							if block.get_water(tile_map, count+1, visited) > 0:
-								return value
+								return get_value(tile_map)
 	return 0
 
 
@@ -152,13 +158,13 @@ func get_electricity(tile_map: TileMapLayer, count := 0, visited := []) -> int:
 	for cell in coords:
 		# If any connecting tile is empty
 		if tile_map.get_cell_source_id(cell + Vector2(0, -1)) == -1:
-			return value
+			return get_value(tile_map)
 		if tile_map.get_cell_source_id(cell + Vector2(0, 1)) == -1:
-			return value
+			return get_value(tile_map)
 		if tile_map.get_cell_source_id(cell + Vector2(1, 0)) == -1:
-			return value
+			return get_value(tile_map)
 		if tile_map.get_cell_source_id(cell + Vector2(-1, 0)) == -1:
-			return value
+			return get_value(tile_map)
 	# Prevent loop from revisting self
 	if visited.has(coords):
 		return 0
@@ -171,14 +177,14 @@ func get_electricity(tile_map: TileMapLayer, count := 0, visited := []) -> int:
 					for coord in block.coords:
 						if coord == cell+target and block.coords != coords:
 							if block.get_electricity(tile_map, count+1, visited) > 0:
-								return value
+								return get_value(tile_map)
 	return 0
 
 
-func get_people() -> int:
+func get_people(tile_map: TileMapLayer) -> int:
 	if type != Type.RESIDENTIAL:
 		return 0
-	return value/2
+	return get_value(tile_map)/2
 
 
 func get_coins(tile_map: TileMapLayer) -> int:
@@ -187,7 +193,7 @@ func get_coins(tile_map: TileMapLayer) -> int:
 		return 0
 	# Check condition
 	if is_connected_to_residential(tile_map):
-		return value
+		return get_value(tile_map)
 	return 0
 
 
@@ -212,6 +218,31 @@ func is_connected_to_residential(tile_map: TileMapLayer, visited := []) -> bool:
 					for coord in block.coords:
 						if coord == cell + target and block.coords != coords:
 							if block.is_connected_to_residential(tile_map, visited):
+								return true
+	return false
+
+
+func is_connected_to_frame(tile_map: TileMapLayer, visited := []) -> bool:
+	for cell in coords:
+		if tile_map.get_cell_source_id(cell + Vector2(0, -1)) == type_to_source_map[Type.FRAME]:
+			return true
+		if tile_map.get_cell_source_id(cell + Vector2(0, 1)) == type_to_source_map[Type.FRAME]:
+			return true
+		if tile_map.get_cell_source_id(cell + Vector2(1, 0)) == type_to_source_map[Type.FRAME]:
+			return true
+		if tile_map.get_cell_source_id(cell + Vector2(-1, 0)) == type_to_source_map[Type.FRAME]:
+			return true
+	if visited.has(coords):
+		return false
+	visited.push_back(coords)
+	# Check all connected blocks for residential
+	for cell in coords:
+		for target in [Vector2(0, -1), Vector2(0, 1), Vector2(1, 0), Vector2(-1, -0)]:
+			if tile_map.get_cell_source_id(cell + target) == type_to_source_map[type]:
+				for block in BlockManager.placed_blocks:
+					for coord in block.coords:
+						if coord == cell + target and block.coords != coords:
+							if block.is_connected_to_frame(tile_map, visited):
 								return true
 	return false
 
@@ -241,7 +272,7 @@ func is_producing(tile_map: TileMapLayer) -> bool:
 		Type.ELECTRICITY:
 			return get_electricity(tile_map) > 0
 		Type.RESIDENTIAL:
-			return get_people() > 0
+			return get_people(tile_map) > 0
 		Type.BUSINESS:
 			return get_coins(tile_map) > 0
 	return false

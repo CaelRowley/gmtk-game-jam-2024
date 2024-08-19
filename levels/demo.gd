@@ -233,7 +233,7 @@ func upkeep():
 		food += block.get_food(placed_tiles_map)
 		water += block.get_water(placed_tiles_map)
 		electricity += block.get_electricity(placed_tiles_map)
-		people += block.get_people()
+		people += block.get_people(placed_tiles_map)
 		coins += block.get_coins(placed_tiles_map)
 	Player.food += food
 	Player.water += water

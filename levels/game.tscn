@@ -68,7 +68,7 @@ tile_set = ExtResource("5_k6swr")
 
 [node name="PlacedTilesMap" type="TileMapLayer" parent="."]
 unique_name_in_owner = true
-tile_map_data = PackedByteArray("AAD8/wIAAwADAAMAAAD9/wIAAwADAAMAAAD+/wIAAwADAAMAAAD//wIAAwADAAMAAAAAAAIAAwADAAMAAAABAAIAAwADAAMAAAACAAIAAwADAAMAAAADAAIAAwADAAMAAAA=")
+tile_map_data = PackedByteArray("AAD8/wIABwADAAMAAAD9/wIABwADAAMAAAD+/wIABwADAAMAAAD//wIABwADAAMAAAAAAAIABwADAAMAAAABAAIABwADAAMAAAACAAIABwADAAMAAAADAAIABwADAAMAAAA=")
 tile_set = ExtResource("5_k6swr")
 
 [node name="NextTileMap" type="TileMapLayer" parent="."]

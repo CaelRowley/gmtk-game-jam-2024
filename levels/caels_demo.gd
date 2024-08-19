@@ -156,7 +156,7 @@ func income():
 		Player.food += block.get_food(placed_tiles_map)
 		Player.water += block.get_water(placed_tiles_map)
 		Player.electricity += block.get_electricity(placed_tiles_map)
-		Player.people += block.get_people()
+		Player.people += block.get_people(placed_tiles_map)
 		Player.coins += block.get_coins(placed_tiles_map)
 	
 	$UI/Label.text = "Food: " + str(Player.food)

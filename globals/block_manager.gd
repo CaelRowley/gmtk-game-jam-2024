@@ -10,7 +10,7 @@ var current_block: Block
 func _ready() -> void:
 	for i in [-4,-3,-2,-1,0,1,2,3]:
 		var new_block := Block.new()
-		new_block.init([Vector2(i, 2)], Block.Type.FRAME, 0, true)
+		new_block.init([Vector2(i, 2)], Block.Type.CLOUD_BUSTER, 0, true)
 		BlockManager.add_placed_block(new_block)
 	
 	var ran_1_count := 1
@@ -75,17 +75,24 @@ func get_random_block_shape(lvl := 1) -> Dictionary:
 func get_random_block_type() -> Block.Type:
 	return Random.get_weighted_random(weighted_block_types, true)
 
+
 func get_random_block(lvl := 1) -> Block:
 	var new_block := Block.new()
+	var type := get_random_block_type()
+	if type == Block.Type.FRAME:
+		lvl = max(1, lvl-1)
 	var ran_block_shape := get_random_block_shape(lvl)
-	new_block.init(ran_block_shape.coords, get_random_block_type(), ran_block_shape.value)
+	new_block.init(ran_block_shape.coords, type, ran_block_shape.value)
 	return new_block
+
 
 func select_random_block(lvl := 1):
 	set_current_block(get_random_block(lvl))
 
+
 func set_current_block(block: Block):
 	current_block = block
+
 
 func get_peak() -> int:
 	var peak := 1000
@@ -185,10 +192,10 @@ var weighted_block_types = {
 	},
 	Block.Type.FRAME: {
 		item = Block.Type.FRAME,
-		weight = 50,
-		default_weight = 50,
-		neg_accumulator = 25,
-		pos_accumulator = 10,
+		weight = 100,
+		default_weight = 100,
+		neg_accumulator = 100,
+		pos_accumulator = 25,
 	},
 }
 
