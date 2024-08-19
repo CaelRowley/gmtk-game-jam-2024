@@ -22,7 +22,12 @@ var barrier_manager: BarrierManager
 var broken_barrier: Barrier
 var is_broken_barrier_above
 
+var audio_stream_1 := AudioStreamPlayer.new()
+var audio_stream_2 := AudioStreamPlayer.new()
+
 func _ready():
+	add_child(audio_stream_1)
+	add_child(audio_stream_2)
 	for sibling in get_parent().get_children():
 		if sibling is BarrierManager:
 			barrier_manager = sibling
@@ -34,7 +39,9 @@ func _ready():
 
 func _input(event: InputEvent) -> void:
 	# We don't want to listen to input during the barrier break animation
-	if broken_barrier == null && event is InputEventMouseButton:
+	if broken_barrier != null || BlockManager.current_block != null:
+		return 
+	if event is InputEventMouseButton && event.get_button_index() == 1:
 		is_mouse_down = event.is_pressed()
 
 func _process(delta: float):
@@ -60,6 +67,8 @@ func _process(delta: float):
 	# we're done. Otherwise we gotta handle the shaking and breaking behavior
 	if nearest_barrier != null && !nearest_barrier.is_unbreakable && is_mouse_down:
 		handle_camera_shake(delta, nearest_barrier, barrier_overshoot)
+	else:
+		set_rumble_sound_enabled(false)
 
 func handle_mouse_input(delta: float, barrier_overshoot: float):	
 	var mouse_position = get_local_mouse_position()
@@ -79,6 +88,7 @@ func handle_camera_shake(delta: float, barrier: Barrier, barrier_overshoot: floa
 		break_barrier(barrier)
 	if barrier.has_been_broken:
 		return	
+	set_rumble_sound_enabled(true)
 	if(camera_shake > 1):
 		global_position.x += randf_range(-camera_shake, camera_shake)
 		global_position.y += randf_range(-camera_shake, camera_shake)
@@ -95,7 +105,23 @@ func handle_barrier_transition(delta: float):
 	if !is_broken_barrier_above && camera_y > broken_barrier.global_position.y:
 		broken_barrier = null
 
+func set_rumble_sound_enabled(flag: bool):
+	if flag && !audio_stream_1.playing:
+		audio_stream_1.stream = AudioManager.earthquake
+		audio_stream_1.play()
+		audio_stream_2.stream = AudioManager.rustle
+		audio_stream_2.play()
+	if !flag && audio_stream_1.stream == AudioManager.earthquake:
+		audio_stream_1.stop()
+		audio_stream_2.stop()
+		
+
 func break_barrier(barrier: Barrier):
+	audio_stream_1.stop()
+	audio_stream_2.stop()
+	audio_stream_1.stream = AudioManager.burst_04 if barrier.has_been_broken else AudioManager.burst_01
+	audio_stream_1.play()
+	
 	barrier.break_barrier()
 	broken_barrier = barrier;
 	is_broken_barrier_above = barrier.is_above(self)

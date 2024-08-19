@@ -57,6 +57,10 @@ const sfx_door_open_02 := preload("res://audio/sfx/qubodup-DoorSet/qubodup-DoorS
 const sfx_door_open_03 := preload("res://audio/sfx/qubodup-DoorSet/qubodup-DoorSet/ogg/qubodup-DoorOpen06.ogg")
 
 const sfx_explosion := preload("res://audio/sfx/kenny/explosionCrunch_000.ogg")
+const earthquake := preload("res://audio/sfx/Owlish Media Sound Effects/Ambience/earthquake.wav")
+const rustle := preload("res://audio/sfx/Owlish Media Sound Effects/Cloth, Rustle/320143__owlstorm__blanket-movement-5.wav")
+const burst_01:= preload("res://audio/sfx/561744_timbre__magic-poof-01.wav")
+const burst_04:= preload("res://audio/sfx/561744_timbre__magic-poof-04.wav")
 const coin_drop := preload("res://audio/sfx/750240__universfield__coin-drop.mp3")
 
 var music_one_shot := false
