@@ -11,12 +11,12 @@
 [ext_resource type="Texture2D" uid="uid://ds12e2rjxhiel" path="res://environment/barrier/barrier_ground.png" id="7_gme3i"]
 [ext_resource type="Texture2D" uid="uid://cfpkhvyik6150" path="res://assets/ui/kenney/Blue/Default/check_square_grey.png" id="10_mlkbh"]
 [ext_resource type="PackedScene" uid="uid://c63rsyer6s5nm" path="res://levels/block_dispenser_ui.tscn" id="10_trac6"]
-[ext_resource type="Texture2D" uid="uid://dts6sjswhpbe3" path="res://assets/ui/Icon_Residence.png" id="12_vb0yu"]
+[ext_resource type="Texture2D" uid="uid://dlpq5elqqn8lo" path="res://assets/ui/icons/signal-2024-08-19-174136_005.png" id="13_4rlwn"]
 [ext_resource type="Texture2D" uid="uid://cioxs7lek1mb5" path="res://assets/ui/Icon_Food.png" id="14_jw50g"]
-[ext_resource type="Texture2D" uid="uid://da57xp2bogcpj" path="res://assets/ui/Icon_Water.png" id="15_0ggir"]
-[ext_resource type="Texture2D" uid="uid://c83i43c6blpur" path="res://assets/ui/Icon_Electricity.png" id="16_ibsxd"]
+[ext_resource type="Texture2D" uid="uid://dcxh2c5ovp6x5" path="res://assets/ui/icons/signal-2024-08-19-174136_004.png" id="16_wusfu"]
+[ext_resource type="Texture2D" uid="uid://l07sagj78hgs" path="res://assets/ui/icons/signal-2024-08-19-174136_002.png" id="17_bertw"]
 [ext_resource type="Theme" uid="uid://lsghexn2paa" path="res://assets/themes/h2_theme.tres" id="17_u3nbk"]
-[ext_resource type="Texture2D" uid="uid://c63nekivwpcf3" path="res://assets/ui/Icon_Business.png" id="17_wdapd"]
+[ext_resource type="Texture2D" uid="uid://dd3sythk5fm8v" path="res://assets/ui/icons/signal-2024-08-19-174136_003.png" id="18_kegra"]
 [ext_resource type="Theme" uid="uid://cp6kq4e452w4s" path="res://assets/themes/default_theme.tres" id="18_rfxyh"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_jj5xk"]
@@ -175,7 +175,7 @@ layout_mode = 2
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/GameUI/PanelContainer/VBoxContainer/HBoxContainer/CenterContainer/HBoxContainer"]
 layout_mode = 2
-texture = ExtResource("12_vb0yu")
+texture = ExtResource("13_4rlwn")
 expand_mode = 3
 
 [node name="People" type="Label" parent="CanvasLayer/GameUI/PanelContainer/VBoxContainer/HBoxContainer/CenterContainer/HBoxContainer"]
@@ -234,7 +234,7 @@ layout_mode = 2
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/GameUI/PanelContainer/VBoxContainer/HBoxContainer/PanelContainer/GridContainer/WaterContainer/HBoxContainer"]
 layout_mode = 2
-texture = ExtResource("15_0ggir")
+texture = ExtResource("16_wusfu")
 expand_mode = 2
 
 [node name="Water" type="Label" parent="CanvasLayer/GameUI/PanelContainer/VBoxContainer/HBoxContainer/PanelContainer/GridContainer/WaterContainer/HBoxContainer"]
@@ -259,7 +259,7 @@ layout_mode = 2
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/GameUI/PanelContainer/VBoxContainer/HBoxContainer/PanelContainer/GridContainer/ElectricityContainer/HBoxContainer"]
 layout_mode = 2
-texture = ExtResource("16_ibsxd")
+texture = ExtResource("17_bertw")
 expand_mode = 2
 
 [node name="Electricity" type="Label" parent="CanvasLayer/GameUI/PanelContainer/VBoxContainer/HBoxContainer/PanelContainer/GridContainer/ElectricityContainer/HBoxContainer"]
@@ -285,7 +285,7 @@ layout_mode = 2
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/GameUI/PanelContainer/VBoxContainer/HBoxContainer/PanelContainer/GridContainer/CoinsContainer/HBoxContainer"]
 layout_mode = 2
-texture = ExtResource("17_wdapd")
+texture = ExtResource("18_kegra")
 expand_mode = 3
 
 [node name="Coins" type="Label" parent="CanvasLayer/GameUI/PanelContainer/VBoxContainer/HBoxContainer/PanelContainer/GridContainer/CoinsContainer/HBoxContainer"]
