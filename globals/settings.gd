@@ -6,29 +6,30 @@ const CONFIG_FILE := "user://config.cfg"
 const SECTIONS := {
 	"Audio": "Audio",
 	"Display": "Display",
+	"Gameplay": "Gameplay",
 }
 
 const KEYS := {
 	"Master": "Master",
 	"Music": "Music",
 	"SFX": "SFX",
-	"UI": "UI",
 	"Fullscreen": "Fullscreen",
+	"SkipTutorial": "SkipTutorial",
 }
 
 var default_config: Dictionary = {
 	SECTIONS.Audio:  {
 		KEYS.Master: 1.0,
 		KEYS.Music: 0.5,
-		KEYS.SFX: 1.0,
-		KEYS.UI: 1.0,
+		KEYS.SFX: 0.5,
 	},
 	SECTIONS.Display: {
 		KEYS.Fullscreen: true,
 	},
+	SECTIONS.Gameplay: {
+		KEYS.SkipTutorial: false,
+	},
 }
-
-var skip_tutorial := false
 
 @onready var config := ConfigFile.new()
 
@@ -59,8 +60,6 @@ func load_config():
 	AudioManager.set_volume(AudioManager.AUDIO_BUSES.Music, get_value(SECTIONS.Audio, KEYS.Music))
 	AudioManager.set_volume(AudioManager.AUDIO_BUSES.SFX, get_value(SECTIONS.Audio, KEYS.SFX))
 	
-	print("get_value(SECTIONS.Display, KEYS.Fullscreen)")
-	print(get_value(SECTIONS.Display, KEYS.Fullscreen))
 	if (get_window().mode != get_window().MODE_FULLSCREEN and get_value(SECTIONS.Display, KEYS.Fullscreen)) or (get_window().mode == get_window().MODE_FULLSCREEN and !get_value(SECTIONS.Display, KEYS.Fullscreen)):
 		get_window().mode = get_window().MODE_FULLSCREEN if get_value(SECTIONS.Display, KEYS.Fullscreen) else get_window().MODE_WINDOWED
 
@@ -87,8 +86,8 @@ func _check_config() -> bool:
 	if (get_value(SECTIONS.Audio, KEYS.Master) != null
 		and get_value(SECTIONS.Audio, KEYS.Music) != null
 		and get_value(SECTIONS.Audio, KEYS.SFX) != null
-		and get_value(SECTIONS.Audio, KEYS.UI) != null
 		and get_value(SECTIONS.Display, KEYS.Fullscreen) != null
+		and get_value(SECTIONS.Gameplay, KEYS.SkipTutorial) != null
 	): 
 		return true
 	
