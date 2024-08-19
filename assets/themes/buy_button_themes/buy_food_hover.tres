@@ -1,0 +1,6 @@
+[gd_resource type="StyleBoxTexture" load_steps=2 format=3 uid="uid://b2pyjx062e8c"]
+
+[ext_resource type="Texture2D" uid="uid://cuow1inyh8tm5" path="res://gui/food_button_hover.png" id="1_rks2d"]
+
+[resource]
+texture = ExtResource("1_rks2d")

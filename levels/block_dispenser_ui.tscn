@@ -1,7 +1,27 @@
-[gd_scene load_steps=14 format=3 uid="uid://c63rsyer6s5nm"]
+[gd_scene load_steps=34 format=3 uid="uid://c63rsyer6s5nm"]
 
 [ext_resource type="Texture2D" uid="uid://bm60mbefca71h" path="res://gui/block_dispenser.png" id="1_fer04"]
 [ext_resource type="Script" path="res://blocks/block_dispenser.gd" id="2_ojhbp"]
+[ext_resource type="StyleBox" uid="uid://fbbyfc8ucdwe" path="res://assets/themes/buy_button_themes/buy_cloud_buster_disabled.tres" id="3_5cs01"]
+[ext_resource type="StyleBox" uid="uid://fwdgdhbsbbed" path="res://assets/themes/buy_button_themes/buy_cloud_buster_hover.tres" id="4_v5cnl"]
+[ext_resource type="StyleBox" uid="uid://dqup4f6kv2qlm" path="res://assets/themes/buy_button_themes/buy_cloud_buster_pressed.tres" id="5_lglat"]
+[ext_resource type="StyleBox" uid="uid://c6otog8lmarsu" path="res://assets/themes/buy_button_themes/buy_cloud_buster_normal.tres" id="6_f16u5"]
+[ext_resource type="StyleBox" uid="uid://b6lv6jwobv02d" path="res://assets/themes/buy_button_themes/buy_food_disabled.tres" id="7_d3xa1"]
+[ext_resource type="StyleBox" uid="uid://b2pyjx062e8c" path="res://assets/themes/buy_button_themes/buy_food_hover.tres" id="8_18fhd"]
+[ext_resource type="StyleBox" uid="uid://c42dab6s5eelh" path="res://assets/themes/buy_button_themes/buy_food_pressed.tres" id="9_vx5in"]
+[ext_resource type="StyleBox" uid="uid://cj31orkew56p5" path="res://assets/themes/buy_button_themes/buy_food_normal.tres" id="10_3igmh"]
+[ext_resource type="StyleBox" uid="uid://di5xlpvmt5c5e" path="res://assets/themes/buy_button_themes/buy_water_disabled.tres" id="11_m3e5n"]
+[ext_resource type="StyleBox" uid="uid://daxoudd52ua4w" path="res://assets/themes/buy_button_themes/buy_water_hover.tres" id="12_ayx5d"]
+[ext_resource type="StyleBox" uid="uid://bvw1qycuug4of" path="res://assets/themes/buy_button_themes/buy_water_pressed.tres" id="13_o5jqa"]
+[ext_resource type="StyleBox" uid="uid://b5di5o2byjhkp" path="res://assets/themes/buy_button_themes/buy_water_normal.tres" id="14_eq34h"]
+[ext_resource type="StyleBox" uid="uid://bijgmlo1nten4" path="res://assets/themes/buy_button_themes/buy_electric_disabled.tres" id="15_bwuyw"]
+[ext_resource type="StyleBox" uid="uid://b0sdfpickgmfc" path="res://assets/themes/buy_button_themes/buy_electric_hover.tres" id="16_xm27e"]
+[ext_resource type="StyleBox" uid="uid://53xjnndvc0q4" path="res://assets/themes/buy_button_themes/buy_electric_pressed.tres" id="17_8gd5g"]
+[ext_resource type="StyleBox" uid="uid://dusdyl52aepgv" path="res://assets/themes/buy_button_themes/buy_electric_normal.tres" id="18_1rgnl"]
+[ext_resource type="StyleBox" uid="uid://bix6et2j5fjq8" path="res://assets/themes/buy_button_themes/buy_business_disabled.tres" id="19_7a44m"]
+[ext_resource type="StyleBox" uid="uid://d22r5pbmn03nc" path="res://assets/themes/buy_button_themes/buy_business_hover.tres" id="20_4tnno"]
+[ext_resource type="StyleBox" uid="uid://7xt671efr6f8" path="res://assets/themes/buy_button_themes/buy_business_pressed.tres" id="21_3kw6s"]
+[ext_resource type="StyleBox" uid="uid://ry5f5j7ory3n" path="res://assets/themes/buy_button_themes/buy_business_normal.tres" id="22_62ptd"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fmsnj"]
 
@@ -36,13 +56,41 @@ theme_override_constants/margin_top = 16
 theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 16
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="MainDispenser" type="Control" parent="."]
 layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="MainDispenser"]
+layout_mode = 2
+offset_left = 380.0
+offset_right = 508.0
+offset_bottom = 128.0
 size_flags_horizontal = 8
 size_flags_vertical = 0
 mouse_filter = 2
 texture = ExtResource("1_fer04")
 stretch_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MainDispenser"]
+clip_contents = true
+layout_mode = 2
+offset_right = 508.0
+offset_bottom = 928.0
+mouse_filter = 2
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 12
+
+[node name="PreviewClip" type="Control" parent="MainDispenser/MarginContainer"]
+clip_contents = true
+layout_mode = 2
+mouse_filter = 2
+
+[node name="PreviewAnchor" type="Control" parent="MainDispenser/MarginContainer/PreviewClip"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_top = 56.0
+grow_horizontal = 0
 
 [node name="GetBlockButton" type="Button" parent="."]
 custom_minimum_size = Vector2(128, 128)
@@ -62,105 +110,109 @@ theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_ds745")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_yg5ff")
 script = ExtResource("2_ojhbp")
 
-[node name="CloudBusterButton" type="Button" parent="GetBlockButton"]
-layout_mode = 2
-offset_left = -353.0
-offset_top = 24.0
-offset_right = -245.0
-offset_bottom = 55.0
-size_flags_horizontal = 4
-size_flags_vertical = 4
-text = "Cloud Buster"
+[node name="GridContainer" type="GridContainer" parent="GetBlockButton"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 1.1
+anchor_right = 1.0
+anchor_bottom = 1.1
+grow_horizontal = 0
+mouse_filter = 2
 
-[node name="Label" type="Label" parent="GetBlockButton/CloudBusterButton"]
+[node name="CloudBusterButton" type="Button" parent="GetBlockButton/GridContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+theme_override_styles/disabled = ExtResource("3_5cs01")
+theme_override_styles/hover = ExtResource("4_v5cnl")
+theme_override_styles/pressed = ExtResource("5_lglat")
+theme_override_styles/normal = ExtResource("6_f16u5")
+
+[node name="Label" type="Label" parent="GetBlockButton/GridContainer/CloudBusterButton"]
 layout_mode = 0
-offset_top = 36.0
-offset_right = 40.0
-offset_bottom = 59.0
+offset_left = 26.0
+offset_top = 43.2
+offset_right = 66.0
+offset_bottom = 66.2
+theme_override_font_sizes/font_size = 12
 text = "100"
 
-[node name="FoodButton" type="Button" parent="GetBlockButton"]
-layout_mode = 0
-offset_left = 34.0
-offset_top = 153.0
-offset_right = 81.0
-offset_bottom = 184.0
-text = "Food"
-
-[node name="Label" type="Label" parent="GetBlockButton/FoodButton"]
-layout_mode = 0
-offset_top = 32.0
-offset_right = 40.0
-offset_bottom = 55.0
-text = "10"
-
-[node name="WaterButton" type="Button" parent="GetBlockButton"]
-layout_mode = 0
-offset_left = 34.0
-offset_top = 219.0
-offset_right = 89.0
-offset_bottom = 250.0
-text = "Water"
-
-[node name="Label" type="Label" parent="GetBlockButton/WaterButton"]
-layout_mode = 0
-offset_top = 32.0
-offset_right = 40.0
-offset_bottom = 55.0
-text = "10"
-
-[node name="ElectricityButton" type="Button" parent="GetBlockButton"]
-layout_mode = 0
-offset_left = 34.0
-offset_top = 282.0
-offset_right = 118.0
-offset_bottom = 313.0
-text = "Electricity"
-
-[node name="Label" type="Label" parent="GetBlockButton/ElectricityButton"]
-layout_mode = 0
-offset_top = 32.0
-offset_right = 40.0
-offset_bottom = 55.0
-text = "10"
-
-[node name="BusinessButton" type="Button" parent="GetBlockButton"]
-layout_mode = 0
-offset_left = 34.0
-offset_top = 342.0
-offset_right = 118.0
-offset_bottom = 373.0
-text = "Business"
-
-[node name="Label" type="Label" parent="GetBlockButton/BusinessButton"]
-layout_mode = 0
-offset_top = 32.0
-offset_right = 40.0
-offset_bottom = 55.0
-text = "50"
-
-[node name="MarginContainer" type="MarginContainer" parent="."]
-clip_contents = true
+[node name="FoodButton" type="Button" parent="GetBlockButton/GridContainer"]
+custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
-mouse_filter = 2
-theme_override_constants/margin_top = 8
-theme_override_constants/margin_right = 12
+size_flags_horizontal = 8
+size_flags_vertical = 0
+theme_override_styles/disabled = ExtResource("7_d3xa1")
+theme_override_styles/hover = ExtResource("8_18fhd")
+theme_override_styles/pressed = ExtResource("9_vx5in")
+theme_override_styles/normal = ExtResource("10_3igmh")
 
-[node name="PreviewClip" type="Control" parent="MarginContainer"]
-clip_contents = true
+[node name="Label" type="Label" parent="GetBlockButton/GridContainer/FoodButton"]
+offset_left = 26.0
+offset_top = 43.2
+offset_right = 66.0
+offset_bottom = 66.2
+theme_override_font_sizes/font_size = 12
+text = "100"
+
+[node name="WaterButton" type="Button" parent="GetBlockButton/GridContainer"]
+custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
-mouse_filter = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+theme_override_styles/disabled = ExtResource("11_m3e5n")
+theme_override_styles/hover = ExtResource("12_ayx5d")
+theme_override_styles/pressed = ExtResource("13_o5jqa")
+theme_override_styles/normal = ExtResource("14_eq34h")
 
-[node name="PreviewAnchor" type="Control" parent="MarginContainer/PreviewClip"]
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_top = 56.0
-grow_horizontal = 0
+[node name="Label" type="Label" parent="GetBlockButton/GridContainer/WaterButton"]
+offset_left = 26.0
+offset_top = 43.2
+offset_right = 66.0
+offset_bottom = 66.2
+theme_override_font_sizes/font_size = 12
+text = "100"
 
-[connection signal="pressed" from="GetBlockButton/CloudBusterButton" to="GetBlockButton" method="_on_cloud_buster_button_pressed"]
-[connection signal="pressed" from="GetBlockButton/FoodButton" to="GetBlockButton" method="_on_food_button_pressed"]
-[connection signal="pressed" from="GetBlockButton/WaterButton" to="GetBlockButton" method="_on_water_button_pressed"]
-[connection signal="pressed" from="GetBlockButton/ElectricityButton" to="GetBlockButton" method="_on_electricity_button_pressed"]
-[connection signal="pressed" from="GetBlockButton/BusinessButton" to="GetBlockButton" method="_on_business_button_pressed"]
+[node name="ElectricityButton" type="Button" parent="GetBlockButton/GridContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+theme_override_styles/disabled = ExtResource("15_bwuyw")
+theme_override_styles/hover = ExtResource("16_xm27e")
+theme_override_styles/pressed = ExtResource("17_8gd5g")
+theme_override_styles/normal = ExtResource("18_1rgnl")
+
+[node name="Label" type="Label" parent="GetBlockButton/GridContainer/ElectricityButton"]
+offset_left = 26.0
+offset_top = 43.2
+offset_right = 66.0
+offset_bottom = 66.2
+theme_override_font_sizes/font_size = 12
+text = "100"
+
+[node name="BusinessButton" type="Button" parent="GetBlockButton/GridContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+theme_override_styles/disabled = ExtResource("19_7a44m")
+theme_override_styles/hover = ExtResource("20_4tnno")
+theme_override_styles/pressed = ExtResource("21_3kw6s")
+theme_override_styles/normal = ExtResource("22_62ptd")
+
+[node name="Label" type="Label" parent="GetBlockButton/GridContainer/BusinessButton"]
+offset_left = 26.0
+offset_top = 43.2
+offset_right = 66.0
+offset_bottom = 66.2
+theme_override_font_sizes/font_size = 12
+text = "100"
+
+[connection signal="pressed" from="GetBlockButton/GridContainer/CloudBusterButton" to="GetBlockButton" method="_on_cloud_buster_button_pressed"]
+[connection signal="pressed" from="GetBlockButton/GridContainer/FoodButton" to="GetBlockButton" method="_on_food_button_pressed"]
+[connection signal="pressed" from="GetBlockButton/GridContainer/WaterButton" to="GetBlockButton" method="_on_water_button_pressed"]
+[connection signal="pressed" from="GetBlockButton/GridContainer/ElectricityButton" to="GetBlockButton" method="_on_electricity_button_pressed"]
+[connection signal="pressed" from="GetBlockButton/GridContainer/BusinessButton" to="GetBlockButton" method="_on_business_button_pressed"]

@@ -13,7 +13,6 @@ var npc_manager: NPCManager
 var main_camera: CameraController
 var block_dispenser: BlockDispenser
 
-
 func _ready() -> void:
 	Player.update_coins(50)
 	Player.coins_changed.connect(_on_coins_changed)
@@ -129,8 +128,6 @@ func place_tile() -> void:
 func update_cells() -> void:
 	for block in BlockManager.placed_blocks:
 		var terrain_id := block.get_source() - 1
-		if terrain_id >= 6:
-			terrain_id = 2
 		placed_tiles_map.set_cells_terrain_connect(block.coords, 0, terrain_id, true)
 		if !block.is_placed_by_player:
 			block.is_placed_by_player = block.is_connected_to_player_block()

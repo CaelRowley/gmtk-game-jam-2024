@@ -1,0 +1,6 @@
+[gd_resource type="StyleBoxTexture" load_steps=2 format=3 uid="uid://dusdyl52aepgv"]
+
+[ext_resource type="Texture2D" uid="uid://c7x6hlomkjqpj" path="res://gui/electric_button_default.png" id="1_p1v20"]
+
+[resource]
+texture = ExtResource("1_p1v20")
