@@ -7,6 +7,10 @@ const tile_size := 128
 @onready var placed_tiles_map := %PlacedTilesMap as TileMapLayer
 
 
+func _ready() -> void:
+	BlockManager.select_random_block(1)
+
+
 func _process(_delta: float) -> void:
 	if BlockManager.current_block != null:
 		next_tile_map.clear()

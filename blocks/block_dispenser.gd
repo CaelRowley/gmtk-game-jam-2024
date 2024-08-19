@@ -26,7 +26,7 @@ func _process(_delta: float) -> void:
 		return
 	if BlockManager.current_block != null:
 		update_held_tile_map(BlockManager.current_block)
-		demo.next_tile_map.position = get_local_mouse_position() - (Vector2.ONE * demo.tile_size / 2.0)
+		demo.next_tile_map.position = demo.get_local_mouse_position() - (Vector2.ONE * demo.tile_size / 2.0)
 
 func progress_upcoming_block():
 	upcoming_block = BlockManager.get_random_block(demo.get_max_zoom())
@@ -41,7 +41,7 @@ func progress_held_block():
 	print("anchor pos: " + str(preview_anchor.global_position))
 	
 	demo.next_tile_map.reparent(demo, true)
-	demo.next_tile_map.position = get_local_mouse_position() - (Vector2.ONE * demo.tile_size / 2.0)
+	demo.next_tile_map.position = demo.get_local_mouse_position() - (Vector2.ONE * demo.tile_size / 2.0)
 	demo.next_tile_map.scale = Vector2.ONE
 	demo.next_tile_map.rotation = 0
 	
@@ -57,7 +57,7 @@ func update_held_tile_map(block: Block):
 	demo.shadow_tile_map.clear()
 	if block == null:
 		return
-	var tile := demo.shadow_tile_map.local_to_map(get_local_mouse_position()) as Vector2
+	var tile := demo.shadow_tile_map.local_to_map(demo.get_local_mouse_position()) as Vector2
 	demo.next_tile_map.set_cells_terrain_connect(block.coords, 0, block.get_source() - 1, true)
 	var shadow_coords = []
 	for c in block.coords:

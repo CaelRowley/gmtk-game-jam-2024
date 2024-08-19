@@ -13,6 +13,7 @@ var main_camera: CameraController
 var block_dispenser: BlockDispenser
 var max_zoom_lvl := 1
 
+
 func _ready() -> void:
 	var parent = self
 	for child in GetUtil.get_all_children(self):
@@ -108,6 +109,8 @@ func place_tile() -> void:
 	update_cells()
 	upkeep()
 	BlockManager.current_block = null
+	block_dispenser.progress_upcoming_block()
+	shadow_tile_map.clear()
 
 
 func update_cells() -> void:
