@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://hqon1v2n3pjv"
+path="res://.godot/imported/320144__owlstorm__blanket-movement-6.wav-b9b1f43298b355f3309240054b425629.sample"
+
+[deps]
+
+source_file="res://audio/sfx/Owlish Media Sound Effects/Cloth, Rustle/320144__owlstorm__blanket-movement-6.wav"
+dest_files=["res://.godot/imported/320144__owlstorm__blanket-movement-6.wav-b9b1f43298b355f3309240054b425629.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

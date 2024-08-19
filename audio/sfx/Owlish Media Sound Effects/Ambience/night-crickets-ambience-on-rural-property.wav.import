@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://cv6t3jb5evfmy"
+path="res://.godot/imported/night-crickets-ambience-on-rural-property.wav-a1b82dfcf986fc6df52383cd685c99bb.sample"
+
+[deps]
+
+source_file="res://audio/sfx/Owlish Media Sound Effects/Ambience/night-crickets-ambience-on-rural-property.wav"
+dest_files=["res://.godot/imported/night-crickets-ambience-on-rural-property.wav-a1b82dfcf986fc6df52383cd685c99bb.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

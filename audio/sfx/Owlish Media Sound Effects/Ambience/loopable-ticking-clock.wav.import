@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://drmv737j0kmv"
+path="res://.godot/imported/loopable-ticking-clock.wav-78d005a6f3967f9b3d360caed26f9b5c.sample"
+
+[deps]
+
+source_file="res://audio/sfx/Owlish Media Sound Effects/Ambience/loopable-ticking-clock.wav"
+dest_files=["res://.godot/imported/loopable-ticking-clock.wav-78d005a6f3967f9b3d360caed26f9b5c.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0
