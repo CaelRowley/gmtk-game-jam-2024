@@ -22,6 +22,7 @@ AudioManager="*res://globals/audio_manager.tscn"
 SceneManager="*res://globals/scene_manager.tscn"
 BlockManager="*res://globals/block_manager.tscn"
 Player="*res://globals/player.tscn"
+Settings="*res://globals/settings.gd"
 
 [display]
 

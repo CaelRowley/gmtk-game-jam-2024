@@ -234,6 +234,7 @@ func upkeep():
 
 #Tutorial Menu Actions
 func _on_return_button_pressed() -> void:
+	Settings.skip_tutorial = true
 	print("Changed scene")
 	SceneManager.goto_scene("res://levels/game.tscn")
 

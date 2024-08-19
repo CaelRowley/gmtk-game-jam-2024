@@ -320,3 +320,78 @@ theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 4
 text = "Score: 0"
 horizontal_alignment = 1
+
+[node name="PauseMenu" type="PanelContainer" parent="CanvasLayer"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/PauseMenu"]
+layout_mode = 2
+alignment = 1
+
+[node name="Spacer" type="Control" parent="CanvasLayer/PauseMenu/VBoxContainer"]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+
+[node name="ResumeButton" type="Button" parent="CanvasLayer/PauseMenu/VBoxContainer"]
+layout_mode = 2
+text = "Resume"
+
+[node name="Label" type="Label" parent="CanvasLayer/PauseMenu/VBoxContainer"]
+layout_mode = 2
+text = "Master"
+
+[node name="MasterSlider" type="HSlider" parent="CanvasLayer/PauseMenu/VBoxContainer"]
+layout_mode = 2
+max_value = 1.0
+step = 0.01
+
+[node name="Label2" type="Label" parent="CanvasLayer/PauseMenu/VBoxContainer"]
+layout_mode = 2
+text = "Music"
+
+[node name="MusicSlider" type="HSlider" parent="CanvasLayer/PauseMenu/VBoxContainer"]
+layout_mode = 2
+max_value = 1.0
+step = 0.01
+
+[node name="Label3" type="Label" parent="CanvasLayer/PauseMenu/VBoxContainer"]
+layout_mode = 2
+text = "SFX"
+
+[node name="SFXSlider" type="HSlider" parent="CanvasLayer/PauseMenu/VBoxContainer"]
+layout_mode = 2
+max_value = 1.0
+step = 0.01
+
+[node name="CheckBox" type="CheckBox" parent="CanvasLayer/PauseMenu/VBoxContainer"]
+layout_mode = 2
+text = "Fullscreen
+"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/PauseMenu/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="RestartButton" type="Button" parent="CanvasLayer/PauseMenu/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Restart
+"
+
+[node name="QuitButton" type="Button" parent="CanvasLayer/PauseMenu/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Quit"
+
+[connection signal="pressed" from="CanvasLayer/PauseMenu/VBoxContainer/ResumeButton" to="." method="_on_resume_button_pressed"]
+[connection signal="value_changed" from="CanvasLayer/PauseMenu/VBoxContainer/MasterSlider" to="." method="_on_master_slider_value_changed"]
+[connection signal="value_changed" from="CanvasLayer/PauseMenu/VBoxContainer/MusicSlider" to="." method="_on_music_slider_value_changed"]
+[connection signal="value_changed" from="CanvasLayer/PauseMenu/VBoxContainer/SFXSlider" to="." method="_on_sfx_slider_value_changed"]
+[connection signal="toggled" from="CanvasLayer/PauseMenu/VBoxContainer/CheckBox" to="." method="_on_check_box_toggled"]
+[connection signal="pressed" from="CanvasLayer/PauseMenu/VBoxContainer/HBoxContainer/RestartButton" to="." method="_on_restart_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/PauseMenu/VBoxContainer/HBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
