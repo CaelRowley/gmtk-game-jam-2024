@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=4 uid="uid://th56aldp1a1x"]
+[gd_scene load_steps=36 format=4 uid="uid://th56aldp1a1x"]
 
 [ext_resource type="Script" path="res://levels/demo.gd" id="1_4mqve"]
 [ext_resource type="Script" path="res://camera/camera_controller.gd" id="1_tm8sg"]
@@ -23,6 +23,8 @@
 [ext_resource type="Texture2D" uid="uid://dd3sythk5fm8v" path="res://assets/ui/icons/signal-2024-08-19-174136_003.png" id="18_wb7fd"]
 [ext_resource type="Texture2D" uid="uid://dsxgvhjnimfw2" path="res://assets/ui/icons/bar.png" id="22_kcpvf"]
 [ext_resource type="Texture2D" uid="uid://cd4fsrpoxflnv" path="res://assets/ui/kenney/Grey/Default/button_rectangle_flat.png" id="22_ktmsj"]
+[ext_resource type="Texture2D" uid="uid://whohdp5ckx1b" path="res://assets/ui/icons/icon_floors.png" id="23_nbhii"]
+[ext_resource type="Texture2D" uid="uid://bimhtmn4ed2as" path="res://assets/ui/icons/pill_shaped_bar.png" id="24_fh0yi"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_jj5xk"]
 
@@ -47,9 +49,6 @@ texture_margin_bottom = 10.0
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ktyi4"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jggi2"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qs34u"]
-content_margin_left = 0.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bltss"]
 bg_color = Color(0, 0, 0, 0.839216)
@@ -146,6 +145,7 @@ size_flags_horizontal = 2
 mouse_filter = 1
 
 [node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/GameUI"]
+visible = false
 layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
@@ -361,215 +361,422 @@ theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 20
 text = "(+0)"
 
-[node name="PanelContainer2" type="PanelContainer" parent="CanvasLayer/GameUI"]
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = -671.0
-offset_bottom = -907.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxEmpty_qs34u")
-
-[node name="Score" type="Label" parent="CanvasLayer/GameUI/PanelContainer2"]
-layout_mode = 2
-theme = ExtResource("17_u3nbk")
-theme_override_colors/font_color = Color(0.97, 0.846325, 0.1455, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 4
-theme_override_font_sizes/font_size = 24
-text = "Score: 0"
-horizontal_alignment = 1
-
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/GameUI"]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="Control" type="Control" parent="CanvasLayer/GameUI/HBoxContainer"]
+custom_minimum_size = Vector2(5, 5)
+layout_mode = 2
 
 [node name="VBoxContainerLeft" type="VBoxContainer" parent="CanvasLayer/GameUI/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_constants/separation = 0
+alignment = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/GameUI/HBoxContainer/VBoxContainerLeft"]
+[node name="LevelContainer" type="HBoxContainer" parent="CanvasLayer/GameUI/HBoxContainer/VBoxContainerLeft"]
 layout_mode = 2
 
-[node name="Control" type="Control" parent="CanvasLayer/GameUI/HBoxContainer/VBoxContainerLeft/HBoxContainer"]
+[node name="Control" type="Control" parent="CanvasLayer/GameUI/HBoxContainer/VBoxContainerLeft/LevelContainer"]
 custom_minimum_size = Vector2(34, 34)
 layout_mode = 2
 
-[node name="TextureRect3" type="TextureRect" parent="CanvasLayer/GameUI/HBoxContainer/VBoxContainerLeft/HBoxContainer/Control"]
+[node name="TextureRect3" type="TextureRect" parent="CanvasLayer/GameUI/HBoxContainer/VBoxContainerLeft/LevelContainer/Control"]
 layout_mode = 0
-offset_left = 14.0
-offset_top = 12.0
-offset_right = 117.0
-offset_bottom = 42.0
+offset_left = 15.0
+offset_top = 3.0
+offset_right = 118.0
+offset_bottom = 33.0
 texture = ExtResource("22_kcpvf")
 expand_mode = 1
 
-[node name="TextureRect2" type="TextureRect" parent="CanvasLayer/GameUI/HBoxContainer/VBoxContainerLeft/HBoxContainer/Control"]
+[node name="TextureRect2" type="TextureRect" parent="CanvasLayer/GameUI/HBoxContainer/VBoxContainerLeft/LevelContainer/Control"]
 layout_mode = 0
 offset_right = 34.0
 offset_bottom = 34.0
 texture = ExtResource("12_1wh4r")
 expand_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/GameUI/HBoxContainer/VBoxContainerLeft/HBoxContainer/Control"]
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/GameUI/HBoxContainer/VBoxContainerLeft/LevelContainer/Control"]
 layout_mode = 0
 offset_right = 34.0
 offset_bottom = 34.0
 texture = ExtResource("12_ues7x")
 expand_mode = 2
 
-[node name="Level" type="Label" parent="CanvasLayer/GameUI/HBoxContainer/VBoxContainerLeft/HBoxContainer"]
+[node name="Level" type="Label" parent="CanvasLayer/GameUI/HBoxContainer/VBoxContainerLeft/LevelContainer"]
 layout_mode = 2
 theme = ExtResource("17_u3nbk")
-theme_override_colors/font_color = Color(0.97, 0.846325, 0.1455, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 4
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 24
-text = "0"
+text = "4"
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="CanvasLayer/GameUI/HBoxContainer/VBoxContainerLeft"]
+[node name="Control3" type="Control" parent="CanvasLayer/GameUI/HBoxContainer/VBoxContainerLeft"]
+custom_minimum_size = Vector2(0, 5)
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/GameUI/HBoxContainer/VBoxContainerLeft/HBoxContainer2"]
+[node name="HeightContainer" type="HBoxContainer" parent="CanvasLayer/GameUI/HBoxContainer/VBoxContainerLeft"]
 layout_mode = 2
-texture = ExtResource("12_v60yx")
+
+[node name="Control" type="Control" parent="CanvasLayer/GameUI/HBoxContainer/VBoxContainerLeft/HeightContainer"]
+custom_minimum_size = Vector2(34, 34)
+layout_mode = 2
+
+[node name="TextureRect3" type="TextureRect" parent="CanvasLayer/GameUI/HBoxContainer/VBoxContainerLeft/HeightContainer/Control"]
+layout_mode = 0
+offset_left = 15.0
+offset_top = 3.0
+offset_right = 118.0
+offset_bottom = 33.0
+texture = ExtResource("22_kcpvf")
+expand_mode = 1
+
+[node name="TextureRect2" type="TextureRect" parent="CanvasLayer/GameUI/HBoxContainer/VBoxContainerLeft/HeightContainer/Control"]
+layout_mode = 0
+offset_right = 34.0
+offset_bottom = 34.0
+texture = ExtResource("12_1wh4r")
 expand_mode = 2
 
-[node name="Floors" type="Label" parent="CanvasLayer/GameUI/HBoxContainer/VBoxContainerLeft/HBoxContainer2"]
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/GameUI/HBoxContainer/VBoxContainerLeft/HeightContainer/Control"]
+layout_mode = 0
+offset_right = 34.0
+offset_bottom = 34.0
+texture = ExtResource("23_nbhii")
+expand_mode = 2
+
+[node name="Floors" type="Label" parent="CanvasLayer/GameUI/HBoxContainer/VBoxContainerLeft/HeightContainer"]
 layout_mode = 2
 theme = ExtResource("17_u3nbk")
-theme_override_colors/font_color = Color(0.968627, 0.847059, 0.145098, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 4
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 24
 text = "0"
 
-[node name="HBoxContainer3" type="HBoxContainer" parent="CanvasLayer/GameUI/HBoxContainer/VBoxContainerLeft"]
+[node name="Control2" type="Control" parent="CanvasLayer/GameUI/HBoxContainer/VBoxContainerLeft"]
+custom_minimum_size = Vector2(0, 5)
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/GameUI/HBoxContainer/VBoxContainerLeft/HBoxContainer3"]
+[node name="PeopleContainer" type="HBoxContainer" parent="CanvasLayer/GameUI/HBoxContainer/VBoxContainerLeft"]
 layout_mode = 2
+
+[node name="Control" type="Control" parent="CanvasLayer/GameUI/HBoxContainer/VBoxContainerLeft/PeopleContainer"]
+custom_minimum_size = Vector2(34, 34)
+layout_mode = 2
+
+[node name="TextureRect3" type="TextureRect" parent="CanvasLayer/GameUI/HBoxContainer/VBoxContainerLeft/PeopleContainer/Control"]
+layout_mode = 0
+offset_left = 15.0
+offset_top = 3.0
+offset_right = 118.0
+offset_bottom = 33.0
+texture = ExtResource("22_kcpvf")
+expand_mode = 1
+
+[node name="TextureRect2" type="TextureRect" parent="CanvasLayer/GameUI/HBoxContainer/VBoxContainerLeft/PeopleContainer/Control"]
+layout_mode = 0
+offset_right = 34.0
+offset_bottom = 34.0
+texture = ExtResource("12_1wh4r")
+expand_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/GameUI/HBoxContainer/VBoxContainerLeft/PeopleContainer/Control"]
+layout_mode = 0
+offset_right = 34.0
+offset_bottom = 34.0
 texture = ExtResource("14_hpj0u")
-expand_mode = 3
+expand_mode = 2
 
-[node name="People" type="Label" parent="CanvasLayer/GameUI/HBoxContainer/VBoxContainerLeft/HBoxContainer3"]
+[node name="People" type="Label" parent="CanvasLayer/GameUI/HBoxContainer/VBoxContainerLeft/PeopleContainer"]
 layout_mode = 2
 theme = ExtResource("17_u3nbk")
-theme_override_colors/font_color = Color(0.968627, 0.847059, 0.145098, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 4
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 24
 text = "0"
+
+[node name="Control" type="Control" parent="CanvasLayer/GameUI/HBoxContainer/VBoxContainerLeft"]
+custom_minimum_size = Vector2(0, 18)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/GameUI/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 2
+
+[node name="Control" type="Control" parent="CanvasLayer/GameUI/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/GameUI/HBoxContainer/VBoxContainer/Control"]
+layout_mode = 0
+offset_right = 200.0
+offset_bottom = 50.0
+texture = ExtResource("24_fh0yi")
+expand_mode = 2
+stretch_mode = 4
+
+[node name="TextureRect2" type="TextureRect" parent="CanvasLayer/GameUI/HBoxContainer/VBoxContainer/Control"]
+layout_mode = 0
+offset_left = 47.0
+offset_top = -16.0
+offset_right = 247.0
+offset_bottom = 34.0
+scale = Vector2(0.440005, 0.6)
+texture = ExtResource("24_fh0yi")
+expand_mode = 2
+stretch_mode = 4
+
+[node name="Score" type="Label" parent="CanvasLayer/GameUI/HBoxContainer/VBoxContainer/Control"]
+layout_mode = 2
+offset_top = -15.0
+offset_right = 171.0
+offset_bottom = 13.0
+theme = ExtResource("17_u3nbk")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
+text = "Score"
+horizontal_alignment = 1
+
+[node name="Value" type="Label" parent="CanvasLayer/GameUI/HBoxContainer/VBoxContainer/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -61.5
+offset_top = -17.0
+offset_right = 61.5
+offset_bottom = 17.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("17_u3nbk")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 24
+text = "000000"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Control2" type="Control" parent="CanvasLayer/GameUI/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 5)
+layout_mode = 2
 
 [node name="VBoxContainerRight" type="VBoxContainer" parent="CanvasLayer/GameUI/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+alignment = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/GameUI/HBoxContainer/VBoxContainerRight"]
+[node name="FoodContainer" type="HBoxContainer" parent="CanvasLayer/GameUI/HBoxContainer/VBoxContainerRight"]
 layout_mode = 2
-size_flags_horizontal = 8
+alignment = 2
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/GameUI/HBoxContainer/VBoxContainerRight/HBoxContainer"]
+[node name="Total" type="Label" parent="CanvasLayer/GameUI/HBoxContainer/VBoxContainerRight/FoodContainer"]
+z_index = 1
 layout_mode = 2
+theme = ExtResource("18_rfxyh")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 12
+text = "9999"
+
+[node name="Change" type="Label" parent="CanvasLayer/GameUI/HBoxContainer/VBoxContainerRight/FoodContainer"]
+z_index = 1
+layout_mode = 2
+theme = ExtResource("18_rfxyh")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 12
+text = "(+999)"
+
+[node name="Control" type="Control" parent="CanvasLayer/GameUI/HBoxContainer/VBoxContainerRight/FoodContainer"]
+custom_minimum_size = Vector2(26, 26)
+layout_mode = 2
+
+[node name="TextureRect3" type="TextureRect" parent="CanvasLayer/GameUI/HBoxContainer/VBoxContainerRight/FoodContainer/Control"]
+layout_mode = 0
+offset_left = -85.0
+offset_top = 3.00001
+offset_right = 18.0
+offset_bottom = 25.635
+scale = Vector2(1.08, 1)
+texture = ExtResource("22_kcpvf")
+expand_mode = 1
+
+[node name="TextureRect2" type="TextureRect" parent="CanvasLayer/GameUI/HBoxContainer/VBoxContainerRight/FoodContainer/Control"]
+layout_mode = 0
+offset_right = 26.0
+offset_bottom = 26.0
+texture = ExtResource("12_1wh4r")
+expand_mode = 4
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/GameUI/HBoxContainer/VBoxContainerRight/FoodContainer/Control"]
+layout_mode = 0
+offset_right = 26.0
+offset_bottom = 26.0
 texture = ExtResource("14_jw50g")
 expand_mode = 2
 
-[node name="Food" type="Label" parent="CanvasLayer/GameUI/HBoxContainer/VBoxContainerRight/HBoxContainer"]
+[node name="WaterContainer" type="HBoxContainer" parent="CanvasLayer/GameUI/HBoxContainer/VBoxContainerRight"]
+layout_mode = 2
+alignment = 2
+
+[node name="Total" type="Label" parent="CanvasLayer/GameUI/HBoxContainer/VBoxContainerRight/WaterContainer"]
+z_index = 1
 layout_mode = 2
 theme = ExtResource("18_rfxyh")
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 20
-text = "15"
+theme_override_font_sizes/font_size = 12
+text = "9999"
 
-[node name="Change" type="Label" parent="CanvasLayer/GameUI/HBoxContainer/VBoxContainerRight/HBoxContainer"]
+[node name="Change" type="Label" parent="CanvasLayer/GameUI/HBoxContainer/VBoxContainerRight/WaterContainer"]
+z_index = 1
 layout_mode = 2
 theme = ExtResource("18_rfxyh")
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 20
-text = "(+0)"
+theme_override_font_sizes/font_size = 12
+text = "(+999)"
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="CanvasLayer/GameUI/HBoxContainer/VBoxContainerRight"]
+[node name="Control" type="Control" parent="CanvasLayer/GameUI/HBoxContainer/VBoxContainerRight/WaterContainer"]
+custom_minimum_size = Vector2(26, 26)
 layout_mode = 2
-size_flags_horizontal = 8
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/GameUI/HBoxContainer/VBoxContainerRight/HBoxContainer2"]
-layout_mode = 2
+[node name="TextureRect3" type="TextureRect" parent="CanvasLayer/GameUI/HBoxContainer/VBoxContainerRight/WaterContainer/Control"]
+layout_mode = 0
+offset_left = -85.0
+offset_top = 3.00001
+offset_right = 18.0
+offset_bottom = 25.635
+scale = Vector2(1.08, 1)
+texture = ExtResource("22_kcpvf")
+expand_mode = 1
+
+[node name="TextureRect2" type="TextureRect" parent="CanvasLayer/GameUI/HBoxContainer/VBoxContainerRight/WaterContainer/Control"]
+layout_mode = 0
+offset_right = 26.0
+offset_bottom = 26.0
+texture = ExtResource("12_1wh4r")
+expand_mode = 4
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/GameUI/HBoxContainer/VBoxContainerRight/WaterContainer/Control"]
+layout_mode = 0
+offset_right = 26.0
+offset_bottom = 26.0
 texture = ExtResource("16_520dv")
 expand_mode = 2
 
-[node name="Water" type="Label" parent="CanvasLayer/GameUI/HBoxContainer/VBoxContainerRight/HBoxContainer2"]
+[node name="PowerContainer" type="HBoxContainer" parent="CanvasLayer/GameUI/HBoxContainer/VBoxContainerRight"]
 layout_mode = 2
-theme = ExtResource("18_rfxyh")
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 20
-text = "20"
+alignment = 2
 
-[node name="Change" type="Label" parent="CanvasLayer/GameUI/HBoxContainer/VBoxContainerRight/HBoxContainer2"]
+[node name="Total" type="Label" parent="CanvasLayer/GameUI/HBoxContainer/VBoxContainerRight/PowerContainer"]
+z_index = 1
 layout_mode = 2
 theme = ExtResource("18_rfxyh")
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 20
-text = "(+0)"
+theme_override_font_sizes/font_size = 12
+text = "9999"
 
-[node name="HBoxContainer3" type="HBoxContainer" parent="CanvasLayer/GameUI/HBoxContainer/VBoxContainerRight"]
+[node name="Change" type="Label" parent="CanvasLayer/GameUI/HBoxContainer/VBoxContainerRight/PowerContainer"]
+z_index = 1
 layout_mode = 2
-size_flags_horizontal = 8
+theme = ExtResource("18_rfxyh")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 12
+text = "(+999)"
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/GameUI/HBoxContainer/VBoxContainerRight/HBoxContainer3"]
+[node name="Control" type="Control" parent="CanvasLayer/GameUI/HBoxContainer/VBoxContainerRight/PowerContainer"]
+custom_minimum_size = Vector2(26, 26)
 layout_mode = 2
+
+[node name="TextureRect3" type="TextureRect" parent="CanvasLayer/GameUI/HBoxContainer/VBoxContainerRight/PowerContainer/Control"]
+layout_mode = 0
+offset_left = -85.0
+offset_top = 3.00001
+offset_right = 18.0
+offset_bottom = 25.635
+scale = Vector2(1.08, 1)
+texture = ExtResource("22_kcpvf")
+expand_mode = 1
+
+[node name="TextureRect2" type="TextureRect" parent="CanvasLayer/GameUI/HBoxContainer/VBoxContainerRight/PowerContainer/Control"]
+layout_mode = 0
+offset_right = 26.0
+offset_bottom = 26.0
+texture = ExtResource("12_1wh4r")
+expand_mode = 4
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/GameUI/HBoxContainer/VBoxContainerRight/PowerContainer/Control"]
+layout_mode = 0
+offset_right = 26.0
+offset_bottom = 26.0
 texture = ExtResource("17_dx3mw")
 expand_mode = 2
 
-[node name="Electricity" type="Label" parent="CanvasLayer/GameUI/HBoxContainer/VBoxContainerRight/HBoxContainer3"]
+[node name="CoinContainer" type="HBoxContainer" parent="CanvasLayer/GameUI/HBoxContainer/VBoxContainerRight"]
 layout_mode = 2
-theme = ExtResource("18_rfxyh")
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 0
-theme_override_font_sizes/font_size = 20
-text = "30"
+alignment = 2
 
-[node name="Change" type="Label" parent="CanvasLayer/GameUI/HBoxContainer/VBoxContainerRight/HBoxContainer3"]
+[node name="Total" type="Label" parent="CanvasLayer/GameUI/HBoxContainer/VBoxContainerRight/CoinContainer"]
+z_index = 1
 layout_mode = 2
 theme = ExtResource("18_rfxyh")
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 20
-text = "(+0)"
+theme_override_font_sizes/font_size = 12
+text = "9999"
 
-[node name="HBoxContainer4" type="HBoxContainer" parent="CanvasLayer/GameUI/HBoxContainer/VBoxContainerRight"]
-layout_mode = 2
-size_flags_horizontal = 8
-
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/GameUI/HBoxContainer/VBoxContainerRight/HBoxContainer4"]
-layout_mode = 2
-texture = ExtResource("18_wb7fd")
-expand_mode = 3
-
-[node name="Coins" type="Label" parent="CanvasLayer/GameUI/HBoxContainer/VBoxContainerRight/HBoxContainer4"]
-layout_mode = 2
-theme = ExtResource("18_rfxyh")
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 20
-text = "0"
-
-[node name="Change" type="Label" parent="CanvasLayer/GameUI/HBoxContainer/VBoxContainerRight/HBoxContainer4"]
+[node name="Change" type="Label" parent="CanvasLayer/GameUI/HBoxContainer/VBoxContainerRight/CoinContainer"]
+z_index = 1
 layout_mode = 2
 theme = ExtResource("18_rfxyh")
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 20
-text = "(+0)"
+theme_override_font_sizes/font_size = 12
+text = "(+999)"
+
+[node name="Control" type="Control" parent="CanvasLayer/GameUI/HBoxContainer/VBoxContainerRight/CoinContainer"]
+custom_minimum_size = Vector2(26, 26)
+layout_mode = 2
+
+[node name="TextureRect3" type="TextureRect" parent="CanvasLayer/GameUI/HBoxContainer/VBoxContainerRight/CoinContainer/Control"]
+layout_mode = 0
+offset_left = -85.0
+offset_top = 3.00001
+offset_right = 18.0
+offset_bottom = 25.635
+scale = Vector2(1.08, 1)
+texture = ExtResource("22_kcpvf")
+expand_mode = 1
+
+[node name="TextureRect2" type="TextureRect" parent="CanvasLayer/GameUI/HBoxContainer/VBoxContainerRight/CoinContainer/Control"]
+layout_mode = 0
+offset_right = 26.0
+offset_bottom = 26.0
+texture = ExtResource("12_1wh4r")
+expand_mode = 4
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/GameUI/HBoxContainer/VBoxContainerRight/CoinContainer/Control"]
+layout_mode = 0
+offset_right = 26.0
+offset_bottom = 26.0
+texture = ExtResource("14_jw50g")
+expand_mode = 2
+
+[node name="Control" type="Control" parent="CanvasLayer/GameUI/HBoxContainer/VBoxContainerRight"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+
+[node name="Control2" type="Control" parent="CanvasLayer/GameUI/HBoxContainer"]
+custom_minimum_size = Vector2(5, 5)
+layout_mode = 2
 
 [node name="PauseMenu" type="PanelContainer" parent="CanvasLayer"]
 visible = false
@@ -769,6 +976,18 @@ layout_mode = 2
 size_flags_horizontal = 3
 text = "Restart
 "
+
+[node name="Control3" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 269.0
+offset_top = 960.0
+offset_right = 269.0
+offset_bottom = 960.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 4
+size_flags_vertical = 4
 
 [connection signal="toggled" from="CanvasLayer/PauseMenu/PanelContainer/VBoxContainer/CheckBox" to="." method="_on_check_box_toggled"]
 [connection signal="value_changed" from="CanvasLayer/PauseMenu/PanelContainer/VBoxContainer/MasterSlider" to="." method="_on_master_slider_value_changed"]
