@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://th56aldp1a1x" path="res://levels/game.tscn" id="1_na27k"]
 [ext_resource type="Theme" uid="uid://cmj8hf5q50coi" path="res://assets/themes/button_skip_theme.tres" id="2_pgsaf"]
 [ext_resource type="Script" path="res://levels/new_tut.gd" id="2_syrb2"]
-[ext_resource type="StyleBox" path="res://assets/themes/text_prompt.tres" id="3_53n5i"]
+[ext_resource type="StyleBox" uid="uid://5d8aki4kdpo3" path="res://assets/themes/text_prompt.tres" id="3_53n5i"]
 [ext_resource type="Theme" uid="uid://cp6kq4e452w4s" path="res://assets/themes/default_theme.tres" id="4_h237w"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ucp35"]
