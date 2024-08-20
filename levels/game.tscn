@@ -391,7 +391,7 @@ grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_bltss")
 
 [node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/PauseMenu"]
-self_modulate = Color(0.266337, 0.543986, 0.60166, 1)
+self_modulate = Color(0.247059, 0.466667, 0.780392, 1)
 custom_minimum_size = Vector2(400, 400)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -403,13 +403,20 @@ layout_mode = 2
 theme = ExtResource("18_rfxyh")
 alignment = 1
 
+[node name="Label4" type="Label" parent="CanvasLayer/PauseMenu/PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Settings"
+horizontal_alignment = 1
+
 [node name="Spacer" type="Control" parent="CanvasLayer/PauseMenu/PanelContainer/VBoxContainer"]
 custom_minimum_size = Vector2(30, 30)
 layout_mode = 2
 
-[node name="ResumeButton" type="Button" parent="CanvasLayer/PauseMenu/PanelContainer/VBoxContainer"]
+[node name="CheckBox" type="CheckBox" parent="CanvasLayer/PauseMenu/PanelContainer/VBoxContainer"]
 layout_mode = 2
-text = "Resume"
+text = "Fullscreen
+"
 
 [node name="Label" type="Label" parent="CanvasLayer/PauseMenu/PanelContainer/VBoxContainer"]
 layout_mode = 2
@@ -438,35 +445,24 @@ layout_mode = 2
 max_value = 1.0
 step = 0.01
 
-[node name="CheckBox" type="CheckBox" parent="CanvasLayer/PauseMenu/PanelContainer/VBoxContainer"]
-layout_mode = 2
-text = "Fullscreen
-"
-
 [node name="TutorialButton" type="Button" parent="CanvasLayer/PauseMenu/PanelContainer/VBoxContainer"]
 layout_mode = 2
 text = "Tutorial"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/PauseMenu/PanelContainer/VBoxContainer"]
-layout_mode = 2
-alignment = 1
-
-[node name="RestartButton" type="Button" parent="CanvasLayer/PauseMenu/PanelContainer/VBoxContainer/HBoxContainer"]
+[node name="RestartButton" type="Button" parent="CanvasLayer/PauseMenu/PanelContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Restart
 "
 
-[node name="QuitButton" type="Button" parent="CanvasLayer/PauseMenu/PanelContainer/VBoxContainer/HBoxContainer"]
+[node name="ResumeButton" type="Button" parent="CanvasLayer/PauseMenu/PanelContainer/VBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 3
-text = "Quit"
+text = "Resume"
 
-[connection signal="pressed" from="CanvasLayer/PauseMenu/PanelContainer/VBoxContainer/ResumeButton" to="." method="_on_resume_button_pressed"]
+[connection signal="toggled" from="CanvasLayer/PauseMenu/PanelContainer/VBoxContainer/CheckBox" to="." method="_on_check_box_toggled"]
 [connection signal="value_changed" from="CanvasLayer/PauseMenu/PanelContainer/VBoxContainer/MasterSlider" to="." method="_on_master_slider_value_changed"]
 [connection signal="value_changed" from="CanvasLayer/PauseMenu/PanelContainer/VBoxContainer/MusicSlider" to="." method="_on_music_slider_value_changed"]
 [connection signal="value_changed" from="CanvasLayer/PauseMenu/PanelContainer/VBoxContainer/SFXSlider" to="." method="_on_sfx_slider_value_changed"]
-[connection signal="toggled" from="CanvasLayer/PauseMenu/PanelContainer/VBoxContainer/CheckBox" to="." method="_on_check_box_toggled"]
 [connection signal="pressed" from="CanvasLayer/PauseMenu/PanelContainer/VBoxContainer/TutorialButton" to="." method="_on_tutorial_button_pressed"]
-[connection signal="pressed" from="CanvasLayer/PauseMenu/PanelContainer/VBoxContainer/HBoxContainer/RestartButton" to="." method="_on_restart_button_pressed"]
-[connection signal="pressed" from="CanvasLayer/PauseMenu/PanelContainer/VBoxContainer/HBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/PauseMenu/PanelContainer/VBoxContainer/RestartButton" to="." method="_on_restart_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/PauseMenu/PanelContainer/VBoxContainer/ResumeButton" to="." method="_on_resume_button_pressed"]
