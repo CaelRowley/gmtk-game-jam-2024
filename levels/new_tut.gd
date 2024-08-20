@@ -407,7 +407,7 @@ func _on_check_box_toggled(button_pressed: bool) -> void:
 
 
 func _on_restart_button_pressed() -> void:
-	SceneManager.goto_scene("res://levels/game.tscn")
+	SceneManager.goto_scene("res://levels/new_tut.tscn")
 
 
 func _on_quit_button_pressed() -> void:
@@ -420,7 +420,7 @@ func _on_resume_button_pressed() -> void:
 
 
 func _on_tutorial_button_pressed() -> void:
-	SceneManager.goto_scene("res://levels/tutorial.tscn")
+	SceneManager.goto_scene("res://levels/new_tut.tscn")
 
 
 #Tutorial Menu Actions
