@@ -175,10 +175,10 @@ var weighted_block_types = {
 	},
 	Block.Type.WATER: {
 		item = Block.Type.WATER,
-		weight = 100,
-		default_weight = 100,
+		weight = 110,
+		default_weight = 110,
 		neg_accumulator = 0,
-		pos_accumulator = 25,
+		pos_accumulator = 50,
 	},
 	Block.Type.ELECTRICITY: {
 		item = Block.Type.ELECTRICITY,

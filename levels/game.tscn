@@ -780,7 +780,7 @@ expand_mode = 4
 layout_mode = 0
 offset_right = 26.0
 offset_bottom = 26.0
-texture = ExtResource("14_jw50g")
+texture = ExtResource("18_wb7fd")
 expand_mode = 2
 
 [node name="Control" type="Control" parent="CanvasLayer/GameUI/HBoxContainer/VBoxContainerRight"]
@@ -924,57 +924,93 @@ visible = false
 layout_mode = 2
 alignment = 1
 
-[node name="TextureRect2" type="TextureRect" parent="CanvasLayer/FailMenu/PanelContainer/VBoxContainer/Water"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/FailMenu/PanelContainer/VBoxContainer/Water"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/FailMenu/PanelContainer/VBoxContainer/Water/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="TextureRect2" type="TextureRect" parent="CanvasLayer/FailMenu/PanelContainer/VBoxContainer/Water/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 texture = ExtResource("16_520dv")
 expand_mode = 3
 
-[node name="Label" type="Label" parent="CanvasLayer/FailMenu/PanelContainer/VBoxContainer/Water"]
+[node name="Label" type="Label" parent="CanvasLayer/FailMenu/PanelContainer/VBoxContainer/Water/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 text = "You ran out of water"
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/FailMenu/PanelContainer/VBoxContainer/Water"]
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/FailMenu/PanelContainer/VBoxContainer/Water/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 texture = ExtResource("16_520dv")
 expand_mode = 3
+
+[node name="Label" type="Label" parent="CanvasLayer/FailMenu/PanelContainer/VBoxContainer/Water/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "Water Blocks need a ceiling exposed to the outside to work!"
 
 [node name="Food" type="HBoxContainer" parent="CanvasLayer/FailMenu/PanelContainer/VBoxContainer"]
 visible = false
 layout_mode = 2
 alignment = 1
 
-[node name="TextureRect2" type="TextureRect" parent="CanvasLayer/FailMenu/PanelContainer/VBoxContainer/Food"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/FailMenu/PanelContainer/VBoxContainer/Food"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/FailMenu/PanelContainer/VBoxContainer/Food/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="TextureRect2" type="TextureRect" parent="CanvasLayer/FailMenu/PanelContainer/VBoxContainer/Food/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 texture = ExtResource("14_jw50g")
 expand_mode = 3
 
-[node name="Label" type="Label" parent="CanvasLayer/FailMenu/PanelContainer/VBoxContainer/Food"]
+[node name="Label" type="Label" parent="CanvasLayer/FailMenu/PanelContainer/VBoxContainer/Food/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 text = "You ran out of food"
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/FailMenu/PanelContainer/VBoxContainer/Food"]
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/FailMenu/PanelContainer/VBoxContainer/Food/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 texture = ExtResource("14_jw50g")
 expand_mode = 3
+
+[node name="Label" type="Label" parent="CanvasLayer/FailMenu/PanelContainer/VBoxContainer/Food/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "Food Blocks need a side wall exposed to the outside to work!"
 
 [node name="Power" type="HBoxContainer" parent="CanvasLayer/FailMenu/PanelContainer/VBoxContainer"]
 visible = false
 layout_mode = 2
 alignment = 1
 
-[node name="TextureRect2" type="TextureRect" parent="CanvasLayer/FailMenu/PanelContainer/VBoxContainer/Power"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/FailMenu/PanelContainer/VBoxContainer/Power"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/FailMenu/PanelContainer/VBoxContainer/Power/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="TextureRect2" type="TextureRect" parent="CanvasLayer/FailMenu/PanelContainer/VBoxContainer/Power/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 texture = ExtResource("17_dx3mw")
 expand_mode = 3
 
-[node name="Label" type="Label" parent="CanvasLayer/FailMenu/PanelContainer/VBoxContainer/Power"]
+[node name="Label" type="Label" parent="CanvasLayer/FailMenu/PanelContainer/VBoxContainer/Power/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 text = "You ran out of power"
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/FailMenu/PanelContainer/VBoxContainer/Power"]
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/FailMenu/PanelContainer/VBoxContainer/Power/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 texture = ExtResource("17_dx3mw")
 expand_mode = 3
+
+[node name="Label" type="Label" parent="CanvasLayer/FailMenu/PanelContainer/VBoxContainer/Power/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "Power Blocks must have atleast one exposed wall to work."
 
 [node name="Spacer" type="Control" parent="CanvasLayer/FailMenu/PanelContainer/VBoxContainer"]
 custom_minimum_size = Vector2(30, 30)

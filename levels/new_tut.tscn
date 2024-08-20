@@ -433,7 +433,7 @@ theme_override_font_sizes/bold_font_size = 18
 bbcode_enabled = true
 text = "Your Tetrizens need [color=dea908ff]Power[/color] to advance their civilization. Place a [color=dea908ff]Power Block [/color]next to the [color=red]Residence Block[/color] to help your colony reach the stars!
 
-[color=dea908ff]Power[/color] Blocks must have one exposed wall to work."
+[color=dea908ff]Power[/color] Blocks must have one atleast exposed wall to work."
 fit_content = true
 
 [node name="Page10_NULL" type="VBoxContainer" parent="CanvasLayer/Tutorial/MarginContainer" index="9"]
