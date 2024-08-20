@@ -142,6 +142,19 @@ func place_tile() -> void:
 		var row_confetti_scene := row_confetti.instantiate() as Node2D
 		row_confetti_scene.position = mouse_pos
 		add_child(row_confetti_scene)
+	
+	$CanvasLayer/FailMenu/PanelContainer/VBoxContainer/Score.text = "Final Score: " + str(Player.score)
+	if Player.food <= 0:
+		$CanvasLayer/FailMenu.show()
+		$CanvasLayer/FailMenu/PanelContainer/VBoxContainer/Food.show()
+	if Player.water <= 0:
+		$CanvasLayer/FailMenu.show()
+		$CanvasLayer/FailMenu/PanelContainer/VBoxContainer/Water.show()
+	if Player.electricity <= 0:
+		$CanvasLayer/FailMenu.show()
+		$CanvasLayer/FailMenu/PanelContainer/VBoxContainer/Power.show()
+	if Player.food <= 0 and Player.water <= 0 and Player.electricity <= 0:
+		$CanvasLayer/FailMenu/PanelContainer/VBoxContainer/Wow.show()
 
 
 func update_cells() -> void:
@@ -255,11 +268,10 @@ func rotate_counter_clockwise() -> void:
 	#print("electricity: ", count)
 	#return count
 
-
 func upkeep():
-	var food := 0
-	var water := 0
-	var electricity := 0
+	var food := 15
+	var water := 15
+	var electricity := 15
 	var coins := 0
 	var people := 0
 	for block in BlockManager.placed_blocks:

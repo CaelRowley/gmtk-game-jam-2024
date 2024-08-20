@@ -58,6 +58,7 @@ theme_override_constants/margin_bottom = 16
 
 [node name="MainDispenser" type="Control" parent="."]
 layout_mode = 2
+mouse_filter = 1
 
 [node name="TextureRect" type="TextureRect" parent="MainDispenser"]
 layout_mode = 2

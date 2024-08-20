@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=4 uid="uid://th56aldp1a1x"]
+[gd_scene load_steps=35 format=4 uid="uid://th56aldp1a1x"]
 
 [ext_resource type="Script" path="res://levels/demo.gd" id="1_4mqve"]
 [ext_resource type="Script" path="res://camera/camera_controller.gd" id="1_tm8sg"]
@@ -21,6 +21,7 @@
 [ext_resource type="Theme" uid="uid://lsghexn2paa" path="res://assets/themes/h2_theme.tres" id="17_u3nbk"]
 [ext_resource type="Theme" uid="uid://cp6kq4e452w4s" path="res://assets/themes/default_theme.tres" id="18_rfxyh"]
 [ext_resource type="Texture2D" uid="uid://dd3sythk5fm8v" path="res://assets/ui/icons/signal-2024-08-19-174136_003.png" id="18_wb7fd"]
+[ext_resource type="Texture2D" uid="uid://dsxgvhjnimfw2" path="res://assets/ui/icons/bar.png" id="22_kcpvf"]
 [ext_resource type="Texture2D" uid="uid://cd4fsrpoxflnv" path="res://assets/ui/kenney/Grey/Default/button_rectangle_flat.png" id="22_ktmsj"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_jj5xk"]
@@ -142,7 +143,7 @@ offset_top = 671.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 2
-mouse_filter = 2
+mouse_filter = 1
 
 [node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/GameUI"]
 layout_mode = 1
@@ -361,6 +362,7 @@ theme_override_font_sizes/font_size = 20
 text = "(+0)"
 
 [node name="PanelContainer2" type="PanelContainer" parent="CanvasLayer/GameUI"]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -381,6 +383,194 @@ theme_override_font_sizes/font_size = 24
 text = "Score: 0"
 horizontal_alignment = 1
 
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/GameUI"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainerLeft" type="VBoxContainer" parent="CanvasLayer/GameUI/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/GameUI/HBoxContainer/VBoxContainerLeft"]
+layout_mode = 2
+
+[node name="Control" type="Control" parent="CanvasLayer/GameUI/HBoxContainer/VBoxContainerLeft/HBoxContainer"]
+custom_minimum_size = Vector2(34, 34)
+layout_mode = 2
+
+[node name="TextureRect3" type="TextureRect" parent="CanvasLayer/GameUI/HBoxContainer/VBoxContainerLeft/HBoxContainer/Control"]
+layout_mode = 0
+offset_left = 14.0
+offset_top = 12.0
+offset_right = 117.0
+offset_bottom = 42.0
+texture = ExtResource("22_kcpvf")
+expand_mode = 1
+
+[node name="TextureRect2" type="TextureRect" parent="CanvasLayer/GameUI/HBoxContainer/VBoxContainerLeft/HBoxContainer/Control"]
+layout_mode = 0
+offset_right = 34.0
+offset_bottom = 34.0
+texture = ExtResource("12_1wh4r")
+expand_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/GameUI/HBoxContainer/VBoxContainerLeft/HBoxContainer/Control"]
+layout_mode = 0
+offset_right = 34.0
+offset_bottom = 34.0
+texture = ExtResource("12_ues7x")
+expand_mode = 2
+
+[node name="Level" type="Label" parent="CanvasLayer/GameUI/HBoxContainer/VBoxContainerLeft/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("17_u3nbk")
+theme_override_colors/font_color = Color(0.97, 0.846325, 0.1455, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 24
+text = "0"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="CanvasLayer/GameUI/HBoxContainer/VBoxContainerLeft"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/GameUI/HBoxContainer/VBoxContainerLeft/HBoxContainer2"]
+layout_mode = 2
+texture = ExtResource("12_v60yx")
+expand_mode = 2
+
+[node name="Floors" type="Label" parent="CanvasLayer/GameUI/HBoxContainer/VBoxContainerLeft/HBoxContainer2"]
+layout_mode = 2
+theme = ExtResource("17_u3nbk")
+theme_override_colors/font_color = Color(0.968627, 0.847059, 0.145098, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 24
+text = "0"
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="CanvasLayer/GameUI/HBoxContainer/VBoxContainerLeft"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/GameUI/HBoxContainer/VBoxContainerLeft/HBoxContainer3"]
+layout_mode = 2
+texture = ExtResource("14_hpj0u")
+expand_mode = 3
+
+[node name="People" type="Label" parent="CanvasLayer/GameUI/HBoxContainer/VBoxContainerLeft/HBoxContainer3"]
+layout_mode = 2
+theme = ExtResource("17_u3nbk")
+theme_override_colors/font_color = Color(0.968627, 0.847059, 0.145098, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 24
+text = "0"
+
+[node name="VBoxContainerRight" type="VBoxContainer" parent="CanvasLayer/GameUI/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/GameUI/HBoxContainer/VBoxContainerRight"]
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/GameUI/HBoxContainer/VBoxContainerRight/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("14_jw50g")
+expand_mode = 2
+
+[node name="Food" type="Label" parent="CanvasLayer/GameUI/HBoxContainer/VBoxContainerRight/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("18_rfxyh")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
+text = "15"
+
+[node name="Change" type="Label" parent="CanvasLayer/GameUI/HBoxContainer/VBoxContainerRight/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("18_rfxyh")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
+text = "(+0)"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="CanvasLayer/GameUI/HBoxContainer/VBoxContainerRight"]
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/GameUI/HBoxContainer/VBoxContainerRight/HBoxContainer2"]
+layout_mode = 2
+texture = ExtResource("16_520dv")
+expand_mode = 2
+
+[node name="Water" type="Label" parent="CanvasLayer/GameUI/HBoxContainer/VBoxContainerRight/HBoxContainer2"]
+layout_mode = 2
+theme = ExtResource("18_rfxyh")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
+text = "20"
+
+[node name="Change" type="Label" parent="CanvasLayer/GameUI/HBoxContainer/VBoxContainerRight/HBoxContainer2"]
+layout_mode = 2
+theme = ExtResource("18_rfxyh")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
+text = "(+0)"
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="CanvasLayer/GameUI/HBoxContainer/VBoxContainerRight"]
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/GameUI/HBoxContainer/VBoxContainerRight/HBoxContainer3"]
+layout_mode = 2
+texture = ExtResource("17_dx3mw")
+expand_mode = 2
+
+[node name="Electricity" type="Label" parent="CanvasLayer/GameUI/HBoxContainer/VBoxContainerRight/HBoxContainer3"]
+layout_mode = 2
+theme = ExtResource("18_rfxyh")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 0
+theme_override_font_sizes/font_size = 20
+text = "30"
+
+[node name="Change" type="Label" parent="CanvasLayer/GameUI/HBoxContainer/VBoxContainerRight/HBoxContainer3"]
+layout_mode = 2
+theme = ExtResource("18_rfxyh")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
+text = "(+0)"
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="CanvasLayer/GameUI/HBoxContainer/VBoxContainerRight"]
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/GameUI/HBoxContainer/VBoxContainerRight/HBoxContainer4"]
+layout_mode = 2
+texture = ExtResource("18_wb7fd")
+expand_mode = 3
+
+[node name="Coins" type="Label" parent="CanvasLayer/GameUI/HBoxContainer/VBoxContainerRight/HBoxContainer4"]
+layout_mode = 2
+theme = ExtResource("18_rfxyh")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
+text = "0"
+
+[node name="Change" type="Label" parent="CanvasLayer/GameUI/HBoxContainer/VBoxContainerRight/HBoxContainer4"]
+layout_mode = 2
+theme = ExtResource("18_rfxyh")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
+text = "(+0)"
+
 [node name="PauseMenu" type="PanelContainer" parent="CanvasLayer"]
 visible = false
 anchors_preset = 15
@@ -388,6 +578,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxFlat_bltss")
 
 [node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/PauseMenu"]
@@ -459,6 +650,126 @@ text = "Restart
 layout_mode = 2
 text = "Resume"
 
+[node name="FailMenu" type="PanelContainer" parent="CanvasLayer"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_bltss")
+
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/FailMenu"]
+self_modulate = Color(0.247059, 0.466667, 0.780392, 1)
+custom_minimum_size = Vector2(400, 400)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxTexture_frrto")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/FailMenu/PanelContainer"]
+layout_mode = 2
+theme = ExtResource("18_rfxyh")
+alignment = 1
+
+[node name="Label4" type="Label" parent="CanvasLayer/FailMenu/PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "You Failed"
+horizontal_alignment = 1
+
+[node name="Spacer3" type="Control" parent="CanvasLayer/FailMenu/PanelContainer/VBoxContainer"]
+custom_minimum_size = Vector2(15, 15)
+layout_mode = 2
+
+[node name="Score" type="Label" parent="CanvasLayer/FailMenu/PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Final Score: 1232304832945812"
+horizontal_alignment = 1
+
+[node name="Spacer2" type="Control" parent="CanvasLayer/FailMenu/PanelContainer/VBoxContainer"]
+custom_minimum_size = Vector2(15, 15)
+layout_mode = 2
+
+[node name="Wow" type="Label" parent="CanvasLayer/FailMenu/PanelContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+text = "WOW!"
+horizontal_alignment = 1
+
+[node name="Water" type="HBoxContainer" parent="CanvasLayer/FailMenu/PanelContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+alignment = 1
+
+[node name="TextureRect2" type="TextureRect" parent="CanvasLayer/FailMenu/PanelContainer/VBoxContainer/Water"]
+layout_mode = 2
+texture = ExtResource("16_520dv")
+expand_mode = 3
+
+[node name="Label" type="Label" parent="CanvasLayer/FailMenu/PanelContainer/VBoxContainer/Water"]
+layout_mode = 2
+text = "You ran out of water"
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/FailMenu/PanelContainer/VBoxContainer/Water"]
+layout_mode = 2
+texture = ExtResource("16_520dv")
+expand_mode = 3
+
+[node name="Food" type="HBoxContainer" parent="CanvasLayer/FailMenu/PanelContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+alignment = 1
+
+[node name="TextureRect2" type="TextureRect" parent="CanvasLayer/FailMenu/PanelContainer/VBoxContainer/Food"]
+layout_mode = 2
+texture = ExtResource("14_jw50g")
+expand_mode = 3
+
+[node name="Label" type="Label" parent="CanvasLayer/FailMenu/PanelContainer/VBoxContainer/Food"]
+layout_mode = 2
+text = "You ran out of food"
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/FailMenu/PanelContainer/VBoxContainer/Food"]
+layout_mode = 2
+texture = ExtResource("14_jw50g")
+expand_mode = 3
+
+[node name="Power" type="HBoxContainer" parent="CanvasLayer/FailMenu/PanelContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+alignment = 1
+
+[node name="TextureRect2" type="TextureRect" parent="CanvasLayer/FailMenu/PanelContainer/VBoxContainer/Power"]
+layout_mode = 2
+texture = ExtResource("17_dx3mw")
+expand_mode = 3
+
+[node name="Label" type="Label" parent="CanvasLayer/FailMenu/PanelContainer/VBoxContainer/Power"]
+layout_mode = 2
+text = "You ran out of power"
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/FailMenu/PanelContainer/VBoxContainer/Power"]
+layout_mode = 2
+texture = ExtResource("17_dx3mw")
+expand_mode = 3
+
+[node name="Spacer" type="Control" parent="CanvasLayer/FailMenu/PanelContainer/VBoxContainer"]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+
+[node name="TutorialButton" type="Button" parent="CanvasLayer/FailMenu/PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "Tutorial"
+
+[node name="RestartButton" type="Button" parent="CanvasLayer/FailMenu/PanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Restart
+"
+
 [connection signal="toggled" from="CanvasLayer/PauseMenu/PanelContainer/VBoxContainer/CheckBox" to="." method="_on_check_box_toggled"]
 [connection signal="value_changed" from="CanvasLayer/PauseMenu/PanelContainer/VBoxContainer/MasterSlider" to="." method="_on_master_slider_value_changed"]
 [connection signal="value_changed" from="CanvasLayer/PauseMenu/PanelContainer/VBoxContainer/MusicSlider" to="." method="_on_music_slider_value_changed"]
@@ -466,3 +777,5 @@ text = "Resume"
 [connection signal="pressed" from="CanvasLayer/PauseMenu/PanelContainer/VBoxContainer/TutorialButton" to="." method="_on_tutorial_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/PauseMenu/PanelContainer/VBoxContainer/RestartButton" to="." method="_on_restart_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/PauseMenu/PanelContainer/VBoxContainer/ResumeButton" to="." method="_on_resume_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/FailMenu/PanelContainer/VBoxContainer/TutorialButton" to="." method="_on_tutorial_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/FailMenu/PanelContainer/VBoxContainer/RestartButton" to="." method="_on_restart_button_pressed"]

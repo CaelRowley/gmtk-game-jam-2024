@@ -10,7 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://bsy5na3hujhhc" path="res://environment/npcs/salamug_work_2.png" id="8_033s1"]
 [ext_resource type="Texture2D" uid="uid://b5mpumfpl2bbr" path="res://environment/npcs/salamug_work_3.png" id="9_qyj4v"]
 [ext_resource type="Script" path="res://environment/npcs/npc.gd" id="10_osvdl"]
-[ext_resource type="PackedScene" path="res://environment/npcs/explosion.tscn" id="11_lgo6f"]
+[ext_resource type="PackedScene" uid="uid://crjbtmofg4m0x" path="res://environment/npcs/explosion.tscn" id="11_lgo6f"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_7b8k0"]
 animations = [{

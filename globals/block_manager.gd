@@ -192,7 +192,7 @@ var weighted_block_types = {
 		weight = 150,
 		default_weight = 150,
 		neg_accumulator = 75,
-		pos_accumulator = 100,
+		pos_accumulator = 200,
 	},
 	Block.Type.BUSINESS: {
 		item = Block.Type.BUSINESS,
