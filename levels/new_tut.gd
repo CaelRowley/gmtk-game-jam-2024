@@ -68,14 +68,7 @@ func _ready() -> void:
 	
 	$Camera2D.zoom_changed.connect(_on_zoom_changed)
 	
-	$CanvasLayer/GameUI/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer/Level.text = "Level: " + str(Player.lvl)
-	$CanvasLayer/GameUI/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer2/Floors.text = "Floors: " + str(BlockManager.get_height())
-	$CanvasLayer/GameUI/PanelContainer2/Score.text = "Score: " + str(Player.score)
-	$CanvasLayer/GameUI/PanelContainer/VBoxContainer/HBoxContainer/CenterContainer/HBoxContainer/People.text = str(Player.people)
-	$"CanvasLayer/GameUI/PanelContainer/VBoxContainer/HBoxContainer/PanelContainer/GridContainer/Food Container/HBoxContainer/Food".text = str(Player.food)
-	$CanvasLayer/GameUI/PanelContainer/VBoxContainer/HBoxContainer/PanelContainer/GridContainer/WaterContainer/HBoxContainer/Water.text = str(Player.water)
-	$CanvasLayer/GameUI/PanelContainer/VBoxContainer/HBoxContainer/PanelContainer/GridContainer/ElectricityContainer/HBoxContainer/Electricity.text = str(Player.electricity)
-	$CanvasLayer/GameUI/PanelContainer/VBoxContainer/HBoxContainer/PanelContainer/GridContainer/CoinsContainer/HBoxContainer/Coins.text = str(Player.coins)
+	update_ui()
 	AudioManager.play_music(AudioManager.music_level01_track)
 	block_dispenser.init(self)
 	$CanvasLayer/PauseMenu/PanelContainer/VBoxContainer/MasterSlider.value = Settings.get_value(Settings.SECTIONS.Audio, Settings.KEYS.Master)
@@ -334,40 +327,28 @@ func upkeep():
 	Player.electricity -= Player.people
 	
 	Player.update_score()
-	$CanvasLayer/GameUI/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer/Level.text = "Level: " + str(Player.lvl)
-	$CanvasLayer/GameUI/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer2/Floors.text = "Floors: " + str(BlockManager.get_height())
-	$CanvasLayer/GameUI/PanelContainer2/Score.text = "Score: " + str(Player.score)
-
+	update_ui()
+	
 	#Food
-	$"CanvasLayer/GameUI/PanelContainer/VBoxContainer/HBoxContainer/PanelContainer/GridContainer/Food Container/HBoxContainer/Food".text = str(Player.food)
 	var food_change := food-Player.people
 	if food_change > 0:
-		$"CanvasLayer/GameUI/PanelContainer/VBoxContainer/HBoxContainer/PanelContainer/GridContainer/Food Container/HBoxContainer/Change".text = "(+" + str(food_change) + ")"
+		$CanvasLayer/GameUI/HBoxContainer/VBoxContainerRight/FoodContainer/Change.text = "(+" + str(food_change) + ")"
 	else:
-		$"CanvasLayer/GameUI/PanelContainer/VBoxContainer/HBoxContainer/PanelContainer/GridContainer/Food Container/HBoxContainer/Change".text = "(" + str(food_change) + ")"
-	
+		$CanvasLayer/GameUI/HBoxContainer/VBoxContainerRight/FoodContainer/Change.text = "(" + str(food_change) + ")"
 	#Water
-	$CanvasLayer/GameUI/PanelContainer/VBoxContainer/HBoxContainer/PanelContainer/GridContainer/WaterContainer/HBoxContainer/Water.text = str(Player.water)
 	var water_change := water-Player.people
 	if water_change > 0:
-		$CanvasLayer/GameUI/PanelContainer/VBoxContainer/HBoxContainer/PanelContainer/GridContainer/WaterContainer/HBoxContainer/Change.text = "(+" + str(water_change) + ")"
+		$CanvasLayer/GameUI/HBoxContainer/VBoxContainerRight/WaterContainer/Change.text = "(+" + str(water_change) + ")"
 	else:
-		$CanvasLayer/GameUI/PanelContainer/VBoxContainer/HBoxContainer/PanelContainer/GridContainer/WaterContainer/HBoxContainer/Change.text = "(" + str(water_change) + ")"
-	
+		$CanvasLayer/GameUI/HBoxContainer/VBoxContainerRight/WaterContainer/Change.text = "(" + str(water_change) + ")"
 	#Electricity
-	$CanvasLayer/GameUI/PanelContainer/VBoxContainer/HBoxContainer/PanelContainer/GridContainer/ElectricityContainer/HBoxContainer/Electricity.text = str(Player.electricity)
 	var electricity_change := electricity-Player.people
 	if electricity_change > 0:
-		$CanvasLayer/GameUI/PanelContainer/VBoxContainer/HBoxContainer/PanelContainer/GridContainer/ElectricityContainer/HBoxContainer/Change.text = "(+" + str(electricity_change) + ")"
+		$CanvasLayer/GameUI/HBoxContainer/VBoxContainerRight/PowerContainer/Change.text = "(+" + str(electricity_change) + ")"
 	else:
-		$CanvasLayer/GameUI/PanelContainer/VBoxContainer/HBoxContainer/PanelContainer/GridContainer/ElectricityContainer/HBoxContainer/Change.text = "(" + str(electricity_change) + ")"
-	
+		$CanvasLayer/GameUI/HBoxContainer/VBoxContainerRight/PowerContainer/Change.text = "(" + str(electricity_change) + ")"
 	#Coins
-	$CanvasLayer/GameUI/PanelContainer/VBoxContainer/HBoxContainer/PanelContainer/GridContainer/CoinsContainer/HBoxContainer/Coins.text = str(Player.coins)
-	$CanvasLayer/GameUI/PanelContainer/VBoxContainer/HBoxContainer/PanelContainer/GridContainer/CoinsContainer/HBoxContainer/Change.text = "(+" + str(coins) + ")"
-	
-	#UI Stat Elements
-	$CanvasLayer/GameUI/PanelContainer/VBoxContainer/HBoxContainer/CenterContainer/HBoxContainer/People.text = str(Player.people)
+	$CanvasLayer/GameUI/HBoxContainer/VBoxContainerRight/CoinContainer/Change.text = "(+" + str(coins) + ")"
 		
 
 func get_cloud_threshold() -> int:
@@ -391,6 +372,16 @@ func get_cloud_threshold() -> int:
 			#else:
 				#Player.coins -= cloud_buster_cost
 			#BlockManager.select_cloud_buster()
+
+func update_ui() -> void:
+	$CanvasLayer/GameUI/HBoxContainer/VBoxContainerLeft/LevelContainer/Level.text = str(Player.lvl)
+	$CanvasLayer/GameUI/HBoxContainer/VBoxContainerLeft/HeightContainer/Floors.text = str(BlockManager.get_height())
+	$CanvasLayer/GameUI/HBoxContainer/VBoxContainerLeft/PeopleContainer/People.text = str(Player.people)
+	$CanvasLayer/GameUI/HBoxContainer/VBoxContainer/Control/Value.text = str(Player.score)
+	$CanvasLayer/GameUI/HBoxContainer/VBoxContainerRight/FoodContainer/Total.text = str(Player.food)
+	$CanvasLayer/GameUI/HBoxContainer/VBoxContainerRight/WaterContainer/Total.text = str(Player.water)
+	$CanvasLayer/GameUI/HBoxContainer/VBoxContainerRight/PowerContainer/Total.text = str(Player.electricity)
+	$CanvasLayer/GameUI/HBoxContainer/VBoxContainerRight/CoinContainer/Total.text = str(Player.coins)
 
 
 func _on_master_slider_value_changed(value: float) -> void:

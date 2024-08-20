@@ -1,13 +1,9 @@
 [gd_scene load_steps=11 format=3 uid="uid://b8whqy1ftqimy"]
 
 [ext_resource type="PackedScene" uid="uid://th56aldp1a1x" path="res://levels/game.tscn" id="1_na27k"]
-[ext_resource type="Theme" uid="uid://d05830ku1mn0j" path="res://assets/themes/button_skip_theme.tres" id="2_pgsaf"]
+[ext_resource type="Theme" uid="uid://cmj8hf5q50coi" path="res://assets/themes/button_skip_theme.tres" id="2_pgsaf"]
 [ext_resource type="Script" path="res://levels/new_tut.gd" id="2_syrb2"]
-<<<<<<< Updated upstream
 [ext_resource type="StyleBox" uid="uid://5d8aki4kdpo3" path="res://assets/themes/text_prompt.tres" id="3_53n5i"]
-=======
-[ext_resource type="StyleBox" uid="uid://dio5jgo7r0eft" path="res://assets/themes/text_prompt.tres" id="3_53n5i"]
->>>>>>> Stashed changes
 [ext_resource type="Theme" uid="uid://cp6kq4e452w4s" path="res://assets/themes/default_theme.tres" id="4_h237w"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ucp35"]
@@ -134,7 +130,7 @@ theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_fonts/bold_font = SubResource("SystemFont_deyfi")
 theme_override_font_sizes/bold_font_size = 18
 bbcode_enabled = true
-text = "To get started, place a [color=red]Residence Block[/color] onto the ground by clicking the [b]Left Mouse Button[/b].
+text = "To get started, place a [color=red]Residence Block[/color] onto the ground by clicking the [b]Left Mouse Button[/b] or [b]E / Q[/b].
 
 Rotate your blocks using the [b]Mouse Wheel[/b].
 
@@ -648,7 +644,7 @@ theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_fonts/bold_font = SubResource("SystemFont_deyfi")
 theme_override_font_sizes/bold_font_size = 18
 bbcode_enabled = true
-text = "Lastly, there are [color=#242424][b]Frame[/b][/color] blocks! Place them underneath one of your resource blocks to increase resource output!"
+text = "Lastly, there are [color=#242424][b]Frame[/b][/color] blocks! connect them to your other resource blocks to increase resource output!"
 fit_content = true
 
 [node name="Page15" type="VBoxContainer" parent="CanvasLayer/Tutorial/MarginContainer" index="14"]
@@ -719,9 +715,9 @@ theme = ExtResource("2_pgsaf")
 text = "Skip"
 
 [node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/Tutorial/MarginContainer/Page16" index="1"]
-custom_minimum_size = Vector2(200, 0)
+custom_minimum_size = Vector2(205, 0)
 layout_mode = 2
-size_flags_horizontal = 4
+size_flags_horizontal = 8
 theme_override_styles/panel = ExtResource("3_53n5i")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Tutorial/MarginContainer/Page16/PanelContainer" index="0"]
@@ -783,7 +779,7 @@ theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_fonts/bold_font = SubResource("SystemFont_deyfi")
 theme_override_font_sizes/bold_font_size = 18
 bbcode_enabled = true
-text = "These buttons allow you to purchase a new Resource Block for the Dispenser."
+text = "These buttons on the right allow you to purchase a new Resource Block for the Dispenser."
 fit_content = true
 
 [node name="Buttons" type="PanelContainer" parent="CanvasLayer/Tutorial/MarginContainer/Page17" index="2"]
@@ -822,7 +818,7 @@ theme = ExtResource("2_pgsaf")
 text = "Skip"
 
 [node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/Tutorial/MarginContainer/Page18" index="1"]
-custom_minimum_size = Vector2(200, 0)
+custom_minimum_size = Vector2(240, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -835,7 +831,7 @@ theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_fonts/bold_font = SubResource("SystemFont_deyfi")
 theme_override_font_sizes/bold_font_size = 18
 bbcode_enabled = true
-text = "Once you have enough coins, purchase a [b]Cloud Buster[/b] and place it below the clouds to progress to the next level."
+text = "Once you have enough coins, and your tower is tall enough, purchase a [b]Cloud Buster[/b] and place it below the clouds to progress to the next level."
 fit_content = true
 
 [node name="Buttons" type="PanelContainer" parent="CanvasLayer/Tutorial/MarginContainer/Page18" index="2"]
