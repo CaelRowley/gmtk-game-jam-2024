@@ -561,3 +561,7 @@ func _on_page_19_next_button_pressed() -> void:
 func _on_page_20_exit_button_pressed() -> void:
 	Settings.set_value(Settings.SECTIONS.Gameplay, Settings.KEYS.SkipTutorial, true)
 	SceneManager.goto_scene("res://levels/game.tscn")
+
+
+func _on_pause_button_pressed() -> void:
+	$CanvasLayer/PauseMenu.visible = !$CanvasLayer/PauseMenu.visible
