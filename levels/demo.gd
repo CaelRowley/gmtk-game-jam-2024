@@ -46,8 +46,8 @@ func _ready() -> void:
 	
 	$Camera2D.zoom_changed.connect(_on_zoom_changed)
 	
-	$CanvasLayer/GameUI/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer/Level.text = "Level: " + str(Player.lvl)
-	$CanvasLayer/GameUI/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer/Floors.text = "Floors: " + str(BlockManager.get_height())
+	$CanvasLayer/GameUI/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer/Level.text = str(Player.lvl)
+	$CanvasLayer/GameUI/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer2/Floors.text = str(BlockManager.get_height())
 	$CanvasLayer/GameUI/PanelContainer2/Score.text = "Score: " + str(Player.score)
 	$CanvasLayer/GameUI/PanelContainer/VBoxContainer/HBoxContainer/CenterContainer/HBoxContainer/People.text = str(Player.people)
 	$"CanvasLayer/GameUI/PanelContainer/VBoxContainer/HBoxContainer/PanelContainer/GridContainer/Food Container/HBoxContainer/Food".text = str(Player.food)
@@ -279,8 +279,8 @@ func upkeep():
 	Player.electricity -= Player.people
 	
 	Player.update_score()
-	$CanvasLayer/GameUI/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer/Level.text = "Level: " + str(Player.lvl)
-	$CanvasLayer/GameUI/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer/Floors.text = "Floors: " + str(BlockManager.get_height())
+	$CanvasLayer/GameUI/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer/Level.text = str(Player.lvl)
+	$CanvasLayer/GameUI/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer2/Floors.text = str(BlockManager.get_height())
 	$CanvasLayer/GameUI/PanelContainer2/Score.text = "Score: " + str(Player.score)
 
 	#Food
