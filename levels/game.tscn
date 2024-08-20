@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=4 uid="uid://th56aldp1a1x"]
+[gd_scene load_steps=38 format=4 uid="uid://th56aldp1a1x"]
 
 [ext_resource type="Script" path="res://levels/demo.gd" id="1_4mqve"]
 [ext_resource type="Script" path="res://camera/camera_controller.gd" id="1_tm8sg"]
@@ -25,6 +25,8 @@
 [ext_resource type="Texture2D" uid="uid://cd4fsrpoxflnv" path="res://assets/ui/kenney/Grey/Default/button_rectangle_flat.png" id="22_ktmsj"]
 [ext_resource type="Texture2D" uid="uid://whohdp5ckx1b" path="res://assets/ui/icons/icon_floors.png" id="23_nbhii"]
 [ext_resource type="Texture2D" uid="uid://bimhtmn4ed2as" path="res://assets/ui/icons/pill_shaped_bar.png" id="24_fh0yi"]
+[ext_resource type="Texture2D" uid="uid://cwx52bap21cyt" path="res://assets/ui/icons/pause.png" id="26_r3w30"]
+[ext_resource type="Texture2D" uid="uid://1pmg434s32sk" path="res://assets/ui/icons/pause_pressed.png" id="27_unsne"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_jj5xk"]
 
@@ -132,6 +134,17 @@ texture = ExtResource("7_gme3i")
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="BlockDispenserWindow" parent="CanvasLayer" instance=ExtResource("10_trac6")]
+
+[node name="PauseButton" type="TextureButton" parent="CanvasLayer"]
+offset_left = 15.0
+offset_top = 15.0
+offset_right = 175.0
+offset_bottom = 175.0
+scale = Vector2(0.3, 0.3)
+mouse_filter = 1
+texture_normal = ExtResource("26_r3w30")
+texture_pressed = ExtResource("27_unsne")
+stretch_mode = 0
 
 [node name="GameUI" type="Control" parent="CanvasLayer"]
 layout_mode = 3
@@ -977,18 +990,7 @@ size_flags_horizontal = 3
 text = "Restart
 "
 
-[node name="Control3" type="Control" parent="CanvasLayer"]
-layout_mode = 3
-anchors_preset = 0
-offset_left = 269.0
-offset_top = 960.0
-offset_right = 269.0
-offset_bottom = 960.0
-grow_horizontal = 2
-grow_vertical = 0
-size_flags_horizontal = 4
-size_flags_vertical = 4
-
+[connection signal="pressed" from="CanvasLayer/PauseButton" to="." method="_on_pause_button_pressed"]
 [connection signal="toggled" from="CanvasLayer/PauseMenu/PanelContainer/VBoxContainer/CheckBox" to="." method="_on_check_box_toggled"]
 [connection signal="value_changed" from="CanvasLayer/PauseMenu/PanelContainer/VBoxContainer/MasterSlider" to="." method="_on_master_slider_value_changed"]
 [connection signal="value_changed" from="CanvasLayer/PauseMenu/PanelContainer/VBoxContainer/MusicSlider" to="." method="_on_music_slider_value_changed"]

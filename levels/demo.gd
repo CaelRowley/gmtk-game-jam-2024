@@ -381,3 +381,7 @@ func _on_resume_button_pressed() -> void:
 
 func _on_tutorial_button_pressed() -> void:
 	SceneManager.goto_scene("res://levels/new_tut.tscn")
+
+
+func _on_pause_button_pressed() -> void:
+	$CanvasLayer/PauseMenu.visible = !$CanvasLayer/PauseMenu.visible

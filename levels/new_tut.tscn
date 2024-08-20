@@ -35,7 +35,9 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 1.0
 offset_top = 98.0
+offset_right = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
@@ -80,7 +82,7 @@ theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_fonts/bold_font = SubResource("SystemFont_deyfi")
 theme_override_font_sizes/bold_font_size = 18
 bbcode_enabled = true
-text = "Welcome to [b]TETRICITY[/b], the game where you need to build high and keep your Tetrizens happy!"
+text = "Welcome to [b][color=red]T[/color][color=red]E[/color][color=dea908ff]T[/color][color=#49c500ff]R[/color][color=#017ca6ff]I[/color][color=5129beff]CITY[/color][/b], the game where you need to build high and keep your Tetrizens happy!"
 fit_content = true
 
 [node name="Buttons" type="PanelContainer" parent="CanvasLayer/Tutorial/MarginContainer/Page01" index="2"]
@@ -130,9 +132,9 @@ theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_fonts/bold_font = SubResource("SystemFont_deyfi")
 theme_override_font_sizes/bold_font_size = 18
 bbcode_enabled = true
-text = "To get started, place a [color=red]Residence Block[/color] onto the ground by clicking the [b]Left Mouse Button[/b] or [b]E / Q[/b].
+text = "To get started, place a [color=red]Residence Block[/color] onto the ground by clicking the [b]Left Mouse Button[/b].
 
-Rotate your blocks using the [b]Mouse Wheel[/b].
+Rotate your blocks using the [b]Mouse Wheel[/b] or [b]E / Q[/b].
 
 Click and hold the [b]Right Mouse Button[/b] to scroll up and down through your town."
 fit_content = true
@@ -214,9 +216,9 @@ theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_fonts/bold_font = SubResource("SystemFont_deyfi")
 theme_override_font_sizes/bold_font_size = 18
 bbcode_enabled = true
-text = "Your Tetrizens will need food! Place a [color=#49c500ff]Food[/color] Block next to the Residence Block so your Tetrizens can eat.
+text = "Your Tetrizens will need food! Place a [color=#49c500ff]Food Block[/color] next to the Residence Block so your Tetrizens can eat.
 
-Food Blocks need a side wall exposed to the outside to work!"
+[color=#49c500ff]Food Blocks[/color] need a side wall exposed to the outside to work!"
 fit_content = true
 
 [node name="Page05" type="VBoxContainer" parent="CanvasLayer/Tutorial/MarginContainer" index="4"]
@@ -347,9 +349,9 @@ theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_fonts/bold_font = SubResource("SystemFont_deyfi")
 theme_override_font_sizes/bold_font_size = 18
 bbcode_enabled = true
-text = "[color=#017ca6ff]Water[/color] is another important resource. Place a [color=#017ca6ff]Water[/color] Block down next to the Residence Block so your Tetrizens can stay hydrated.
+text = "[color=#017ca6ff]Water[/color] is another important resource. Place a [color=#017ca6ff]Water Block[/color] down next to the [color=red]Residence Block[/color] so your Tetrizens can stay hydrated.
 
-Water Blocks need a ceiling exposed to the outside to work!"
+[color=#017ca6ff]Water Blocks[/color] need a ceiling exposed to the outside to work!"
 fit_content = true
 
 [node name="Page08_NULL" type="VBoxContainer" parent="CanvasLayer/Tutorial/MarginContainer" index="7"]
@@ -543,7 +545,7 @@ theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_fonts/bold_font = SubResource("SystemFont_deyfi")
 theme_override_font_sizes/bold_font_size = 18
 bbcode_enabled = true
-text = "Resource Blocks (Food, Water, Electricity, and Business) will not activate unless they connected to a Residence Block.
+text = "Resource Blocks [color=#49c500ff]Food[/color], [color=#017ca6ff]Water[/color], [color=dea908ff]Power[/color], and [color=5129beff]Business[/color]) will not activate unless they connected to a [color=red]Residence Block[/color].
 
 Connecting Resource Blocks of the same type will increase your resource output."
 fit_content = true
@@ -644,7 +646,7 @@ theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_fonts/bold_font = SubResource("SystemFont_deyfi")
 theme_override_font_sizes/bold_font_size = 18
 bbcode_enabled = true
-text = "Lastly, there are [color=#242424][b]Frame[/b][/color] blocks! connect them to your other resource blocks to increase resource output!"
+text = "Lastly, there are [color=#464646][b]Booster[/b][/color] blocks! connect them to your other resource blocks to increase resource output!"
 fit_content = true
 
 [node name="Page15" type="VBoxContainer" parent="CanvasLayer/Tutorial/MarginContainer" index="14"]
@@ -831,7 +833,7 @@ theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_fonts/bold_font = SubResource("SystemFont_deyfi")
 theme_override_font_sizes/bold_font_size = 18
 bbcode_enabled = true
-text = "Once you have enough coins, and your tower is tall enough, purchase a [b]Cloud Buster[/b] and place it below the clouds to progress to the next level."
+text = "Once you have enough coins, and your tower is tall enough, purchase a [b][color=red]Cloud Buster[/color] [/b] and place it below the clouds to progress to the next level."
 fit_content = true
 
 [node name="Buttons" type="PanelContainer" parent="CanvasLayer/Tutorial/MarginContainer/Page18" index="2"]
