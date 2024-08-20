@@ -6,4 +6,4 @@ func _ready() -> void:
 	$AnimationPlayer.play("splash_screen_animation")
 
 func play_next_scene() -> void:
-	SceneManager.goto_scene("res://levels/tutorial.tscn")
+	SceneManager.goto_scene("res://levels/new_tut.tscn")

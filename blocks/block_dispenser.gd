@@ -15,7 +15,7 @@ class_name BlockDispenser
 @export var business_cost_increase := 50
 @export var business_cost_max := 500
 
-var demo: Demo
+var demo
 var preview_anchor: Control
 var upcoming_block: Block
 var preview_tween: Tween
@@ -43,7 +43,7 @@ func _ready() -> void:
 	electric_button.set_disabled(true) 
 	business_button.set_disabled(true) 
 
-func init(_demo: Demo) -> void:
+func init(_demo) -> void:
 	demo = _demo
 	print(demo)
 	for child in GetUtil.get_all_children(get_parent(), true):
@@ -117,8 +117,6 @@ func update_dispenser_preview():
 	demo.shadow_tile_map.clear()
 
 func progress_held_block():
-	print("anchor pos: " + str(preview_anchor.global_position))
-	
 	demo.next_tile_map.reparent(demo, true)
 	demo.next_tile_map.position = demo.get_local_mouse_position() - (Vector2.ONE * demo.tile_size / 2.0)
 	demo.next_tile_map.scale = Vector2.ONE
@@ -127,6 +125,16 @@ func progress_held_block():
 	BlockManager.set_current_block(upcoming_block)
 	update_held_tile_map(BlockManager.current_block)
 	upcoming_block = null
+
+
+func progress_current_block():
+	demo.next_tile_map.reparent(demo, true)
+	demo.next_tile_map.position = demo.get_local_mouse_position() - (Vector2.ONE * demo.tile_size / 2.0)
+	demo.next_tile_map.scale = Vector2.ONE
+	demo.next_tile_map.rotation = 0
+	update_held_tile_map(BlockManager.current_block)
+	upcoming_block = null
+
 
 func update_held_tile_map(block: Block):
 	demo.next_tile_map.clear()

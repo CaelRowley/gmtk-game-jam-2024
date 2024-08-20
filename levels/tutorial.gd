@@ -5,6 +5,9 @@ const tile_size := 128
 @onready var shadow_tile_map := $ShadowTileMap as TileMapLayer
 @onready var next_tile_map := $NextTileMap as TileMapLayer
 @onready var placed_tiles_map := %PlacedTilesMap as TileMapLayer
+@onready var row_confetti := preload("res://blocks/row_confetti.tscn")
+
+var main_camera: CameraController
 
 #Tutorial Pages
 @onready var page_01 = $CanvasLayer/Tutorial/MarginContainer/Page01
@@ -39,6 +42,25 @@ func _ready() -> void:
 	Player.coins = 0
 	Player.lvl = 1
 	Player.score = 0
+	BlockManager.reset()
+	
+	Player.update_coins(50)
+	Player.coins_changed.connect(_on_coins_changed)
+	shadow_tile_map.clear()
+	
+	#$CanvasLayer/GameUI/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer/Level.text = "Level: " + str(Player.lvl)
+	#$CanvasLayer/GameUI/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer/Floors.text = "Floors: " + str(BlockManager.get_height())
+	$CanvasLayer/GameUI/PanelContainer2/Score.text = "Score: " + str(Player.score)
+	$CanvasLayer/GameUI/PanelContainer/VBoxContainer/HBoxContainer/CenterContainer/HBoxContainer/People.text = str(Player.people)
+	$"CanvasLayer/GameUI/PanelContainer/VBoxContainer/HBoxContainer/PanelContainer/GridContainer/Food Container/HBoxContainer/Food".text = str(Player.food)
+	$CanvasLayer/GameUI/PanelContainer/VBoxContainer/HBoxContainer/PanelContainer/GridContainer/WaterContainer/HBoxContainer/Water.text = str(Player.water)
+	$CanvasLayer/GameUI/PanelContainer/VBoxContainer/HBoxContainer/PanelContainer/GridContainer/ElectricityContainer/HBoxContainer/Electricity.text = str(Player.electricity)
+	$CanvasLayer/GameUI/PanelContainer/VBoxContainer/HBoxContainer/PanelContainer/GridContainer/CoinsContainer/HBoxContainer/Coins.text = str(Player.coins)
+	AudioManager.play_music(AudioManager.music_level01_track)
+	$CanvasLayer/PauseMenu/VBoxContainer/MasterSlider.value = Settings.get_value(Settings.SECTIONS.Audio, Settings.KEYS.Master)
+	$CanvasLayer/PauseMenu/VBoxContainer/MusicSlider.value = Settings.get_value(Settings.SECTIONS.Audio, Settings.KEYS.Music)
+	$CanvasLayer/PauseMenu/VBoxContainer/SFXSlider.value = Settings.get_value(Settings.SECTIONS.Audio, Settings.KEYS.SFX)
+	$CanvasLayer/PauseMenu/VBoxContainer/CheckBox.set_pressed_no_signal(Settings.get_value(Settings.SECTIONS.Display, Settings.KEYS.Fullscreen))
 	
 	if Settings.get_value(Settings.SECTIONS.Gameplay, Settings.KEYS.SkipTutorial):
 		$CanvasLayer/Tutorial/MarginContainer/Page01/SkipContainer.show()
@@ -76,25 +98,60 @@ func _input(event: InputEvent) -> void:
 		rotate_clockwise()
 	if BlockManager.current_block != null && event.is_action_pressed("counter_clockwise"):
 		rotate_counter_clockwise()
+	if event.is_action_pressed("ui_cancel"):
+		$CanvasLayer/PauseMenu.visible = !$CanvasLayer/PauseMenu.visible
+
+
+func _on_coins_changed():
+	$CanvasLayer/GameUI/PanelContainer/VBoxContainer/HBoxContainer/PanelContainer/GridContainer/CoinsContainer/HBoxContainer/Coins.text = str(Player.coins)
 
 
 func place_tile() -> void:
-	var tile := placed_tiles_map.local_to_map(get_local_mouse_position()) as Vector2
+	var filled_rows_before := BlockManager.get_filled_rows_count()
+	var mouse_pos := get_local_mouse_position()
+	var tile := placed_tiles_map.local_to_map(mouse_pos) as Vector2
 	var place_tile_sfx = [AudioManager.sfx_place_pop_01,AudioManager.sfx_place_pop_02,AudioManager.sfx_place_pop_03]
-	if !is_tile_connected(tile) || is_tile_overlapping(tile):
+	if !is_tile_connected(tile) || is_tile_overlapping(tile) || is_tile_protruding(tile):
 		animate_cant_place()
 		return
+	
+	if Player.lvl < 4:
+		if BlockManager.current_block.type == Block.Type.CLOUD_BUSTER:
+			if BlockManager.current_block.get_peak(tile) > get_cloud_threshold()-4:
+				animate_cant_place()
+				return
+			else:
+				match get_cloud_threshold():
+					-10:
+						$BarrierManager/CloudsBarrier1.is_unbreakable = false
+					-32:
+						$BarrierManager/CloudsBarrier2.is_unbreakable = false
+					-87:
+						$BarrierManager/CloudsBarrier3.is_unbreakable = false
+		else:
+			if BlockManager.current_block.get_peak(tile) < get_cloud_threshold():
+				animate_cant_place()
+				return
+	
 	AudioManager.play_sfx(place_tile_sfx.pick_random())
 	next_tile_map.clear()
 	var coords = []
 	for cell in BlockManager.current_block.coords:
 		coords.push_back(tile + cell)
 	var new_block := Block.new()
-	new_block.init(coords, BlockManager.current_block.type, BlockManager.current_block.value)
+
+	new_block.init(coords, BlockManager.current_block.type, BlockManager.current_block.value, true)
 	BlockManager.add_placed_block(new_block)
 	update_cells()
-	income()
 	upkeep()
+	BlockManager.current_block = null
+	shadow_tile_map.clear()
+	var filled_rows_after := BlockManager.get_filled_rows_count()
+	if filled_rows_after > filled_rows_before:
+		print(filled_rows_after)
+		var row_confetti_scene := row_confetti.instantiate() as Node2D
+		row_confetti_scene.position = mouse_pos
+		add_child(row_confetti_scene)
 	BlockManager.current_block = null
 	match tutorial_page:
 		2:
@@ -125,23 +182,32 @@ func update_cells() -> void:
 		#	placed_tiles_map.set_cell(coord, block.get_source(), Vector2.ZERO)
 			
 
-
 func is_tile_connected(tile: Vector2) -> bool:
 	for cell in  BlockManager.current_block.coords:
-		if is_instance_valid(placed_tiles_map.get_cell_tile_data(tile + cell + Vector2(0, -1))):
-			return true
-		if is_instance_valid(placed_tiles_map.get_cell_tile_data(tile + cell + Vector2(0, 1))):
-			return true
-		if is_instance_valid(placed_tiles_map.get_cell_tile_data(tile + cell + Vector2(1, 0))):
-			return true
-		if is_instance_valid(placed_tiles_map.get_cell_tile_data(tile + cell + Vector2(-1, 0))):
-			return true
+		for block in BlockManager.placed_blocks:
+			if block.is_placed_by_player:
+				for coord in block.coords:
+					if coord == tile + cell + Vector2(0, -1):
+						return true
+					if coord == tile + cell + Vector2(0, 1):
+						return true
+					if coord == tile + cell + Vector2(1, 0):
+						return true
+					if coord == tile + cell + Vector2(-1, 0):
+						return true
 	return false
 
 
 func is_tile_overlapping(tile: Vector2) -> bool:
 	for cell in BlockManager.current_block.coords:
 		if is_instance_valid(placed_tiles_map.get_cell_tile_data(tile + cell)):
+			return true
+	return false
+
+
+func is_tile_protruding(tile: Vector2) -> bool:
+	for cell in BlockManager.current_block.coords:
+		if tile.x + cell.x > ($Camera2D.zoom_level*2 -1) or tile.x + cell.x < (-(2*$Camera2D.zoom_level)):
 			return true
 	return false
 
@@ -256,11 +322,21 @@ func income():
 
 
 func upkeep():
-	Player.food -= 2 * Player.people
-	Player.water -= 2 * Player.people
-	Player.electricity -= Player.people
-	#Player.people -= 0
-	#Player.coins -= 0
+	pass
+
+
+func get_cloud_threshold() -> int:
+	match Player.lvl:
+		1:
+			return -10
+		2:
+			return -32
+		3:
+			return -87
+		4:
+			return -99999999
+	return 0
+
 
 #Tutorial Menu Actions
 func _on_return_button_pressed() -> void:

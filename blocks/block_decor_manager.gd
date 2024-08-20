@@ -1,11 +1,11 @@
 extends Node2D
 class_name BlockDecorManager
 
-var demo: Demo
+var demo
 # Dictionary of Block with and Array of BlockDecor
 var all_decor = {}
 
-func init(_demo: Demo):
+func init(_demo):
 	demo = _demo
 
 func add_decor(block: Block, tile_map: TileMapLayer):
