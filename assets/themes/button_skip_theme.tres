@@ -1,9 +1,8 @@
-[gd_resource type="Theme" load_steps=7 format=3 uid="uid://cmj8hf5q50coi"]
+[gd_resource type="Theme" load_steps=6 format=3 uid="uid://cmj8hf5q50coi"]
 
 [ext_resource type="StyleBox" path="res://assets/themes/button_skip_style_hover.tres" id="1_knkki"]
 [ext_resource type="StyleBox" path="res://assets/themes/button_skip_style_normal.tres" id="2_ny66c"]
 [ext_resource type="StyleBox" path="res://assets/themes/button_skip_style_pressed.tres" id="3_nvorw"]
-[ext_resource type="FontFile" uid="uid://cipx1s86p18uh" path="res://fonts/nunito-cyrillic-300-normal.ttf" id="4_b1i1u"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ots7o"]
 content_margin_left = 4.0
@@ -39,7 +38,6 @@ expand_margin_right = 2.0
 expand_margin_bottom = 2.0
 
 [resource]
-default_font = ExtResource("4_b1i1u")
 Button/colors/font_color = Color(0, 0, 0, 1)
 Button/colors/font_disabled_color = Color(0.875, 0.875, 0.875, 0.5)
 Button/colors/font_focus_color = Color(0.95, 0.95, 0.95, 1)

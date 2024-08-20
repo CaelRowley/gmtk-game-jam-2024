@@ -1,6 +1,5 @@
-[gd_resource type="Theme" load_steps=10 format=3 uid="uid://cp6kq4e452w4s"]
+[gd_resource type="Theme" load_steps=9 format=3 uid="uid://cp6kq4e452w4s"]
 
-[ext_resource type="FontFile" uid="uid://cipx1s86p18uh" path="res://fonts/nunito-cyrillic-300-normal.ttf" id="1_7lh5g"]
 [ext_resource type="Texture2D" uid="uid://bxmvwsur10uvn" path="res://assets/ui/kenney/Yellow/Default/button_rectangle_depth_flat.png" id="1_8yd4x"]
 [ext_resource type="StyleBox" uid="uid://d2h3doyu5767w" path="res://assets/themes/button_next_style_normal.tres" id="1_csl81"]
 
@@ -70,7 +69,6 @@ texture_margin_bottom = 10.0
 modulate_color = Color(0.938449, 0.93845, 0.938449, 1)
 
 [resource]
-default_font = ExtResource("1_7lh5g")
 Button/colors/font_color = Color(0, 0, 0, 1)
 Button/colors/font_disabled_color = Color(0.875, 0.875, 0.875, 0.5)
 Button/colors/font_focus_color = Color(0, 0, 0, 1)
