@@ -17,9 +17,9 @@ func _ready() -> void:
 	# reset all player stats
 	BlockManager.placed_blocks = []
 	BlockManager.current_block = null
-	Player.food = 0
-	Player.water = 0
-	Player.electricity = 0
+	Player.food = 50
+	Player.water = 50
+	Player.electricity = 50
 	Player.people = 0
 	Player.coins = 0
 	Player.lvl = 1
