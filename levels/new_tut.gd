@@ -39,9 +39,9 @@ func _ready() -> void:
 	# reset all player stats
 	BlockManager.placed_blocks = []
 	BlockManager.current_block = null
-	Player.food = 0
-	Player.water = 0
-	Player.electricity = 0
+	Player.food = 50
+	Player.water = 50
+	Player.electricity = 50
 	Player.people = 0
 	Player.coins = 0
 	Player.lvl = 1
@@ -77,6 +77,27 @@ func _ready() -> void:
 	$CanvasLayer/PauseMenu/PanelContainer/VBoxContainer/CheckBox.set_pressed_no_signal(Settings.get_value(Settings.SECTIONS.Display, Settings.KEYS.Fullscreen))
 	block_dispenser.upcoming_block = null
 	#block_dispenser.update_dispenser_preview()
+	if Settings.get_value(Settings.SECTIONS.Gameplay, Settings.KEYS.SkipTutorial):
+		$CanvasLayer/Tutorial/MarginContainer/Page01/SkipContainer.show()
+		$CanvasLayer/Tutorial/MarginContainer/Page02_Action/SkipContainer.show()
+		$CanvasLayer/Tutorial/MarginContainer/Page03/SkipContainer.show()
+		$CanvasLayer/Tutorial/MarginContainer/Page04_Action/SkipContainer.show()
+		$CanvasLayer/Tutorial/MarginContainer/Page05/SkipContainer.show()
+		$CanvasLayer/Tutorial/MarginContainer/Page06_NULL/SkipContainer.show()
+		$CanvasLayer/Tutorial/MarginContainer/Page07_Action/SkipContainer.show()
+		$CanvasLayer/Tutorial/MarginContainer/Page08_NULL/SkipContainer.show()
+		$CanvasLayer/Tutorial/MarginContainer/Page09_Action/SkipContainer.show()
+		$CanvasLayer/Tutorial/MarginContainer/Page10_NULL/SkipContainer.show()
+		$CanvasLayer/Tutorial/MarginContainer/Page11_Action/SkipContainer.show()
+		$CanvasLayer/Tutorial/MarginContainer/Page12/SkipContainer.show()
+		$CanvasLayer/Tutorial/MarginContainer/Page13_NULL/SkipContainer.show()
+		$CanvasLayer/Tutorial/MarginContainer/Page14_Action/SkipContainer.show()
+		$CanvasLayer/Tutorial/MarginContainer/Page15/SkipContainer.show()
+		$CanvasLayer/Tutorial/MarginContainer/Page16/SkipContainer.show()
+		$CanvasLayer/Tutorial/MarginContainer/Page17/SkipContainer.show()
+		$CanvasLayer/Tutorial/MarginContainer/Page18/SkipContainer.show()
+		$CanvasLayer/Tutorial/MarginContainer/Page19/SkipContainer.show()
+		$CanvasLayer/Tutorial/MarginContainer/Page20/SkipContainer.show()
 
 
 func _on_coins_changed():
@@ -305,9 +326,9 @@ func rotate_counter_clockwise() -> void:
 
 
 func upkeep():
-	var food := 0
-	var water := 0
-	var electricity := 0
+	var food := 15
+	var water := 15
+	var electricity := 15
 	var coins := 0
 	var people := 0
 	for block in BlockManager.placed_blocks:
