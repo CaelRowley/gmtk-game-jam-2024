@@ -340,7 +340,6 @@ func get_cloud_threshold() -> int:
 
 #Tutorial Menu Actions
 func _on_return_button_pressed() -> void:
-	Settings.set_value(Settings.SECTIONS.Gameplay, Settings.KEYS.SkipTutorial, true)
 	SceneManager.goto_scene("res://levels/game.tscn")
 
 
@@ -410,5 +409,4 @@ func _on_page_13_next_button_pressed() -> void:
 
 
 func _on_page_15_exit_button_pressed() -> void:
-	Settings.set_value(Settings.SECTIONS.Gameplay, Settings.KEYS.SkipTutorial, true)
 	SceneManager.goto_scene("res://levels/game.tscn")

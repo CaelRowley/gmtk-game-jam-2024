@@ -14,6 +14,7 @@ var main_camera: CameraController
 var block_dispenser: BlockDispenser
 
 func _ready() -> void:
+	Settings.set_value(Settings.SECTIONS.Gameplay, Settings.KEYS.SkipTutorial, true)
 	# reset all player stats
 	BlockManager.placed_blocks = []
 	BlockManager.current_block = null
