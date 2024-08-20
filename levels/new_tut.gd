@@ -1,5 +1,4 @@
 extends Node2D
-class_name Demo
 
 const tile_size := 128
 
@@ -8,6 +7,24 @@ const tile_size := 128
 @onready var placed_tiles_map := %PlacedTilesMap as TileMapLayer
 @onready var row_confetti := preload("res://blocks/row_confetti.tscn")
 
+#Tutorial Pages
+@onready var page_01 = $CanvasLayer/Tutorial/MarginContainer/Page01
+@onready var page_02 = $CanvasLayer/Tutorial/MarginContainer/Page02_Action
+@onready var page_03 = $CanvasLayer/Tutorial/MarginContainer/Page03
+@onready var page_04 = $CanvasLayer/Tutorial/MarginContainer/Page04_Action
+@onready var page_05 = $CanvasLayer/Tutorial/MarginContainer/Page05
+@onready var page_06 = $CanvasLayer/Tutorial/MarginContainer/Page06
+@onready var page_07 = $CanvasLayer/Tutorial/MarginContainer/Page07_Action
+@onready var page_08 = $CanvasLayer/Tutorial/MarginContainer/Page08
+@onready var page_09 = $CanvasLayer/Tutorial/MarginContainer/Page09_Action
+@onready var page_10 = $CanvasLayer/Tutorial/MarginContainer/Page10
+@onready var page_11 = $CanvasLayer/Tutorial/MarginContainer/Page11_Action
+@onready var page_12 = $CanvasLayer/Tutorial/MarginContainer/Page12
+@onready var page_13 = $CanvasLayer/Tutorial/MarginContainer/Page13
+@onready var page_14 = $CanvasLayer/Tutorial/MarginContainer/Page14_Action
+@onready var page_15 = $CanvasLayer/Tutorial/MarginContainer/Page15
+
+var tutorial_page := 2
 var decor_manager: BlockDecorManager
 var npc_manager: NPCManager
 var main_camera: CameraController
@@ -17,9 +34,9 @@ func _ready() -> void:
 	# reset all player stats
 	BlockManager.placed_blocks = []
 	BlockManager.current_block = null
-	Player.food = 50
-	Player.water = 50
-	Player.electricity = 50
+	Player.food = 0
+	Player.water = 0
+	Player.electricity = 0
 	Player.people = 0
 	Player.coins = 0
 	Player.lvl = 1
@@ -46,8 +63,8 @@ func _ready() -> void:
 	
 	$Camera2D.zoom_changed.connect(_on_zoom_changed)
 	
-	$CanvasLayer/GameUI/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer/Level.text = str(Player.lvl)
-	$CanvasLayer/GameUI/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer2/Floors.text = str(BlockManager.get_height())
+	$CanvasLayer/GameUI/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer/Level.text = "Level: " + str(Player.lvl)
+	$CanvasLayer/GameUI/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer/Floors.text = "Floors: " + str(BlockManager.get_height())
 	$CanvasLayer/GameUI/PanelContainer2/Score.text = "Score: " + str(Player.score)
 	$CanvasLayer/GameUI/PanelContainer/VBoxContainer/HBoxContainer/CenterContainer/HBoxContainer/People.text = str(Player.people)
 	$"CanvasLayer/GameUI/PanelContainer/VBoxContainer/HBoxContainer/PanelContainer/GridContainer/Food Container/HBoxContainer/Food".text = str(Player.food)
@@ -60,6 +77,8 @@ func _ready() -> void:
 	$CanvasLayer/PauseMenu/PanelContainer/VBoxContainer/MusicSlider.value = Settings.get_value(Settings.SECTIONS.Audio, Settings.KEYS.Music)
 	$CanvasLayer/PauseMenu/PanelContainer/VBoxContainer/SFXSlider.value = Settings.get_value(Settings.SECTIONS.Audio, Settings.KEYS.SFX)
 	$CanvasLayer/PauseMenu/PanelContainer/VBoxContainer/CheckBox.set_pressed_no_signal(Settings.get_value(Settings.SECTIONS.Display, Settings.KEYS.Fullscreen))
+	block_dispenser.upcoming_block = null
+	#block_dispenser.update_dispenser_preview()
 
 
 func _on_coins_changed():
@@ -108,7 +127,6 @@ func place_tile() -> void:
 				animate_cant_place()
 				return
 			else:
-				AudioManager.play_sfx(AudioManager.drill)
 				match get_cloud_threshold():
 					-10:
 						$BarrierManager/CloudsBarrier1.is_unbreakable = false
@@ -134,7 +152,6 @@ func place_tile() -> void:
 	update_cells()
 	upkeep()
 	BlockManager.current_block = null
-	block_dispenser.progress_upcoming_block(null)
 	shadow_tile_map.clear()
 	var filled_rows_after := BlockManager.get_filled_rows_count()
 	if filled_rows_after > filled_rows_before:
@@ -142,6 +159,25 @@ func place_tile() -> void:
 		var row_confetti_scene := row_confetti.instantiate() as Node2D
 		row_confetti_scene.position = mouse_pos
 		add_child(row_confetti_scene)
+	match tutorial_page:
+		2:
+			page_02.visible = false
+			page_03.visible = true
+		4:
+			page_04.visible = false
+			page_05.visible = true
+		7:
+			page_07.visible = false
+			page_08.visible = true
+		9:
+			page_09.visible = false
+			page_10.visible = true
+		11:
+			page_11.visible = false
+			page_12.visible = true
+		14: 
+			page_14.visible = false
+			page_15.visible = true
 
 
 func update_cells() -> void:
@@ -279,8 +315,8 @@ func upkeep():
 	Player.electricity -= Player.people
 	
 	Player.update_score()
-	$CanvasLayer/GameUI/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer/Level.text = str(Player.lvl)
-	$CanvasLayer/GameUI/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer2/Floors.text = str(BlockManager.get_height())
+	$CanvasLayer/GameUI/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer/Level.text = "Level: " + str(Player.lvl)
+	$CanvasLayer/GameUI/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer/Floors.text = "Floors: " + str(BlockManager.get_height())
 	$CanvasLayer/GameUI/PanelContainer2/Score.text = "Score: " + str(Player.score)
 
 	#Food
@@ -374,4 +410,99 @@ func _on_resume_button_pressed() -> void:
 
 
 func _on_tutorial_button_pressed() -> void:
-	SceneManager.goto_scene("res://levels/new_tut.tscn")
+	SceneManager.goto_scene("res://levels/tutorial.tscn")
+
+
+#Tutorial Menu Actions
+func _on_return_button_pressed() -> void:
+	Settings.set_value(Settings.SECTIONS.Gameplay, Settings.KEYS.SkipTutorial, true)
+	SceneManager.goto_scene("res://levels/game.tscn")
+
+
+func _on_page_01_next_button_pressed() -> void:
+	tutorial_page = 2
+	BlockManager.set_block(Block.Type.RESIDENTIAL, {
+			"coords": [Vector2(0,0), Vector2(1,0), Vector2(0,1)],
+			"value": 3,
+		})
+	block_dispenser.progress_current_block()
+	block_dispenser.upcoming_block = null
+	#block_dispenser.update_dispenser_preview()
+	#block_dispenser.progress_upcoming_block(Block.Type.RESIDENTIAL)
+	page_01.visible = false
+	page_02.visible = true
+
+func _on_page_03_next_button_pressed() -> void:
+	tutorial_page = 4
+	BlockManager.set_block(Block.Type.FOOD, {
+			"coords": [Vector2(0,0)],
+			"value": 3,
+		})
+	block_dispenser.progress_current_block()
+	block_dispenser.upcoming_block = null
+	#block_dispenser.update_dispenser_preview()
+	page_03.visible = false
+	page_04.visible = true
+
+func _on_page_05_next_button_pressed() -> void:
+	page_05.visible = false
+	page_06.visible = true
+
+func _on_page_06_next_button_pressed() -> void:
+	tutorial_page = 7
+	BlockManager.set_block(Block.Type.WATER, {
+			"coords": [Vector2(0,0), Vector2(0,1)],
+			"value": 3,
+		})
+	block_dispenser.progress_current_block()
+	block_dispenser.upcoming_block = null
+	#block_dispenser.update_dispenser_preview()
+	page_06.visible = false
+	page_07.visible = true
+
+func _on_page_08_next_button_pressed() -> void:
+	tutorial_page = 9
+	BlockManager.set_block(Block.Type.ELECTRICITY, {
+			"coords": [Vector2(0,0)],
+			"value": 3,
+		})
+	block_dispenser.progress_current_block()
+	block_dispenser.upcoming_block = null
+	#block_dispenser.update_dispenser_preview()
+	page_08.visible = false
+	page_09.visible = true
+
+func _on_page_10_next_button_pressed() -> void:
+	tutorial_page = 11
+	BlockManager.set_block(Block.Type.BUSINESS, {
+		"coords": [Vector2(0,0), Vector2(0,1)],
+		"value": 3,
+	})
+	block_dispenser.progress_current_block()
+	block_dispenser.upcoming_block = null
+	#block_dispenser.update_dispenser_preview()
+	page_10.visible = false
+	page_11.visible = true
+
+func _on_page_12_next_button_pressed() -> void:
+	print("12")
+	page_12.visible = false
+	page_13.visible = true
+
+
+func _on_page_13_next_button_pressed() -> void:
+	tutorial_page = 14
+	BlockManager.set_block(Block.Type.FRAME, {
+		"coords": [Vector2(0,0), Vector2(0,1)],
+		"value": 3,
+	})
+	block_dispenser.progress_current_block()
+	block_dispenser.upcoming_block = null
+	#block_dispenser.update_dispenser_preview()
+	page_13.visible = false
+	page_14.visible = true
+
+
+func _on_page_15_exit_button_pressed() -> void:
+	Settings.set_value(Settings.SECTIONS.Gameplay, Settings.KEYS.SkipTutorial, true)
+	SceneManager.goto_scene("res://levels/game.tscn")

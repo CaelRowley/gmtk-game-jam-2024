@@ -3,11 +3,11 @@ class_name NPCManager
 
 static var SALAMUG_SCENE: PackedScene = load("res://environment/npcs/npc_salamug.tscn") as PackedScene
 
-var demo: Demo
+var demo
 var timer = 0
 var npcs = []
 
-func init(_demo: Demo):
+func init(_demo):
 	demo = _demo
 	
 func _process(delta: float) -> void:

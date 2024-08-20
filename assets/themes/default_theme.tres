@@ -1,7 +1,8 @@
-[gd_resource type="Theme" load_steps=7 format=3 uid="uid://cp6kq4e452w4s"]
+[gd_resource type="Theme" load_steps=10 format=3 uid="uid://cp6kq4e452w4s"]
 
 [ext_resource type="FontFile" uid="uid://cipx1s86p18uh" path="res://fonts/nunito-cyrillic-300-normal.ttf" id="1_7lh5g"]
-[ext_resource type="StyleBox" path="res://assets/themes/button_next_style_normal.tres" id="1_csl81"]
+[ext_resource type="Texture2D" uid="uid://bxmvwsur10uvn" path="res://assets/ui/kenney/Yellow/Default/button_rectangle_depth_flat.png" id="1_8yd4x"]
+[ext_resource type="StyleBox" uid="uid://d2h3doyu5767w" path="res://assets/themes/button_next_style_normal.tres" id="1_csl81"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ots7o"]
 content_margin_left = 4.0
@@ -36,16 +37,37 @@ expand_margin_top = 2.0
 expand_margin_right = 2.0
 expand_margin_bottom = 2.0
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_5ic7i"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_08wwu"]
+texture = ExtResource("1_8yd4x")
+texture_margin_left = 5.0
+texture_margin_top = 5.0
+texture_margin_right = 5.0
+texture_margin_bottom = 10.0
+modulate_color = Color(0.938449, 0.93845, 0.938449, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xugx0"]
-bg_color = Color(0.639216, 0.0823529, 0.0941176, 1)
-border_width_left = 8
-border_width_top = 8
-border_width_right = 8
-border_width_bottom = 8
-border_color = Color(0.258824, 0.0470588, 0.0470588, 1)
-border_blend = true
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_hiiag"]
+texture = ExtResource("1_8yd4x")
+texture_margin_left = 5.0
+texture_margin_top = 10.0
+texture_margin_right = 5.0
+texture_margin_bottom = 10.0
+modulate_color = Color(0.766184, 0.727358, 0.318826, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_oi3t4"]
+texture = ExtResource("1_8yd4x")
+texture_margin_left = 5.0
+texture_margin_top = 5.0
+texture_margin_right = 5.0
+texture_margin_bottom = 10.0
+modulate_color = Color(0.938449, 0.93845, 0.938449, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qgqqd"]
+texture = ExtResource("1_8yd4x")
+texture_margin_left = 5.0
+texture_margin_top = 5.0
+texture_margin_right = 5.0
+texture_margin_bottom = 10.0
+modulate_color = Color(0.938449, 0.93845, 0.938449, 1)
 
 [resource]
 default_font = ExtResource("1_7lh5g")
@@ -69,6 +91,9 @@ Button/constants/outline_size = 0
 Button/font_sizes/font_size = 16
 Button/styles/disabled = SubResource("StyleBoxFlat_ots7o")
 Button/styles/focus = SubResource("StyleBoxFlat_cge5g")
-Button/styles/hover = SubResource("StyleBoxTexture_5ic7i")
+Button/styles/hover = SubResource("StyleBoxTexture_08wwu")
 Button/styles/normal = ExtResource("1_csl81")
-Button/styles/pressed = SubResource("StyleBoxFlat_xugx0")
+Button/styles/pressed = SubResource("StyleBoxTexture_hiiag")
+CheckBox/styles/hover = SubResource("StyleBoxTexture_oi3t4")
+CheckBox/styles/hover_pressed = SubResource("StyleBoxTexture_qgqqd")
+CheckBox/styles/pressed = ExtResource("1_csl81")
