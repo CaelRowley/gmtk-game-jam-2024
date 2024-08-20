@@ -73,10 +73,10 @@ func _ready() -> void:
 	$CanvasLayer/GameUI/PanelContainer/VBoxContainer/HBoxContainer/PanelContainer/GridContainer/CoinsContainer/HBoxContainer/Coins.text = str(Player.coins)
 	AudioManager.play_music(AudioManager.music_level01_track)
 	block_dispenser.init(self)
-	$CanvasLayer/PauseMenu/VBoxContainer/MasterSlider.value = Settings.get_value(Settings.SECTIONS.Audio, Settings.KEYS.Master)
-	$CanvasLayer/PauseMenu/VBoxContainer/MusicSlider.value = Settings.get_value(Settings.SECTIONS.Audio, Settings.KEYS.Music)
-	$CanvasLayer/PauseMenu/VBoxContainer/SFXSlider.value = Settings.get_value(Settings.SECTIONS.Audio, Settings.KEYS.SFX)
-	$CanvasLayer/PauseMenu/VBoxContainer/CheckBox.set_pressed_no_signal(Settings.get_value(Settings.SECTIONS.Display, Settings.KEYS.Fullscreen))
+	$CanvasLayer/PauseMenu/PanelContainer/VBoxContainer/MasterSlider.value = Settings.get_value(Settings.SECTIONS.Audio, Settings.KEYS.Master)
+	$CanvasLayer/PauseMenu/PanelContainer/VBoxContainer/MusicSlider.value = Settings.get_value(Settings.SECTIONS.Audio, Settings.KEYS.Music)
+	$CanvasLayer/PauseMenu/PanelContainer/VBoxContainer/SFXSlider.value = Settings.get_value(Settings.SECTIONS.Audio, Settings.KEYS.SFX)
+	$CanvasLayer/PauseMenu/PanelContainer/VBoxContainer/CheckBox.set_pressed_no_signal(Settings.get_value(Settings.SECTIONS.Display, Settings.KEYS.Fullscreen))
 	block_dispenser.upcoming_block = null
 	#block_dispenser.update_dispenser_preview()
 
