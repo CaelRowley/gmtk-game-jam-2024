@@ -77,7 +77,7 @@ func get_peak(tile := Vector2.ZERO) -> int:
 
 
 func get_value(tile_map: TileMapLayer) -> int:
-	if is_connected_to_frame(tile_map):
+	if is_connected_to_frame(tile_map) and type != Type.RESIDENTIAL:
 		return value*2
 	return value
 
