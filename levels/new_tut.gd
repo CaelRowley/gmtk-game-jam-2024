@@ -13,16 +13,21 @@ const tile_size := 128
 @onready var page_03 = $CanvasLayer/Tutorial/MarginContainer/Page03
 @onready var page_04 = $CanvasLayer/Tutorial/MarginContainer/Page04_Action
 @onready var page_05 = $CanvasLayer/Tutorial/MarginContainer/Page05
-@onready var page_06 = $CanvasLayer/Tutorial/MarginContainer/Page06
+#@onready var page_06 = $CanvasLayer/Tutorial/MarginContainer/Page06
 @onready var page_07 = $CanvasLayer/Tutorial/MarginContainer/Page07_Action
-@onready var page_08 = $CanvasLayer/Tutorial/MarginContainer/Page08
+#@onready var page_08 = $CanvasLayer/Tutorial/MarginContainer/Page08
 @onready var page_09 = $CanvasLayer/Tutorial/MarginContainer/Page09_Action
-@onready var page_10 = $CanvasLayer/Tutorial/MarginContainer/Page10
+#@onready var page_10 = $CanvasLayer/Tutorial/MarginContainer/Page10
 @onready var page_11 = $CanvasLayer/Tutorial/MarginContainer/Page11_Action
 @onready var page_12 = $CanvasLayer/Tutorial/MarginContainer/Page12
-@onready var page_13 = $CanvasLayer/Tutorial/MarginContainer/Page13
+#@onready var page_13 = $CanvasLayer/Tutorial/MarginContainer/Page13
 @onready var page_14 = $CanvasLayer/Tutorial/MarginContainer/Page14_Action
 @onready var page_15 = $CanvasLayer/Tutorial/MarginContainer/Page15
+@onready var page_16 = $CanvasLayer/Tutorial/MarginContainer/Page16
+@onready var page_17 = $CanvasLayer/Tutorial/MarginContainer/Page17
+@onready var page_18 = $CanvasLayer/Tutorial/MarginContainer/Page18
+@onready var page_19 = $CanvasLayer/Tutorial/MarginContainer/Page19
+@onready var page_20 = $CanvasLayer/Tutorial/MarginContainer/Page20
 
 var tutorial_page := 2
 var decor_manager: BlockDecorManager
@@ -167,11 +172,25 @@ func place_tile() -> void:
 			page_04.visible = false
 			page_05.visible = true
 		7:
+			BlockManager.set_block(Block.Type.ELECTRICITY, {
+			"coords": [Vector2(0,0)],
+			"value": 3,
+			})
+			block_dispenser.progress_current_block()
+			block_dispenser.upcoming_block = null
 			page_07.visible = false
-			page_08.visible = true
+			page_09.visible = true
+			tutorial_page = 9
 		9:
+			BlockManager.set_block(Block.Type.BUSINESS, {
+			"coords": [Vector2(0,0), Vector2(0,1)],
+			"value": 3,
+			})
+			block_dispenser.progress_current_block()
+			block_dispenser.upcoming_block = null
 			page_09.visible = false
-			page_10.visible = true
+			page_11.visible = true
+			tutorial_page = 11
 		11:
 			page_11.visible = false
 			page_12.visible = true
@@ -445,10 +464,6 @@ func _on_page_03_next_button_pressed() -> void:
 	page_04.visible = true
 
 func _on_page_05_next_button_pressed() -> void:
-	page_05.visible = false
-	page_06.visible = true
-
-func _on_page_06_next_button_pressed() -> void:
 	tutorial_page = 7
 	BlockManager.set_block(Block.Type.WATER, {
 			"coords": [Vector2(0,0), Vector2(0,1)],
@@ -457,7 +472,7 @@ func _on_page_06_next_button_pressed() -> void:
 	block_dispenser.progress_current_block()
 	block_dispenser.upcoming_block = null
 	#block_dispenser.update_dispenser_preview()
-	page_06.visible = false
+	page_05.visible = false
 	page_07.visible = true
 
 func _on_page_08_next_button_pressed() -> void:
@@ -469,7 +484,7 @@ func _on_page_08_next_button_pressed() -> void:
 	block_dispenser.progress_current_block()
 	block_dispenser.upcoming_block = null
 	#block_dispenser.update_dispenser_preview()
-	page_08.visible = false
+	page_07.visible = false
 	page_09.visible = true
 
 func _on_page_10_next_button_pressed() -> void:
@@ -481,16 +496,10 @@ func _on_page_10_next_button_pressed() -> void:
 	block_dispenser.progress_current_block()
 	block_dispenser.upcoming_block = null
 	#block_dispenser.update_dispenser_preview()
-	page_10.visible = false
+	page_09.visible = false
 	page_11.visible = true
 
 func _on_page_12_next_button_pressed() -> void:
-	print("12")
-	page_12.visible = false
-	page_13.visible = true
-
-
-func _on_page_13_next_button_pressed() -> void:
 	tutorial_page = 14
 	BlockManager.set_block(Block.Type.FRAME, {
 		"coords": [Vector2(0,0), Vector2(0,1)],
@@ -499,10 +508,44 @@ func _on_page_13_next_button_pressed() -> void:
 	block_dispenser.progress_current_block()
 	block_dispenser.upcoming_block = null
 	#block_dispenser.update_dispenser_preview()
-	page_13.visible = false
+	page_12.visible = false
 	page_14.visible = true
 
 
+func _on_page_13_next_button_pressed() -> void:
+	pass
+
+
 func _on_page_15_exit_button_pressed() -> void:
+	Settings.set_value(Settings.SECTIONS.Gameplay, Settings.KEYS.SkipTutorial, true)
+	SceneManager.goto_scene("res://levels/game.tscn")
+
+
+func _on_page_15_next_button_pressed() -> void:
+	page_15.visible = false
+	page_16.visible = true
+
+
+func _on_page_16_next_button_pressed() -> void:
+	page_16.visible = false
+	page_17.visible = true
+
+
+func _on_page_17_next_button_pressed() -> void:
+	page_17.visible = false
+	page_18.visible = true
+
+
+func _on_page_18_next_button_pressed() -> void:
+	page_18.visible = false
+	page_19.visible = true
+
+
+func _on_page_19_next_button_pressed() -> void:
+	page_19.visible = false
+	page_20.visible = true
+
+
+func _on_page_20_exit_button_pressed() -> void:
 	Settings.set_value(Settings.SECTIONS.Gameplay, Settings.KEYS.SkipTutorial, true)
 	SceneManager.goto_scene("res://levels/game.tscn")

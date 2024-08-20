@@ -1,15 +1,22 @@
-[gd_scene load_steps=10 format=3 uid="uid://b8whqy1ftqimy"]
+[gd_scene load_steps=11 format=3 uid="uid://b8whqy1ftqimy"]
 
 [ext_resource type="PackedScene" uid="uid://th56aldp1a1x" path="res://levels/game.tscn" id="1_na27k"]
-[ext_resource type="Theme" uid="uid://cmj8hf5q50coi" path="res://assets/themes/button_skip_theme.tres" id="2_pgsaf"]
+[ext_resource type="Theme" uid="uid://d05830ku1mn0j" path="res://assets/themes/button_skip_theme.tres" id="2_pgsaf"]
 [ext_resource type="Script" path="res://levels/new_tut.gd" id="2_syrb2"]
+<<<<<<< Updated upstream
 [ext_resource type="StyleBox" uid="uid://5d8aki4kdpo3" path="res://assets/themes/text_prompt.tres" id="3_53n5i"]
+=======
+[ext_resource type="StyleBox" uid="uid://dio5jgo7r0eft" path="res://assets/themes/text_prompt.tres" id="3_53n5i"]
+>>>>>>> Stashed changes
 [ext_resource type="Theme" uid="uid://cp6kq4e452w4s" path="res://assets/themes/default_theme.tres" id="4_h237w"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ucp35"]
 content_margin_left = 360.0
 content_margin_top = 10.0
 content_margin_bottom = 10.0
+
+[sub_resource type="SystemFont" id="SystemFont_deyfi"]
+font_weight = 450
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_r2ccf"]
 content_margin_left = 10.0
@@ -24,7 +31,7 @@ content_margin_right = 180.0
 content_margin_left = 129.0
 content_margin_right = 20.0
 
-[node name="Game" instance=ExtResource("1_na27k")]
+[node name="Game2" instance=ExtResource("1_na27k")]
 script = ExtResource("2_syrb2")
 
 [node name="Tutorial" type="Control" parent="CanvasLayer" index="3"]
@@ -70,15 +77,15 @@ text = "Skip"
 layout_mode = 2
 theme_override_styles/panel = ExtResource("3_53n5i")
 
-[node name="Label" type="Label" parent="CanvasLayer/Tutorial/MarginContainer/Page01/PanelContainer" index="0"]
-clip_contents = true
-custom_minimum_size = Vector2(200, 0)
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Tutorial/MarginContainer/Page01/PanelContainer" index="0"]
 layout_mode = 2
 theme = ExtResource("4_h237w")
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "Welcome to the game! Where you need to build high and keep you residence happy!
-"
-autowrap_mode = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/bold_font = SubResource("SystemFont_deyfi")
+theme_override_font_sizes/bold_font_size = 18
+bbcode_enabled = true
+text = "Welcome to [b]TETRICITY[/b], the game where you need to build high and keep your Tetrizens happy!"
+fit_content = true
 
 [node name="Buttons" type="PanelContainer" parent="CanvasLayer/Tutorial/MarginContainer/Page01" index="2"]
 layout_mode = 2
@@ -120,16 +127,19 @@ text = "Skip"
 layout_mode = 2
 theme_override_styles/panel = ExtResource("3_53n5i")
 
-[node name="Label" type="Label" parent="CanvasLayer/Tutorial/MarginContainer/Page02_Action/PanelContainer" index="0"]
-clip_contents = true
-custom_minimum_size = Vector2(200, 0)
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Tutorial/MarginContainer/Page02_Action/PanelContainer" index="0"]
 layout_mode = 2
 theme = ExtResource("4_h237w")
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "To get started, place down a Residence Block onto the ground with Left Mouse Click
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/bold_font = SubResource("SystemFont_deyfi")
+theme_override_font_sizes/bold_font_size = 18
+bbcode_enabled = true
+text = "To get started, place a [color=red]Residence Block[/color] onto the ground by clicking the [b]Left Mouse Button[/b].
 
-(You can rotate the block with the Mouse Wheel)"
-autowrap_mode = 2
+Rotate your blocks using the [b]Mouse Wheel[/b].
+
+Click and hold the [b]Right Mouse Button[/b] to scroll up and down through your town."
+fit_content = true
 
 [node name="Page03" type="VBoxContainer" parent="CanvasLayer/Tutorial/MarginContainer" index="2"]
 visible = false
@@ -151,15 +161,15 @@ text = "Skip"
 layout_mode = 2
 theme_override_styles/panel = ExtResource("3_53n5i")
 
-[node name="Label" type="Label" parent="CanvasLayer/Tutorial/MarginContainer/Page03/PanelContainer" index="0"]
-clip_contents = true
-custom_minimum_size = Vector2(200, 0)
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Tutorial/MarginContainer/Page03/PanelContainer" index="0"]
 layout_mode = 2
 theme = ExtResource("4_h237w")
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "You will need to keep the Residence alive by placing resource blocks (Food, Water, and Electricity)
-"
-autowrap_mode = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/bold_font = SubResource("SystemFont_deyfi")
+theme_override_font_sizes/bold_font_size = 18
+bbcode_enabled = true
+text = "Keep your Tetrizens alive by connecting them with resources ([color=#49c500ff]Food[/color], [color=#017ca6ff]Water[/color], [color=dea908ff]Power[/color], and [color=5129beff]Business[/color])."
+fit_content = true
 
 [node name="Buttons" type="PanelContainer" parent="CanvasLayer/Tutorial/MarginContainer/Page03" index="2"]
 layout_mode = 2
@@ -201,14 +211,17 @@ text = "Skip"
 layout_mode = 2
 theme_override_styles/panel = ExtResource("3_53n5i")
 
-[node name="Label" type="Label" parent="CanvasLayer/Tutorial/MarginContainer/Page04_Action/PanelContainer" index="0"]
-clip_contents = true
-custom_minimum_size = Vector2(200, 0)
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Tutorial/MarginContainer/Page04_Action/PanelContainer" index="0"]
 layout_mode = 2
 theme = ExtResource("4_h237w")
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "One of the resource blocks is Food. Place down a Food block next to the Residence Block so your people can eat!"
-autowrap_mode = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/bold_font = SubResource("SystemFont_deyfi")
+theme_override_font_sizes/bold_font_size = 18
+bbcode_enabled = true
+text = "Your Tetrizens will need food! Place a [color=#49c500ff]Food[/color] Block next to the Residence Block so your Tetrizens can eat.
+
+Food Blocks need a side wall exposed to the outside to work!"
+fit_content = true
 
 [node name="Page05" type="VBoxContainer" parent="CanvasLayer/Tutorial/MarginContainer" index="4"]
 visible = false
@@ -230,14 +243,17 @@ text = "Skip"
 layout_mode = 2
 theme_override_styles/panel = ExtResource("3_53n5i")
 
-[node name="Label" type="Label" parent="CanvasLayer/Tutorial/MarginContainer/Page05/PanelContainer" index="0"]
-clip_contents = true
-custom_minimum_size = Vector2(200, 0)
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Tutorial/MarginContainer/Page05/PanelContainer" index="0"]
 layout_mode = 2
 theme = ExtResource("4_h237w")
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "Food Blocks only work when any wall is exposed to the outside!"
-autowrap_mode = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/bold_font = SubResource("SystemFont_deyfi")
+theme_override_font_sizes/bold_font_size = 18
+bbcode_enabled = true
+text = "Once a block has been placed correctly, it will activate and start providing resources. Your Tetrizens will also start consuming resources.
+
+ Pay attention that resources don't get depleted!"
+fit_content = true
 
 [node name="Buttons" type="PanelContainer" parent="CanvasLayer/Tutorial/MarginContainer/Page05" index="2"]
 layout_mode = 2
@@ -259,27 +275,27 @@ layout_mode = 2
 theme = ExtResource("4_h237w")
 text = "  Next   "
 
-[node name="Page06" type="VBoxContainer" parent="CanvasLayer/Tutorial/MarginContainer" index="5"]
+[node name="Page06_NULL" type="VBoxContainer" parent="CanvasLayer/Tutorial/MarginContainer" index="5"]
 visible = false
 layout_mode = 2
 mouse_filter = 2
 
-[node name="SkipContainer" type="PanelContainer" parent="CanvasLayer/Tutorial/MarginContainer/Page06" index="0"]
+[node name="SkipContainer" type="PanelContainer" parent="CanvasLayer/Tutorial/MarginContainer/Page06_NULL" index="0"]
 visible = false
 layout_mode = 2
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_ucp35")
 
-[node name="ReturnButton" type="Button" parent="CanvasLayer/Tutorial/MarginContainer/Page06/SkipContainer" index="0"]
+[node name="ReturnButton" type="Button" parent="CanvasLayer/Tutorial/MarginContainer/Page06_NULL/SkipContainer" index="0"]
 layout_mode = 2
 theme = ExtResource("2_pgsaf")
 text = "Skip"
 
-[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/Tutorial/MarginContainer/Page06" index="1"]
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/Tutorial/MarginContainer/Page06_NULL" index="1"]
 layout_mode = 2
 theme_override_styles/panel = ExtResource("3_53n5i")
 
-[node name="Label" type="Label" parent="CanvasLayer/Tutorial/MarginContainer/Page06/PanelContainer" index="0"]
+[node name="Label" type="Label" parent="CanvasLayer/Tutorial/MarginContainer/Page06_NULL/PanelContainer" index="0"]
 clip_contents = true
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
@@ -288,22 +304,22 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "After a block is placed, resources are turned on and off based on connections. Resources will also be consumed by the Residence. Pay attention that resources don't get depleted!"
 autowrap_mode = 2
 
-[node name="Buttons" type="PanelContainer" parent="CanvasLayer/Tutorial/MarginContainer/Page06" index="2"]
+[node name="Buttons" type="PanelContainer" parent="CanvasLayer/Tutorial/MarginContainer/Page06_NULL" index="2"]
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_r2ccf")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Tutorial/MarginContainer/Page06/Buttons" index="0"]
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Tutorial/MarginContainer/Page06_NULL/Buttons" index="0"]
 layout_mode = 2
 
-[node name="ReturnButtonPanel" type="PanelContainer" parent="CanvasLayer/Tutorial/MarginContainer/Page06/Buttons/HBoxContainer" index="0"]
+[node name="ReturnButtonPanel" type="PanelContainer" parent="CanvasLayer/Tutorial/MarginContainer/Page06_NULL/Buttons/HBoxContainer" index="0"]
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_k7m06")
 
-[node name="NextButtonPanel" type="PanelContainer" parent="CanvasLayer/Tutorial/MarginContainer/Page06/Buttons/HBoxContainer" index="1"]
+[node name="NextButtonPanel" type="PanelContainer" parent="CanvasLayer/Tutorial/MarginContainer/Page06_NULL/Buttons/HBoxContainer" index="1"]
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_7wf86")
 
-[node name="Page06_NextButton" type="Button" parent="CanvasLayer/Tutorial/MarginContainer/Page06/Buttons/HBoxContainer/NextButtonPanel" index="0"]
+[node name="Page06_NextButton" type="Button" parent="CanvasLayer/Tutorial/MarginContainer/Page06_NULL/Buttons/HBoxContainer/NextButtonPanel" index="0"]
 layout_mode = 2
 theme = ExtResource("4_h237w")
 text = "  Next   "
@@ -328,37 +344,39 @@ text = "Skip"
 layout_mode = 2
 theme_override_styles/panel = ExtResource("3_53n5i")
 
-[node name="Label" type="Label" parent="CanvasLayer/Tutorial/MarginContainer/Page07_Action/PanelContainer" index="0"]
-clip_contents = true
-custom_minimum_size = Vector2(200, 0)
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Tutorial/MarginContainer/Page07_Action/PanelContainer" index="0"]
 layout_mode = 2
 theme = ExtResource("4_h237w")
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "Another resource blocks is Water. Place down a Water block next to the Residence Block so your people can use plumbing!
-"
-autowrap_mode = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/bold_font = SubResource("SystemFont_deyfi")
+theme_override_font_sizes/bold_font_size = 18
+bbcode_enabled = true
+text = "[color=#017ca6ff]Water[/color] is another important resource. Place a [color=#017ca6ff]Water[/color] Block down next to the Residence Block so your Tetrizens can stay hydrated.
 
-[node name="Page08" type="VBoxContainer" parent="CanvasLayer/Tutorial/MarginContainer" index="7"]
+Water Blocks need a ceiling exposed to the outside to work!"
+fit_content = true
+
+[node name="Page08_NULL" type="VBoxContainer" parent="CanvasLayer/Tutorial/MarginContainer" index="7"]
 visible = false
 layout_mode = 2
 mouse_filter = 2
 
-[node name="SkipContainer" type="PanelContainer" parent="CanvasLayer/Tutorial/MarginContainer/Page08" index="0"]
+[node name="SkipContainer" type="PanelContainer" parent="CanvasLayer/Tutorial/MarginContainer/Page08_NULL" index="0"]
 visible = false
 layout_mode = 2
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_ucp35")
 
-[node name="ReturnButton" type="Button" parent="CanvasLayer/Tutorial/MarginContainer/Page08/SkipContainer" index="0"]
+[node name="ReturnButton" type="Button" parent="CanvasLayer/Tutorial/MarginContainer/Page08_NULL/SkipContainer" index="0"]
 layout_mode = 2
 theme = ExtResource("2_pgsaf")
 text = "Skip"
 
-[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/Tutorial/MarginContainer/Page08" index="1"]
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/Tutorial/MarginContainer/Page08_NULL" index="1"]
 layout_mode = 2
 theme_override_styles/panel = ExtResource("3_53n5i")
 
-[node name="Label" type="Label" parent="CanvasLayer/Tutorial/MarginContainer/Page08/PanelContainer" index="0"]
+[node name="Label" type="Label" parent="CanvasLayer/Tutorial/MarginContainer/Page08_NULL/PanelContainer" index="0"]
 clip_contents = true
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
@@ -368,22 +386,22 @@ text = "Water Blocks only work when any ceiling is exposed to the outside!
 "
 autowrap_mode = 2
 
-[node name="Buttons" type="PanelContainer" parent="CanvasLayer/Tutorial/MarginContainer/Page08" index="2"]
+[node name="Buttons" type="PanelContainer" parent="CanvasLayer/Tutorial/MarginContainer/Page08_NULL" index="2"]
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_r2ccf")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Tutorial/MarginContainer/Page08/Buttons" index="0"]
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Tutorial/MarginContainer/Page08_NULL/Buttons" index="0"]
 layout_mode = 2
 
-[node name="ReturnButtonPanel" type="PanelContainer" parent="CanvasLayer/Tutorial/MarginContainer/Page08/Buttons/HBoxContainer" index="0"]
+[node name="ReturnButtonPanel" type="PanelContainer" parent="CanvasLayer/Tutorial/MarginContainer/Page08_NULL/Buttons/HBoxContainer" index="0"]
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_k7m06")
 
-[node name="NextButtonPanel" type="PanelContainer" parent="CanvasLayer/Tutorial/MarginContainer/Page08/Buttons/HBoxContainer" index="1"]
+[node name="NextButtonPanel" type="PanelContainer" parent="CanvasLayer/Tutorial/MarginContainer/Page08_NULL/Buttons/HBoxContainer" index="1"]
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_7wf86")
 
-[node name="Page08_NextButton" type="Button" parent="CanvasLayer/Tutorial/MarginContainer/Page08/Buttons/HBoxContainer/NextButtonPanel" index="0"]
+[node name="Page08_NextButton" type="Button" parent="CanvasLayer/Tutorial/MarginContainer/Page08_NULL/Buttons/HBoxContainer/NextButtonPanel" index="0"]
 layout_mode = 2
 theme = ExtResource("4_h237w")
 text = "  Next   "
@@ -408,36 +426,39 @@ text = "Skip"
 layout_mode = 2
 theme_override_styles/panel = ExtResource("3_53n5i")
 
-[node name="Label" type="Label" parent="CanvasLayer/Tutorial/MarginContainer/Page09_Action/PanelContainer" index="0"]
-clip_contents = true
-custom_minimum_size = Vector2(200, 0)
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Tutorial/MarginContainer/Page09_Action/PanelContainer" index="0"]
 layout_mode = 2
 theme = ExtResource("4_h237w")
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "Another resource blocks is Electricity. Place down a Electricity block next to the Residence Block so your people can use power!"
-autowrap_mode = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/bold_font = SubResource("SystemFont_deyfi")
+theme_override_font_sizes/bold_font_size = 18
+bbcode_enabled = true
+text = "Your Tetrizens need [color=dea908ff]Power[/color] to advance their civilization. Place a [color=dea908ff]Power Block [/color]next to the [color=red]Residence Block[/color] to help your colony reach the stars!
 
-[node name="Page10" type="VBoxContainer" parent="CanvasLayer/Tutorial/MarginContainer" index="9"]
+[color=dea908ff]Power[/color] Blocks must have one exposed wall to work."
+fit_content = true
+
+[node name="Page10_NULL" type="VBoxContainer" parent="CanvasLayer/Tutorial/MarginContainer" index="9"]
 visible = false
 layout_mode = 2
 mouse_filter = 2
 
-[node name="SkipContainer" type="PanelContainer" parent="CanvasLayer/Tutorial/MarginContainer/Page10" index="0"]
+[node name="SkipContainer" type="PanelContainer" parent="CanvasLayer/Tutorial/MarginContainer/Page10_NULL" index="0"]
 visible = false
 layout_mode = 2
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_ucp35")
 
-[node name="ReturnButton" type="Button" parent="CanvasLayer/Tutorial/MarginContainer/Page10/SkipContainer" index="0"]
+[node name="ReturnButton" type="Button" parent="CanvasLayer/Tutorial/MarginContainer/Page10_NULL/SkipContainer" index="0"]
 layout_mode = 2
 theme = ExtResource("2_pgsaf")
 text = "Skip"
 
-[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/Tutorial/MarginContainer/Page10" index="1"]
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/Tutorial/MarginContainer/Page10_NULL" index="1"]
 layout_mode = 2
 theme_override_styles/panel = ExtResource("3_53n5i")
 
-[node name="Label" type="Label" parent="CanvasLayer/Tutorial/MarginContainer/Page10/PanelContainer" index="0"]
+[node name="Label" type="Label" parent="CanvasLayer/Tutorial/MarginContainer/Page10_NULL/PanelContainer" index="0"]
 clip_contents = true
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
@@ -447,22 +468,22 @@ text = "Electrical Blocks only work when any tile is exposed to the outside!
 "
 autowrap_mode = 2
 
-[node name="Buttons" type="PanelContainer" parent="CanvasLayer/Tutorial/MarginContainer/Page10" index="2"]
+[node name="Buttons" type="PanelContainer" parent="CanvasLayer/Tutorial/MarginContainer/Page10_NULL" index="2"]
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_r2ccf")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Tutorial/MarginContainer/Page10/Buttons" index="0"]
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Tutorial/MarginContainer/Page10_NULL/Buttons" index="0"]
 layout_mode = 2
 
-[node name="ReturnButtonPanel" type="PanelContainer" parent="CanvasLayer/Tutorial/MarginContainer/Page10/Buttons/HBoxContainer" index="0"]
+[node name="ReturnButtonPanel" type="PanelContainer" parent="CanvasLayer/Tutorial/MarginContainer/Page10_NULL/Buttons/HBoxContainer" index="0"]
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_k7m06")
 
-[node name="NextButtonPanel" type="PanelContainer" parent="CanvasLayer/Tutorial/MarginContainer/Page10/Buttons/HBoxContainer" index="1"]
+[node name="NextButtonPanel" type="PanelContainer" parent="CanvasLayer/Tutorial/MarginContainer/Page10_NULL/Buttons/HBoxContainer" index="1"]
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_7wf86")
 
-[node name="Page10_NextButton" type="Button" parent="CanvasLayer/Tutorial/MarginContainer/Page10/Buttons/HBoxContainer/NextButtonPanel" index="0"]
+[node name="Page10_NextButton" type="Button" parent="CanvasLayer/Tutorial/MarginContainer/Page10_NULL/Buttons/HBoxContainer/NextButtonPanel" index="0"]
 layout_mode = 2
 theme = ExtResource("4_h237w")
 text = "  Next   "
@@ -487,14 +508,17 @@ text = "Skip"
 layout_mode = 2
 theme_override_styles/panel = ExtResource("3_53n5i")
 
-[node name="Label" type="Label" parent="CanvasLayer/Tutorial/MarginContainer/Page11_Action/PanelContainer" index="0"]
-clip_contents = true
-custom_minimum_size = Vector2(200, 0)
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Tutorial/MarginContainer/Page11_Action/PanelContainer" index="0"]
 layout_mode = 2
 theme = ExtResource("4_h237w")
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "Our last resource is Business. Place down a Business Block next to the Residence Block to generate currency. You will be able to spend currency later for special blocks!"
-autowrap_mode = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/bold_font = SubResource("SystemFont_deyfi")
+theme_override_font_sizes/bold_font_size = 18
+bbcode_enabled = true
+text = "Now you're in [color=5129beff]Business[/color]! Place a [color=5129beff]Business Block[/color]  next to the [color=red]Residence Block[/color] in order to generate currency. You will be able to spend currency later for special blocks!
+
+[color=5129beff]Business Blocks[/color] do not need any exposed tiles in order to work."
+fit_content = true
 
 [node name="Page12" type="VBoxContainer" parent="CanvasLayer/Tutorial/MarginContainer" index="11"]
 visible = false
@@ -516,15 +540,17 @@ text = "Skip"
 layout_mode = 2
 theme_override_styles/panel = ExtResource("3_53n5i")
 
-[node name="Label" type="Label" parent="CanvasLayer/Tutorial/MarginContainer/Page12/PanelContainer" index="0"]
-clip_contents = true
-custom_minimum_size = Vector2(200, 0)
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Tutorial/MarginContainer/Page12/PanelContainer" index="0"]
 layout_mode = 2
 theme = ExtResource("4_h237w")
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "Business Blocks don't need any tiles exposed to work!
-"
-autowrap_mode = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/bold_font = SubResource("SystemFont_deyfi")
+theme_override_font_sizes/bold_font_size = 18
+bbcode_enabled = true
+text = "Resource Blocks (Food, Water, Electricity, and Business) will not activate unless they connected to a Residence Block.
+
+Connecting Resource Blocks of the same type will increase your resource output."
+fit_content = true
 
 [node name="Buttons" type="PanelContainer" parent="CanvasLayer/Tutorial/MarginContainer/Page12" index="2"]
 layout_mode = 2
@@ -546,27 +572,27 @@ layout_mode = 2
 theme = ExtResource("4_h237w")
 text = "  Next   "
 
-[node name="Page13" type="VBoxContainer" parent="CanvasLayer/Tutorial/MarginContainer" index="12"]
+[node name="Page13_NULL" type="VBoxContainer" parent="CanvasLayer/Tutorial/MarginContainer" index="12"]
 visible = false
 layout_mode = 2
 mouse_filter = 2
 
-[node name="SkipContainer" type="PanelContainer" parent="CanvasLayer/Tutorial/MarginContainer/Page13" index="0"]
+[node name="SkipContainer" type="PanelContainer" parent="CanvasLayer/Tutorial/MarginContainer/Page13_NULL" index="0"]
 visible = false
 layout_mode = 2
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_ucp35")
 
-[node name="ReturnButton" type="Button" parent="CanvasLayer/Tutorial/MarginContainer/Page13/SkipContainer" index="0"]
+[node name="ReturnButton" type="Button" parent="CanvasLayer/Tutorial/MarginContainer/Page13_NULL/SkipContainer" index="0"]
 layout_mode = 2
 theme = ExtResource("2_pgsaf")
 text = "Skip"
 
-[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/Tutorial/MarginContainer/Page13" index="1"]
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/Tutorial/MarginContainer/Page13_NULL" index="1"]
 layout_mode = 2
 theme_override_styles/panel = ExtResource("3_53n5i")
 
-[node name="Label" type="Label" parent="CanvasLayer/Tutorial/MarginContainer/Page13/PanelContainer" index="0"]
+[node name="Label" type="Label" parent="CanvasLayer/Tutorial/MarginContainer/Page13_NULL/PanelContainer" index="0"]
 clip_contents = true
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
@@ -575,22 +601,22 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "Resource blocks (Food, Water, Electricity, and Business) will also not work if they are not connected to a Residential block"
 autowrap_mode = 2
 
-[node name="Buttons" type="PanelContainer" parent="CanvasLayer/Tutorial/MarginContainer/Page13" index="2"]
+[node name="Buttons" type="PanelContainer" parent="CanvasLayer/Tutorial/MarginContainer/Page13_NULL" index="2"]
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_r2ccf")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Tutorial/MarginContainer/Page13/Buttons" index="0"]
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Tutorial/MarginContainer/Page13_NULL/Buttons" index="0"]
 layout_mode = 2
 
-[node name="ReturnButtonPanel" type="PanelContainer" parent="CanvasLayer/Tutorial/MarginContainer/Page13/Buttons/HBoxContainer" index="0"]
+[node name="ReturnButtonPanel" type="PanelContainer" parent="CanvasLayer/Tutorial/MarginContainer/Page13_NULL/Buttons/HBoxContainer" index="0"]
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_k7m06")
 
-[node name="NextButtonPanel" type="PanelContainer" parent="CanvasLayer/Tutorial/MarginContainer/Page13/Buttons/HBoxContainer" index="1"]
+[node name="NextButtonPanel" type="PanelContainer" parent="CanvasLayer/Tutorial/MarginContainer/Page13_NULL/Buttons/HBoxContainer" index="1"]
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_7wf86")
 
-[node name="Page13_NextButton" type="Button" parent="CanvasLayer/Tutorial/MarginContainer/Page13/Buttons/HBoxContainer/NextButtonPanel" index="0"]
+[node name="Page13_NextButton" type="Button" parent="CanvasLayer/Tutorial/MarginContainer/Page13_NULL/Buttons/HBoxContainer/NextButtonPanel" index="0"]
 layout_mode = 2
 theme = ExtResource("4_h237w")
 text = "  Next   "
@@ -615,14 +641,15 @@ text = "Skip"
 layout_mode = 2
 theme_override_styles/panel = ExtResource("3_53n5i")
 
-[node name="Label" type="Label" parent="CanvasLayer/Tutorial/MarginContainer/Page14_Action/PanelContainer" index="0"]
-clip_contents = true
-custom_minimum_size = Vector2(200, 0)
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Tutorial/MarginContainer/Page14_Action/PanelContainer" index="0"]
 layout_mode = 2
 theme = ExtResource("4_h237w")
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "Lastly, there are Frame blocks! Place them underneath one of your resource blocks to increase resource output!"
-autowrap_mode = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/bold_font = SubResource("SystemFont_deyfi")
+theme_override_font_sizes/bold_font_size = 18
+bbcode_enabled = true
+text = "Lastly, there are [color=#242424][b]Frame[/b][/color] blocks! Place them underneath one of your resource blocks to increase resource output!"
+fit_content = true
 
 [node name="Page15" type="VBoxContainer" parent="CanvasLayer/Tutorial/MarginContainer" index="14"]
 visible = false
@@ -644,17 +671,15 @@ text = "Skip"
 layout_mode = 2
 theme_override_styles/panel = ExtResource("3_53n5i")
 
-[node name="Label" type="Label" parent="CanvasLayer/Tutorial/MarginContainer/Page15/PanelContainer" index="0"]
-clip_contents = true
-custom_minimum_size = Vector2(200, 0)
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Tutorial/MarginContainer/Page15/PanelContainer" index="0"]
 layout_mode = 2
 theme = ExtResource("4_h237w")
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "You have all the tools you need to progress and make your own tower! Good luck and have fun!
-
-Try building past those clouds up at the top!
-"
-autowrap_mode = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/bold_font = SubResource("SystemFont_deyfi")
+theme_override_font_sizes/bold_font_size = 18
+bbcode_enabled = true
+text = "Completing rows will also give you a score multiplier, so be sure to give your civilization a good foundation."
+fit_content = true
 
 [node name="Buttons" type="PanelContainer" parent="CanvasLayer/Tutorial/MarginContainer/Page15" index="2"]
 layout_mode = 2
@@ -671,7 +696,266 @@ theme_override_styles/panel = SubResource("StyleBoxEmpty_k7m06")
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_7wf86")
 
-[node name="Page15_ExitButton" type="Button" parent="CanvasLayer/Tutorial/MarginContainer/Page15/Buttons/HBoxContainer/NextButtonPanel" index="0"]
+[node name="Page15_NextButton" type="Button" parent="CanvasLayer/Tutorial/MarginContainer/Page15/Buttons/HBoxContainer/NextButtonPanel" index="0"]
+layout_mode = 2
+theme = ExtResource("4_h237w")
+text = "  Next  "
+
+[node name="Page16" type="VBoxContainer" parent="CanvasLayer/Tutorial/MarginContainer" index="15"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 0
+mouse_filter = 2
+
+[node name="SkipContainer" type="PanelContainer" parent="CanvasLayer/Tutorial/MarginContainer/Page16" index="0"]
+visible = false
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_ucp35")
+
+[node name="ReturnButton" type="Button" parent="CanvasLayer/Tutorial/MarginContainer/Page16/SkipContainer" index="0"]
+layout_mode = 2
+theme = ExtResource("2_pgsaf")
+text = "Skip"
+
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/Tutorial/MarginContainer/Page16" index="1"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_styles/panel = ExtResource("3_53n5i")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Tutorial/MarginContainer/Page16/PanelContainer" index="0"]
+layout_mode = 2
+theme = ExtResource("4_h237w")
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/bold_font = SubResource("SystemFont_deyfi")
+theme_override_font_sizes/bold_font_size = 18
+bbcode_enabled = true
+text = "The Block Dispenser (Top Right) summons new blocks from the void."
+fit_content = true
+
+[node name="Buttons" type="PanelContainer" parent="CanvasLayer/Tutorial/MarginContainer/Page16" index="2"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxEmpty_r2ccf")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Tutorial/MarginContainer/Page16/Buttons" index="0"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="NextButtonPanel" type="PanelContainer" parent="CanvasLayer/Tutorial/MarginContainer/Page16/Buttons/HBoxContainer" index="0"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_7wf86")
+
+[node name="Page16_NextButton" type="Button" parent="CanvasLayer/Tutorial/MarginContainer/Page16/Buttons/HBoxContainer/NextButtonPanel" index="0"]
+layout_mode = 2
+theme = ExtResource("4_h237w")
+text = "  Next  "
+
+[node name="Page17" type="VBoxContainer" parent="CanvasLayer/Tutorial/MarginContainer" index="16"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 2
+
+[node name="SkipContainer" type="PanelContainer" parent="CanvasLayer/Tutorial/MarginContainer/Page17" index="0"]
+visible = false
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_ucp35")
+
+[node name="ReturnButton" type="Button" parent="CanvasLayer/Tutorial/MarginContainer/Page17/SkipContainer" index="0"]
+layout_mode = 2
+theme = ExtResource("2_pgsaf")
+text = "Skip"
+
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/Tutorial/MarginContainer/Page17" index="1"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_styles/panel = ExtResource("3_53n5i")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Tutorial/MarginContainer/Page17/PanelContainer" index="0"]
+layout_mode = 2
+theme = ExtResource("4_h237w")
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/bold_font = SubResource("SystemFont_deyfi")
+theme_override_font_sizes/bold_font_size = 18
+bbcode_enabled = true
+text = "These buttons allow you to purchase a new Resource Block for the Dispenser."
+fit_content = true
+
+[node name="Buttons" type="PanelContainer" parent="CanvasLayer/Tutorial/MarginContainer/Page17" index="2"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_r2ccf")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Tutorial/MarginContainer/Page17/Buttons" index="0"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="NextButtonPanel" type="PanelContainer" parent="CanvasLayer/Tutorial/MarginContainer/Page17/Buttons/HBoxContainer" index="0"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxEmpty_7wf86")
+
+[node name="Page17_NextButton" type="Button" parent="CanvasLayer/Tutorial/MarginContainer/Page17/Buttons/HBoxContainer/NextButtonPanel" index="0"]
+layout_mode = 2
+theme = ExtResource("4_h237w")
+text = "  Next  "
+
+[node name="Page18" type="VBoxContainer" parent="CanvasLayer/Tutorial/MarginContainer" index="17"]
+visible = false
+layout_mode = 2
+mouse_filter = 2
+
+[node name="SkipContainer" type="PanelContainer" parent="CanvasLayer/Tutorial/MarginContainer/Page18" index="0"]
+visible = false
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_ucp35")
+
+[node name="ReturnButton" type="Button" parent="CanvasLayer/Tutorial/MarginContainer/Page18/SkipContainer" index="0"]
+layout_mode = 2
+theme = ExtResource("2_pgsaf")
+text = "Skip"
+
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/Tutorial/MarginContainer/Page18" index="1"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = ExtResource("3_53n5i")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Tutorial/MarginContainer/Page18/PanelContainer" index="0"]
+layout_mode = 2
+theme = ExtResource("4_h237w")
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/bold_font = SubResource("SystemFont_deyfi")
+theme_override_font_sizes/bold_font_size = 18
+bbcode_enabled = true
+text = "Once you have enough coins, purchase a [b]Cloud Buster[/b] and place it below the clouds to progress to the next level."
+fit_content = true
+
+[node name="Buttons" type="PanelContainer" parent="CanvasLayer/Tutorial/MarginContainer/Page18" index="2"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_r2ccf")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Tutorial/MarginContainer/Page18/Buttons" index="0"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="NextButtonPanel" type="PanelContainer" parent="CanvasLayer/Tutorial/MarginContainer/Page18/Buttons/HBoxContainer" index="0"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_7wf86")
+
+[node name="Page18_NextButton" type="Button" parent="CanvasLayer/Tutorial/MarginContainer/Page18/Buttons/HBoxContainer/NextButtonPanel" index="0"]
+layout_mode = 2
+theme = ExtResource("4_h237w")
+text = "  Next  "
+
+[node name="Page19" type="VBoxContainer" parent="CanvasLayer/Tutorial/MarginContainer" index="18"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 2
+
+[node name="SkipContainer" type="PanelContainer" parent="CanvasLayer/Tutorial/MarginContainer/Page19" index="0"]
+visible = false
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_ucp35")
+
+[node name="ReturnButton" type="Button" parent="CanvasLayer/Tutorial/MarginContainer/Page19/SkipContainer" index="0"]
+layout_mode = 2
+theme = ExtResource("2_pgsaf")
+text = "Skip"
+
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/Tutorial/MarginContainer/Page19" index="1"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_styles/panel = ExtResource("3_53n5i")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Tutorial/MarginContainer/Page19/PanelContainer" index="0"]
+layout_mode = 2
+theme = ExtResource("4_h237w")
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/bold_font = SubResource("SystemFont_deyfi")
+theme_override_font_sizes/bold_font_size = 18
+bbcode_enabled = true
+text = "The cost of upkeep is based on your population.
+
+If you run out of any resource, your civilization will collapse."
+fit_content = true
+
+[node name="Buttons" type="PanelContainer" parent="CanvasLayer/Tutorial/MarginContainer/Page19" index="2"]
+layout_mode = 2
+size_flags_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_r2ccf")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Tutorial/MarginContainer/Page19/Buttons" index="0"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="NextButtonPanel" type="PanelContainer" parent="CanvasLayer/Tutorial/MarginContainer/Page19/Buttons/HBoxContainer" index="0"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_7wf86")
+
+[node name="Page19_NextButton" type="Button" parent="CanvasLayer/Tutorial/MarginContainer/Page19/Buttons/HBoxContainer/NextButtonPanel" index="0"]
+layout_mode = 2
+theme = ExtResource("4_h237w")
+text = "  Next  "
+
+[node name="Page20" type="VBoxContainer" parent="CanvasLayer/Tutorial/MarginContainer" index="19"]
+visible = false
+layout_mode = 2
+mouse_filter = 2
+
+[node name="SkipContainer" type="PanelContainer" parent="CanvasLayer/Tutorial/MarginContainer/Page20" index="0"]
+visible = false
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_ucp35")
+
+[node name="ReturnButton" type="Button" parent="CanvasLayer/Tutorial/MarginContainer/Page20/SkipContainer" index="0"]
+layout_mode = 2
+theme = ExtResource("2_pgsaf")
+text = "Skip"
+
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/Tutorial/MarginContainer/Page20" index="1"]
+layout_mode = 2
+theme_override_styles/panel = ExtResource("3_53n5i")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Tutorial/MarginContainer/Page20/PanelContainer" index="0"]
+layout_mode = 2
+theme = ExtResource("4_h237w")
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/bold_font = SubResource("SystemFont_deyfi")
+theme_override_font_sizes/bold_font_size = 18
+bbcode_enabled = true
+text = "You have all the tools you need to progress and make your own tower! Good luck and have fun!
+
+Try building past those clouds up at the top!"
+fit_content = true
+
+[node name="Buttons" type="PanelContainer" parent="CanvasLayer/Tutorial/MarginContainer/Page20" index="2"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_r2ccf")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Tutorial/MarginContainer/Page20/Buttons" index="0"]
+layout_mode = 2
+
+[node name="ReturnButtonPanel" type="PanelContainer" parent="CanvasLayer/Tutorial/MarginContainer/Page20/Buttons/HBoxContainer" index="0"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_k7m06")
+
+[node name="NextButtonPanel" type="PanelContainer" parent="CanvasLayer/Tutorial/MarginContainer/Page20/Buttons/HBoxContainer" index="1"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_7wf86")
+
+[node name="Page20_ExitButton" type="Button" parent="CanvasLayer/Tutorial/MarginContainer/Page20/Buttons/HBoxContainer/NextButtonPanel" index="0"]
 layout_mode = 2
 theme = ExtResource("4_h237w")
 text = "   Exit   "
@@ -684,19 +968,29 @@ text = "   Exit   "
 [connection signal="pressed" from="CanvasLayer/Tutorial/MarginContainer/Page04_Action/SkipContainer/ReturnButton" to="." method="_on_return_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/Tutorial/MarginContainer/Page05/SkipContainer/ReturnButton" to="." method="_on_return_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/Tutorial/MarginContainer/Page05/Buttons/HBoxContainer/NextButtonPanel/Page05_NextButton" to="." method="_on_page_05_next_button_pressed"]
-[connection signal="pressed" from="CanvasLayer/Tutorial/MarginContainer/Page06/SkipContainer/ReturnButton" to="." method="_on_return_button_pressed"]
-[connection signal="pressed" from="CanvasLayer/Tutorial/MarginContainer/Page06/Buttons/HBoxContainer/NextButtonPanel/Page06_NextButton" to="." method="_on_page_06_next_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/Tutorial/MarginContainer/Page06_NULL/SkipContainer/ReturnButton" to="." method="_on_return_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/Tutorial/MarginContainer/Page06_NULL/Buttons/HBoxContainer/NextButtonPanel/Page06_NextButton" to="." method="_on_page_06_next_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/Tutorial/MarginContainer/Page07_Action/SkipContainer/ReturnButton" to="." method="_on_return_button_pressed"]
-[connection signal="pressed" from="CanvasLayer/Tutorial/MarginContainer/Page08/SkipContainer/ReturnButton" to="." method="_on_return_button_pressed"]
-[connection signal="pressed" from="CanvasLayer/Tutorial/MarginContainer/Page08/Buttons/HBoxContainer/NextButtonPanel/Page08_NextButton" to="." method="_on_page_08_next_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/Tutorial/MarginContainer/Page08_NULL/SkipContainer/ReturnButton" to="." method="_on_return_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/Tutorial/MarginContainer/Page08_NULL/Buttons/HBoxContainer/NextButtonPanel/Page08_NextButton" to="." method="_on_page_08_next_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/Tutorial/MarginContainer/Page09_Action/SkipContainer/ReturnButton" to="." method="_on_return_button_pressed"]
-[connection signal="pressed" from="CanvasLayer/Tutorial/MarginContainer/Page10/SkipContainer/ReturnButton" to="." method="_on_return_button_pressed"]
-[connection signal="pressed" from="CanvasLayer/Tutorial/MarginContainer/Page10/Buttons/HBoxContainer/NextButtonPanel/Page10_NextButton" to="." method="_on_page_10_next_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/Tutorial/MarginContainer/Page10_NULL/SkipContainer/ReturnButton" to="." method="_on_return_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/Tutorial/MarginContainer/Page10_NULL/Buttons/HBoxContainer/NextButtonPanel/Page10_NextButton" to="." method="_on_page_10_next_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/Tutorial/MarginContainer/Page11_Action/SkipContainer/ReturnButton" to="." method="_on_return_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/Tutorial/MarginContainer/Page12/SkipContainer/ReturnButton" to="." method="_on_return_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/Tutorial/MarginContainer/Page12/Buttons/HBoxContainer/NextButtonPanel/Page12_NextButton" to="." method="_on_page_12_next_button_pressed"]
-[connection signal="pressed" from="CanvasLayer/Tutorial/MarginContainer/Page13/SkipContainer/ReturnButton" to="." method="_on_return_button_pressed"]
-[connection signal="pressed" from="CanvasLayer/Tutorial/MarginContainer/Page13/Buttons/HBoxContainer/NextButtonPanel/Page13_NextButton" to="." method="_on_page_13_next_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/Tutorial/MarginContainer/Page13_NULL/SkipContainer/ReturnButton" to="." method="_on_return_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/Tutorial/MarginContainer/Page13_NULL/Buttons/HBoxContainer/NextButtonPanel/Page13_NextButton" to="." method="_on_page_13_next_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/Tutorial/MarginContainer/Page14_Action/SkipContainer/ReturnButton" to="." method="_on_return_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/Tutorial/MarginContainer/Page15/SkipContainer/ReturnButton" to="." method="_on_return_button_pressed"]
-[connection signal="pressed" from="CanvasLayer/Tutorial/MarginContainer/Page15/Buttons/HBoxContainer/NextButtonPanel/Page15_ExitButton" to="." method="_on_page_15_exit_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/Tutorial/MarginContainer/Page15/Buttons/HBoxContainer/NextButtonPanel/Page15_NextButton" to="." method="_on_page_15_next_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/Tutorial/MarginContainer/Page16/SkipContainer/ReturnButton" to="." method="_on_return_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/Tutorial/MarginContainer/Page16/Buttons/HBoxContainer/NextButtonPanel/Page16_NextButton" to="." method="_on_page_16_next_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/Tutorial/MarginContainer/Page17/SkipContainer/ReturnButton" to="." method="_on_return_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/Tutorial/MarginContainer/Page17/Buttons/HBoxContainer/NextButtonPanel/Page17_NextButton" to="." method="_on_page_17_next_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/Tutorial/MarginContainer/Page18/SkipContainer/ReturnButton" to="." method="_on_return_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/Tutorial/MarginContainer/Page18/Buttons/HBoxContainer/NextButtonPanel/Page18_NextButton" to="." method="_on_page_18_next_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/Tutorial/MarginContainer/Page19/SkipContainer/ReturnButton" to="." method="_on_return_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/Tutorial/MarginContainer/Page19/Buttons/HBoxContainer/NextButtonPanel/Page19_NextButton" to="." method="_on_page_19_next_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/Tutorial/MarginContainer/Page20/SkipContainer/ReturnButton" to="." method="_on_return_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/Tutorial/MarginContainer/Page20/Buttons/HBoxContainer/NextButtonPanel/Page20_ExitButton" to="." method="_on_page_20_exit_button_pressed"]
